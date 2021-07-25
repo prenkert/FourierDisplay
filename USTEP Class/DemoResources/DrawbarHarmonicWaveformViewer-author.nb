@@ -1,0 +1,3459 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[    156198,       3450]
+NotebookOptionsPosition[    151269,       3300]
+NotebookOutlinePosition[    152906,       3351]
+CellTagsIndexPosition[    152570,       3339]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Drawbar/Harmonic Waveform Viewer", "DemoTitle",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.443625652921875*^9, 3.443625662234375*^9}}],
+
+Cell["", "InitializationSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{"a", ",", "\[IndentingNewLine]", 
+     RowBox[{"Pane", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Grid", "[", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Grid", "[", 
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d1\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d1", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d2\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d2", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d3\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d3", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d4\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d4", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d5\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d5", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d6\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d6", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d7\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d7", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d8\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d8", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d9\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d9", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d10\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d10", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<d11\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"PopupMenu", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "d11", "]"}], ",", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{"0", ",", "9"}], "]"}]}], "]"}]}], "}"}]}], "}"}], 
+            "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"Column", "[", 
+            RowBox[{
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"d1", " ", 
+                   RowBox[{"Sin", "[", "x", "]"}]}], "+", 
+                  RowBox[{"d3", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"2", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"d2", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"3", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"d4", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"4", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"d5", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"6", " ", "x"}], "]"}]}], "+", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"d6", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"8", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"d10", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"9", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"d7", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"10", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"d8", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"12", " ", "x"}], "]"}]}], "+", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"d9", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"16", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{
+                   FractionBox["1", "2"], " ", "d10", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"17", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"d11", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"20", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{
+                   FractionBox["1", "2"], " ", "d11", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"24", " ", "x"}], "]"}]}]}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"x", ",", "0", ",", 
+                   RowBox[{"2", " ", "\[Pi]"}]}], "}"}], ",", 
+                 RowBox[{"ImageSize", "\[Rule]", 
+                  RowBox[{"{", 
+                   RowBox[{"400", ",", "250"}], "}"}]}]}], "]"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"Play", "[", 
+                RowBox[{
+                 RowBox[{"With", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"x", "=", 
+                    RowBox[{"220.", "*", "t"}]}], "}"}], ",", " ", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"d1", " ", 
+                    RowBox[{"Sin", "[", "x", "]"}]}], "+", 
+                    RowBox[{"d3", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"2", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"d2", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"3", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"d4", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"4", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"d5", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"6", " ", "x"}], "]"}]}], "+", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"d6", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"8", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"d10", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"9", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"d7", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"10", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"d8", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"12", " ", "x"}], "]"}]}], "+", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"d9", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"16", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{
+                    FractionBox["1", "2"], " ", "d10", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"17", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"d11", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"20", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{
+                    FractionBox["1", "2"], " ", "d11", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"24", " ", "x"}], "]"}]}]}]}], "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"t", ",", "0", ",", "1."}], "}"}], ",", " ", 
+                 RowBox[{"SampleRate", "\[Rule]", "22050"}]}], "]"}]}], "}"}],
+              ",", "Center"}], "]"}]}], "}"}], "}"}], "]"}], ",", 
+       RowBox[{"ImageSize", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"600", ",", "375"}], "}"}]}]}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Pane", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Grid", "[", 
+        RowBox[{"{", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Grid", "[", 
+            RowBox[{
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h1\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h1", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h2\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h2", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h3\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h3", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h4\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h4", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h5\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h5", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h6\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h6", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h7\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h7", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h8\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h8", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h9\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h9", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h10\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h10", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h11\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h11", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h12\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h12", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}]}], 
+              "}"}], ",", 
+             RowBox[{"Alignment", "\[Rule]", "Right"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Column", "[", 
+            RowBox[{
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Plot", "[", " ", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"h1", " ", 
+                   RowBox[{"Sin", "[", "x", "]"}]}], "+", 
+                  RowBox[{"h2", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"2", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h3", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"3", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h4", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"4", " ", "x"}], "]"}]}], "+", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"h5", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"5", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h6", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"6", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h7", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"7", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h8", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"8", " ", "x"}], "]"}]}], "+", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"h9", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"9", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h10", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"10", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h11", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"11", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h12", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"12", " ", "x"}], "]"}]}], "+", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"h13", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"13", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h14", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"14", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h15", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"15", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h16", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"16", " ", "x"}], "]"}]}], "+", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"h17", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"17", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h18", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"18", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h19", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"19", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h20", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"20", " ", "x"}], "]"}]}], "+", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"h21", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"21", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h22", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"22", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h23", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"23", " ", "x"}], "]"}]}], "+", 
+                  RowBox[{"h24", " ", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{"24", " ", "x"}], "]"}]}]}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"{", 
+                  RowBox[{"x", ",", "0", ",", 
+                   RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+                 RowBox[{"ImageSize", "\[Rule]", 
+                  RowBox[{"{", 
+                   RowBox[{"400", ",", "250"}], "}"}]}]}], "]"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"Play", "[", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"With", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"x", "=", 
+                    RowBox[{"220.", "*", "t"}]}], "}"}], ",", " ", 
+                   RowBox[{
+                    RowBox[{"h1", " ", 
+                    RowBox[{"Sin", "[", "x", "]"}]}], "+", 
+                    RowBox[{"h2", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"2", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h3", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"3", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h4", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"4", " ", "x"}], "]"}]}], "+", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"h5", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"5", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h6", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"6", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h7", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"7", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h8", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"8", " ", "x"}], "]"}]}], "+", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"h9", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"9", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h10", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"10", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h11", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"11", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h12", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"12", " ", "x"}], "]"}]}], "+", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"h13", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"13", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h14", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"14", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h15", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"15", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h16", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"16", " ", "x"}], "]"}]}], "+", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"h17", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"17", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h18", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"18", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h19", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"19", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h20", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"20", " ", "x"}], "]"}]}], "+", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"h21", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"21", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h22", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"22", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h23", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"23", " ", "x"}], "]"}]}], "+", 
+                    RowBox[{"h24", " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"24", " ", "x"}], "]"}]}]}]}], "]"}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"{", 
+                  RowBox[{"t", ",", "0", ",", "1."}], "}"}], ",", 
+                 RowBox[{"SampleRate", "\[Rule]", "22050"}]}], "]"}]}], "}"}],
+              ",", "Center"}], "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"Grid", "[", 
+            RowBox[{
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h13\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h13", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h14\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h14", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h15\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h15", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h16\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h16", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h17\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h17", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h18\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h18", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h19\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h19", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h20\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h20", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h21\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h21", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h22\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h22", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h23\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h23", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<h24\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                 RowBox[{"PopupMenu", "[", 
+                  RowBox[{
+                   RowBox[{"Dynamic", "[", "h24", "]"}], ",", 
+                   RowBox[{"Range", "[", 
+                    RowBox[{"0", ",", "15"}], "]"}]}], "]"}]}], "}"}]}], 
+              "}"}], ",", 
+             RowBox[{"Alignment", "\[Rule]", "Right"}]}], "]"}]}], "}"}], 
+         "}"}], "]"}], ",", 
+       RowBox[{"ImageSize", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"600", ",", "375"}], "}"}]}]}], "]"}]}], "]"}], ",", " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "True", ",", "\"\<drawbars/harmonics\>\""}], "}"}], 
+     ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", " ", "False"}], "}"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Top"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"d1", ",", "9"}], "}"}], ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"d2", ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", "\n", 
+   RowBox[{"{", 
+    RowBox[{"d3", ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"d4", ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"d5", ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"d6", ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", "\n", 
+   RowBox[{"{", 
+    RowBox[{"d7", ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"d8", ",", " ", "6"}], "}"}], ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"d9", ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", "\n", 
+   RowBox[{"{", 
+    RowBox[{"d10", ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"d11", ",", "0", ",", "9", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"h1", ",", "15"}], "}"}], ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h2", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h3", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h4", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h5", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h6", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h7", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"h8", ",", " ", "6"}], "}"}], ",", "0", ",", "15", ",", "1", 
+     ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h9", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h10", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h11", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h12", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h13", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h14", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h15", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h16", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h17", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h18", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h19", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h20", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h21", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h22", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h23", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"h24", ",", "0", ",", "15", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}], ",", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "5", ",", "9"}], "}"}]}], ",", 
+   RowBox[{"SynchronousUpdating", "\[Rule]", "False"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.44362584640625*^9, {3.4440681036681776`*^9, 
+   3.4440683929301014`*^9}, {3.444068428880696*^9, 3.4440684868934965`*^9}, {
+   3.4440685239482017`*^9, 3.4440685530001063`*^9}, {3.4440685892357297`*^9, 
+   3.444068735125317*^9}, {3.444068766889493*^9, 3.4440687688086853`*^9}, {
+   3.4440703811329017`*^9, 3.444070409280716*^9}, {3.4440718540311766`*^9, 
+   3.4440720186996417`*^9}, {3.4440720559393654`*^9, 
+   3.4440727816029243`*^9}, {3.4440728394707108`*^9, 
+   3.4440728682315865`*^9}, {3.4440729834091034`*^9, 
+   3.4440730113448963`*^9}, {3.444235414375*^9, 3.44423542484375*^9}, {
+   3.444393895487199*^9, 3.444393895989249*^9}, {3.444587300816645*^9, 
+   3.444587326948258*^9}, {3.444587382523815*^9, 3.4445874018587484`*^9}, {
+   3.44458743327489*^9, 3.444587442500812*^9}, {3.44475914335456*^9, 
+   3.444759143939563*^9}, {3.444759181997304*^9, 3.444759203244335*^9}, {
+   3.44475923662261*^9, 3.444759259285931*^9}, {3.4447593074933443`*^9, 
+   3.444759385235591*^9}, {3.444759420267766*^9, 3.444759438491872*^9}, {
+   3.444759493776937*^9, 3.444759506909746*^9}, {3.444759559817415*^9, 
+   3.444759566606782*^9}, {3.444759617338756*^9, 3.444759623158609*^9}, {
+   3.4447597421755333`*^9, 3.4447597765794277`*^9}, {3.444760077423966*^9, 
+   3.444760101407847*^9}, {3.444760169210567*^9, 3.444760172107955*^9}, {
+   3.4451202991132045`*^9, 3.445120299878829*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = True, $CellContext`d1$$ = 
+    9, $CellContext`d10$$ = 0, $CellContext`d11$$ = 0, $CellContext`d2$$ = 
+    0, $CellContext`d3$$ = 0, $CellContext`d4$$ = 0, $CellContext`d5$$ = 
+    0, $CellContext`d6$$ = 0, $CellContext`d7$$ = 0, $CellContext`d8$$ = 
+    6, $CellContext`d9$$ = 0, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+    0, $CellContext`h11$$ = 0, $CellContext`h12$$ = 0, $CellContext`h13$$ = 
+    0, $CellContext`h14$$ = 0, $CellContext`h15$$ = 0, $CellContext`h16$$ = 
+    0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+    0, $CellContext`h2$$ = 0, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+    0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+    0, $CellContext`h3$$ = 0, $CellContext`h4$$ = 0, $CellContext`h5$$ = 
+    0, $CellContext`h6$$ = 0, $CellContext`h7$$ = 0, $CellContext`h8$$ = 
+    6, $CellContext`h9$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], True, "drawbars/harmonics"}, {True, False}}, {{
+      
+       Hold[$CellContext`d1$$], 9}, 0, 9, 1}, {
+      Hold[$CellContext`d2$$], 0, 9, 1}, {
+      Hold[$CellContext`d3$$], 0, 9, 1}, {
+      Hold[$CellContext`d4$$], 0, 9, 1}, {
+      Hold[$CellContext`d5$$], 0, 9, 1}, {
+      Hold[$CellContext`d6$$], 0, 9, 1}, {
+      Hold[$CellContext`d7$$], 0, 9, 1}, {{
+       Hold[$CellContext`d8$$], 6}, 0, 9, 1}, {
+      Hold[$CellContext`d9$$], 0, 9, 1}, {
+      Hold[$CellContext`d10$$], 0, 9, 1}, {
+      Hold[$CellContext`d11$$], 0, 9, 1}, {{
+       Hold[$CellContext`h1$$], 15}, 0, 15, 1}, {
+      Hold[$CellContext`h2$$], 0, 15, 1}, {
+      Hold[$CellContext`h3$$], 0, 15, 1}, {
+      Hold[$CellContext`h4$$], 0, 15, 1}, {
+      Hold[$CellContext`h5$$], 0, 15, 1}, {
+      Hold[$CellContext`h6$$], 0, 15, 1}, {
+      Hold[$CellContext`h7$$], 0, 15, 1}, {{
+       Hold[$CellContext`h8$$], 6}, 0, 15, 1}, {
+      Hold[$CellContext`h9$$], 0, 15, 1}, {
+      Hold[$CellContext`h10$$], 0, 15, 1}, {
+      Hold[$CellContext`h11$$], 0, 15, 1}, {
+      Hold[$CellContext`h12$$], 0, 15, 1}, {
+      Hold[$CellContext`h13$$], 0, 15, 1}, {
+      Hold[$CellContext`h14$$], 0, 15, 1}, {
+      Hold[$CellContext`h15$$], 0, 15, 1}, {
+      Hold[$CellContext`h16$$], 0, 15, 1}, {
+      Hold[$CellContext`h17$$], 0, 15, 1}, {
+      Hold[$CellContext`h18$$], 0, 15, 1}, {
+      Hold[$CellContext`h19$$], 0, 15, 1}, {
+      Hold[$CellContext`h20$$], 0, 15, 1}, {
+      Hold[$CellContext`h21$$], 0, 15, 1}, {
+      Hold[$CellContext`h22$$], 0, 15, 1}, {
+      Hold[$CellContext`h23$$], 0, 15, 1}, {
+      Hold[$CellContext`h24$$], 0, 15, 1}}, Typeset`size$$ = {
+    600., {185., 190.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`a$84781$$ = 
+    False, $CellContext`d1$84782$$ = 0, $CellContext`d2$84783$$ = 
+    0, $CellContext`d3$84784$$ = 0, $CellContext`d4$84785$$ = 
+    0, $CellContext`d5$84786$$ = 0, $CellContext`d6$84787$$ = 
+    0, $CellContext`d7$84788$$ = 0, $CellContext`d8$84789$$ = 
+    0, $CellContext`d9$84790$$ = 0, $CellContext`d10$84791$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = True, $CellContext`d1$$ = 
+        9, $CellContext`d10$$ = 0, $CellContext`d11$$ = 0, $CellContext`d2$$ = 
+        0, $CellContext`d3$$ = 0, $CellContext`d4$$ = 0, $CellContext`d5$$ = 
+        0, $CellContext`d6$$ = 0, $CellContext`d7$$ = 0, $CellContext`d8$$ = 
+        6, $CellContext`d9$$ = 0, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+        0, $CellContext`h11$$ = 0, $CellContext`h12$$ = 0, $CellContext`h13$$ = 
+        0, $CellContext`h14$$ = 0, $CellContext`h15$$ = 0, $CellContext`h16$$ = 
+        0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+        0, $CellContext`h2$$ = 0, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+        0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+        0, $CellContext`h3$$ = 0, $CellContext`h4$$ = 0, $CellContext`h5$$ = 
+        0, $CellContext`h6$$ = 0, $CellContext`h7$$ = 0, $CellContext`h8$$ = 
+        6, $CellContext`h9$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`a$$, $CellContext`a$84781$$, False], 
+        Hold[$CellContext`d1$$, $CellContext`d1$84782$$, 0], 
+        Hold[$CellContext`d2$$, $CellContext`d2$84783$$, 0], 
+        Hold[$CellContext`d3$$, $CellContext`d3$84784$$, 0], 
+        Hold[$CellContext`d4$$, $CellContext`d4$84785$$, 0], 
+        Hold[$CellContext`d5$$, $CellContext`d5$84786$$, 0], 
+        Hold[$CellContext`d6$$, $CellContext`d6$84787$$, 0], 
+        Hold[$CellContext`d7$$, $CellContext`d7$84788$$, 0], 
+        Hold[$CellContext`d8$$, $CellContext`d8$84789$$, 0], 
+        Hold[$CellContext`d9$$, $CellContext`d9$84790$$, 0], 
+        Hold[$CellContext`d10$$, $CellContext`d10$84791$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> If[$CellContext`a$$, 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["d1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d1$$], 
+                Range[0, 9]]}, {
+               Style["d2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d2$$], 
+                Range[0, 9]]}, {
+               Style["d3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d3$$], 
+                Range[0, 9]]}, {
+               Style["d4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d4$$], 
+                Range[0, 9]]}, {
+               Style["d5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d5$$], 
+                Range[0, 9]]}, {
+               Style["d6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d6$$], 
+                Range[0, 9]]}, {
+               Style["d7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d7$$], 
+                Range[0, 9]]}, {
+               Style["d8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d8$$], 
+                Range[0, 9]]}, {
+               Style["d9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d9$$], 
+                Range[0, 9]]}, {
+               Style["d10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d10$$], 
+                Range[0, 9]]}, {
+               Style["d11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d11$$], 
+                Range[0, 9]]}}], 
+            Column[{
+              
+              Plot[$CellContext`d1$$ Sin[$CellContext`x] + $CellContext`d3$$ 
+                Sin[2 $CellContext`x] + $CellContext`d2$$ 
+                Sin[3 $CellContext`x] + $CellContext`d4$$ 
+                Sin[4 $CellContext`x] + $CellContext`d5$$ 
+                Sin[6 $CellContext`x] + $CellContext`d6$$ 
+                Sin[8 $CellContext`x] + $CellContext`d10$$ 
+                Sin[9 $CellContext`x] + $CellContext`d7$$ 
+                Sin[10 $CellContext`x] + $CellContext`d8$$ 
+                Sin[12 $CellContext`x] + $CellContext`d9$$ 
+                Sin[16 $CellContext`x] + (1/2) $CellContext`d10$$ 
+                Sin[17 $CellContext`x] + $CellContext`d11$$ 
+                Sin[20 $CellContext`x] + (1/2) $CellContext`d11$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`d1$$ 
+                 Sin[$CellContext`x$] + $CellContext`d3$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`d2$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`d4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`d5$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`d6$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`d10$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`d7$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`d8$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`d9$$ 
+                 Sin[16 $CellContext`x$] + (1/2) $CellContext`d10$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`d11$$ 
+                 Sin[20 $CellContext`x$] + (1/2) $CellContext`d11$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center]}}], ImageSize -> {600, 375}], 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["h1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h1$$], 
+                Range[0, 15]]}, {
+               Style["h2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h2$$], 
+                Range[0, 15]]}, {
+               Style["h3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h3$$], 
+                Range[0, 15]]}, {
+               Style["h4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h4$$], 
+                Range[0, 15]]}, {
+               Style["h5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h5$$], 
+                Range[0, 15]]}, {
+               Style["h6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h6$$], 
+                Range[0, 15]]}, {
+               Style["h7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h7$$], 
+                Range[0, 15]]}, {
+               Style["h8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h8$$], 
+                Range[0, 15]]}, {
+               Style["h9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h9$$], 
+                Range[0, 15]]}, {
+               Style["h10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h10$$], 
+                Range[0, 15]]}, {
+               Style["h11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h11$$], 
+                Range[0, 15]]}, {
+               Style["h12", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h12$$], 
+                Range[0, 15]]}}, Alignment -> Right], 
+            Column[{
+              
+              Plot[$CellContext`h1$$ Sin[$CellContext`x] + $CellContext`h2$$ 
+                Sin[2 $CellContext`x] + $CellContext`h3$$ 
+                Sin[3 $CellContext`x] + $CellContext`h4$$ 
+                Sin[4 $CellContext`x] + $CellContext`h5$$ 
+                Sin[5 $CellContext`x] + $CellContext`h6$$ 
+                Sin[6 $CellContext`x] + $CellContext`h7$$ 
+                Sin[7 $CellContext`x] + $CellContext`h8$$ 
+                Sin[8 $CellContext`x] + $CellContext`h9$$ 
+                Sin[9 $CellContext`x] + $CellContext`h10$$ 
+                Sin[10 $CellContext`x] + $CellContext`h11$$ 
+                Sin[11 $CellContext`x] + $CellContext`h12$$ 
+                Sin[12 $CellContext`x] + $CellContext`h13$$ 
+                Sin[13 $CellContext`x] + $CellContext`h14$$ 
+                Sin[14 $CellContext`x] + $CellContext`h15$$ 
+                Sin[15 $CellContext`x] + $CellContext`h16$$ 
+                Sin[16 $CellContext`x] + $CellContext`h17$$ 
+                Sin[17 $CellContext`x] + $CellContext`h18$$ 
+                Sin[18 $CellContext`x] + $CellContext`h19$$ 
+                Sin[19 $CellContext`x] + $CellContext`h20$$ 
+                Sin[20 $CellContext`x] + $CellContext`h21$$ 
+                Sin[21 $CellContext`x] + $CellContext`h22$$ 
+                Sin[22 $CellContext`x] + $CellContext`h23$$ 
+                Sin[23 $CellContext`x] + $CellContext`h24$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`h1$$ 
+                 Sin[$CellContext`x$] + $CellContext`h2$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`h3$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`h4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`h5$$ 
+                 Sin[5 $CellContext`x$] + $CellContext`h6$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`h7$$ 
+                 Sin[7 $CellContext`x$] + $CellContext`h8$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`h9$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`h10$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`h11$$ 
+                 Sin[11 $CellContext`x$] + $CellContext`h12$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`h13$$ 
+                 Sin[13 $CellContext`x$] + $CellContext`h14$$ 
+                 Sin[14 $CellContext`x$] + $CellContext`h15$$ 
+                 Sin[15 $CellContext`x$] + $CellContext`h16$$ 
+                 Sin[16 $CellContext`x$] + $CellContext`h17$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`h18$$ 
+                 Sin[18 $CellContext`x$] + $CellContext`h19$$ 
+                 Sin[19 $CellContext`x$] + $CellContext`h20$$ 
+                 Sin[20 $CellContext`x$] + $CellContext`h21$$ 
+                 Sin[21 $CellContext`x$] + $CellContext`h22$$ 
+                 Sin[22 $CellContext`x$] + $CellContext`h23$$ 
+                 Sin[23 $CellContext`x$] + $CellContext`h24$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center], 
+            Grid[{{
+               Style["h13", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h13$$], 
+                Range[0, 15]]}, {
+               Style["h14", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h14$$], 
+                Range[0, 15]]}, {
+               Style["h15", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h15$$], 
+                Range[0, 15]]}, {
+               Style["h16", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h16$$], 
+                Range[0, 15]]}, {
+               Style["h17", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h17$$], 
+                Range[0, 15]]}, {
+               Style["h18", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h18$$], 
+                Range[0, 15]]}, {
+               Style["h19", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h19$$], 
+                Range[0, 15]]}, {
+               Style["h20", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h20$$], 
+                Range[0, 15]]}, {
+               Style["h21", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h21$$], 
+                Range[0, 15]]}, {
+               Style["h22", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h22$$], 
+                Range[0, 15]]}, {
+               Style["h23", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h23$$], 
+                Range[0, 15]]}, {
+               Style["h24", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h24$$], 
+                Range[0, 15]]}}, Alignment -> Right]}}], 
+         ImageSize -> {600, 375}]], 
+      "Specifications" :> {{{$CellContext`a$$, True, "drawbars/harmonics"}, {
+         True, False}, ControlPlacement -> Top}, {{$CellContext`d1$$, 9}, 0, 
+         9, 1, ControlType -> None}, {$CellContext`d2$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d3$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d4$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d5$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d6$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d7$$, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d8$$, 6}, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d9$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d10$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d11$$, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`h1$$, 15}, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h2$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h3$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h4$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h5$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h6$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h7$$, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h8$$, 6}, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h9$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h10$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h11$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h12$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h13$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h14$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h15$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h16$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h17$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h18$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h19$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h20$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h21$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h22$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h23$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h24$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> Right}}, 
+      "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {1, 5, 9}, 
+        SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{647., {226., 231.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->711938238]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell["\<\
+View the additive sine waveforms for 11 drawbar organ stops with values from \
+0-9 or use values from 0-15 for each of the first 24 harmonics.\
+\>", "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.44362586678125*^9, 3.443626003296875*^9}, {
+   3.4436260345*^9, 3.443626074125*^9}, 3.44407765903125*^9, {
+   3.44415186234375*^9, 3.444151864265625*^9}, {3.444579098022152*^9, 
+   3.4445791041783624`*^9}, {3.444661535887162*^9, 3.444661536339207*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = True, $CellContext`d1$$ = 
+    9, $CellContext`d10$$ = 2, $CellContext`d11$$ = 1, $CellContext`d2$$ = 
+    8, $CellContext`d3$$ = 7, $CellContext`d4$$ = 6, $CellContext`d5$$ = 
+    5, $CellContext`d6$$ = 4, $CellContext`d7$$ = 3, $CellContext`d8$$ = 
+    2, $CellContext`d9$$ = 1, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+    0, $CellContext`h11$$ = 0, $CellContext`h12$$ = 0, $CellContext`h13$$ = 
+    0, $CellContext`h14$$ = 0, $CellContext`h15$$ = 0, $CellContext`h16$$ = 
+    0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+    0, $CellContext`h2$$ = 0, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+    0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+    4, $CellContext`h3$$ = 0, $CellContext`h4$$ = 0, $CellContext`h5$$ = 
+    0, $CellContext`h6$$ = 0, $CellContext`h7$$ = 0, $CellContext`h8$$ = 
+    6, $CellContext`h9$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], True, "drawbars/harmonics"}, {True, False}}, {{
+      
+       Hold[$CellContext`d1$$], 9}, 0, 9, 1}, {{
+       Hold[$CellContext`d2$$], 8}, 0, 9, 1}, {{
+       Hold[$CellContext`d3$$], 7}, 0, 9, 1}, {{
+       Hold[$CellContext`d4$$], 6}, 0, 9, 1}, {{
+       Hold[$CellContext`d5$$], 5}, 0, 9, 1}, {{
+       Hold[$CellContext`d6$$], 4}, 0, 9, 1}, {{
+       Hold[$CellContext`d7$$], 3}, 0, 9, 1}, {{
+       Hold[$CellContext`d8$$], 2}, 0, 9, 1}, {{
+       Hold[$CellContext`d9$$], 1}, 0, 9, 1}, {{
+       Hold[$CellContext`d10$$], 2}, 0, 9, 1}, {{
+       Hold[$CellContext`d11$$], 1}, 0, 9, 1}, {{
+       Hold[$CellContext`h1$$], 15}, 0, 15, 1}, {
+      Hold[$CellContext`h2$$], 0, 15, 1}, {
+      Hold[$CellContext`h3$$], 0, 15, 1}, {
+      Hold[$CellContext`h4$$], 0, 15, 1}, {
+      Hold[$CellContext`h5$$], 0, 15, 1}, {
+      Hold[$CellContext`h6$$], 0, 15, 1}, {
+      Hold[$CellContext`h7$$], 0, 15, 1}, {{
+       Hold[$CellContext`h8$$], 6}, 0, 15, 1}, {
+      Hold[$CellContext`h9$$], 0, 15, 1}, {
+      Hold[$CellContext`h10$$], 0, 15, 1}, {
+      Hold[$CellContext`h11$$], 0, 15, 1}, {
+      Hold[$CellContext`h12$$], 0, 15, 1}, {
+      Hold[$CellContext`h13$$], 0, 15, 1}, {
+      Hold[$CellContext`h14$$], 0, 15, 1}, {
+      Hold[$CellContext`h15$$], 0, 15, 1}, {
+      Hold[$CellContext`h16$$], 0, 15, 1}, {
+      Hold[$CellContext`h17$$], 0, 15, 1}, {
+      Hold[$CellContext`h18$$], 0, 15, 1}, {
+      Hold[$CellContext`h19$$], 0, 15, 1}, {
+      Hold[$CellContext`h20$$], 0, 15, 1}, {
+      Hold[$CellContext`h21$$], 0, 15, 1}, {
+      Hold[$CellContext`h22$$], 0, 15, 1}, {
+      Hold[$CellContext`h23$$], 0, 15, 1}, {{
+       Hold[$CellContext`h24$$], 4}, 0, 15, 1}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`a$84974$$ = False, $CellContext`d1$84975$$ = 
+    0, $CellContext`d2$84976$$ = 0, $CellContext`d3$84977$$ = 
+    0, $CellContext`d4$84978$$ = 0, $CellContext`d5$84979$$ = 
+    0, $CellContext`d6$84980$$ = 0, $CellContext`d7$84981$$ = 
+    0, $CellContext`d8$84982$$ = 0, $CellContext`d9$84983$$ = 
+    0, $CellContext`d10$84984$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = True, $CellContext`d1$$ = 
+        9, $CellContext`d10$$ = 2, $CellContext`d11$$ = 1, $CellContext`d2$$ = 
+        8, $CellContext`d3$$ = 7, $CellContext`d4$$ = 6, $CellContext`d5$$ = 
+        5, $CellContext`d6$$ = 4, $CellContext`d7$$ = 3, $CellContext`d8$$ = 
+        2, $CellContext`d9$$ = 1, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+        0, $CellContext`h11$$ = 0, $CellContext`h12$$ = 0, $CellContext`h13$$ = 
+        0, $CellContext`h14$$ = 0, $CellContext`h15$$ = 0, $CellContext`h16$$ = 
+        0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+        0, $CellContext`h2$$ = 0, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+        0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+        4, $CellContext`h3$$ = 0, $CellContext`h4$$ = 0, $CellContext`h5$$ = 
+        0, $CellContext`h6$$ = 0, $CellContext`h7$$ = 0, $CellContext`h8$$ = 
+        6, $CellContext`h9$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`a$$, $CellContext`a$84974$$, False], 
+        Hold[$CellContext`d1$$, $CellContext`d1$84975$$, 0], 
+        Hold[$CellContext`d2$$, $CellContext`d2$84976$$, 0], 
+        Hold[$CellContext`d3$$, $CellContext`d3$84977$$, 0], 
+        Hold[$CellContext`d4$$, $CellContext`d4$84978$$, 0], 
+        Hold[$CellContext`d5$$, $CellContext`d5$84979$$, 0], 
+        Hold[$CellContext`d6$$, $CellContext`d6$84980$$, 0], 
+        Hold[$CellContext`d7$$, $CellContext`d7$84981$$, 0], 
+        Hold[$CellContext`d8$$, $CellContext`d8$84982$$, 0], 
+        Hold[$CellContext`d9$$, $CellContext`d9$84983$$, 0], 
+        Hold[$CellContext`d10$$, $CellContext`d10$84984$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> If[$CellContext`a$$, 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["d1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d1$$], 
+                Range[0, 9]]}, {
+               Style["d2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d2$$], 
+                Range[0, 9]]}, {
+               Style["d3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d3$$], 
+                Range[0, 9]]}, {
+               Style["d4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d4$$], 
+                Range[0, 9]]}, {
+               Style["d5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d5$$], 
+                Range[0, 9]]}, {
+               Style["d6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d6$$], 
+                Range[0, 9]]}, {
+               Style["d7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d7$$], 
+                Range[0, 9]]}, {
+               Style["d8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d8$$], 
+                Range[0, 9]]}, {
+               Style["d9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d9$$], 
+                Range[0, 9]]}, {
+               Style["d10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d10$$], 
+                Range[0, 9]]}, {
+               Style["d11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d11$$], 
+                Range[0, 9]]}}], 
+            Column[{
+              
+              Plot[$CellContext`d1$$ Sin[$CellContext`x] + $CellContext`d3$$ 
+                Sin[2 $CellContext`x] + $CellContext`d2$$ 
+                Sin[3 $CellContext`x] + $CellContext`d4$$ 
+                Sin[4 $CellContext`x] + $CellContext`d5$$ 
+                Sin[6 $CellContext`x] + $CellContext`d6$$ 
+                Sin[8 $CellContext`x] + $CellContext`d10$$ 
+                Sin[9 $CellContext`x] + $CellContext`d7$$ 
+                Sin[10 $CellContext`x] + $CellContext`d8$$ 
+                Sin[12 $CellContext`x] + $CellContext`d9$$ 
+                Sin[16 $CellContext`x] + (1/2) $CellContext`d10$$ 
+                Sin[17 $CellContext`x] + $CellContext`d11$$ 
+                Sin[20 $CellContext`x] + (1/2) $CellContext`d11$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`d1$$ 
+                 Sin[$CellContext`x$] + $CellContext`d3$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`d2$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`d4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`d5$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`d6$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`d10$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`d7$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`d8$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`d9$$ 
+                 Sin[16 $CellContext`x$] + (1/2) $CellContext`d10$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`d11$$ 
+                 Sin[20 $CellContext`x$] + (1/2) $CellContext`d11$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center]}}], ImageSize -> {600, 375}], 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["h1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h1$$], 
+                Range[0, 15]]}, {
+               Style["h2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h2$$], 
+                Range[0, 15]]}, {
+               Style["h3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h3$$], 
+                Range[0, 15]]}, {
+               Style["h4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h4$$], 
+                Range[0, 15]]}, {
+               Style["h5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h5$$], 
+                Range[0, 15]]}, {
+               Style["h6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h6$$], 
+                Range[0, 15]]}, {
+               Style["h7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h7$$], 
+                Range[0, 15]]}, {
+               Style["h8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h8$$], 
+                Range[0, 15]]}, {
+               Style["h9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h9$$], 
+                Range[0, 15]]}, {
+               Style["h10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h10$$], 
+                Range[0, 15]]}, {
+               Style["h11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h11$$], 
+                Range[0, 15]]}, {
+               Style["h12", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h12$$], 
+                Range[0, 15]]}}, Alignment -> Right], 
+            Column[{
+              
+              Plot[$CellContext`h1$$ Sin[$CellContext`x] + $CellContext`h2$$ 
+                Sin[2 $CellContext`x] + $CellContext`h3$$ 
+                Sin[3 $CellContext`x] + $CellContext`h4$$ 
+                Sin[4 $CellContext`x] + $CellContext`h5$$ 
+                Sin[5 $CellContext`x] + $CellContext`h6$$ 
+                Sin[6 $CellContext`x] + $CellContext`h7$$ 
+                Sin[7 $CellContext`x] + $CellContext`h8$$ 
+                Sin[8 $CellContext`x] + $CellContext`h9$$ 
+                Sin[9 $CellContext`x] + $CellContext`h10$$ 
+                Sin[10 $CellContext`x] + $CellContext`h11$$ 
+                Sin[11 $CellContext`x] + $CellContext`h12$$ 
+                Sin[12 $CellContext`x] + $CellContext`h13$$ 
+                Sin[13 $CellContext`x] + $CellContext`h14$$ 
+                Sin[14 $CellContext`x] + $CellContext`h15$$ 
+                Sin[15 $CellContext`x] + $CellContext`h16$$ 
+                Sin[16 $CellContext`x] + $CellContext`h17$$ 
+                Sin[17 $CellContext`x] + $CellContext`h18$$ 
+                Sin[18 $CellContext`x] + $CellContext`h19$$ 
+                Sin[19 $CellContext`x] + $CellContext`h20$$ 
+                Sin[20 $CellContext`x] + $CellContext`h21$$ 
+                Sin[21 $CellContext`x] + $CellContext`h22$$ 
+                Sin[22 $CellContext`x] + $CellContext`h23$$ 
+                Sin[23 $CellContext`x] + $CellContext`h24$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`h1$$ 
+                 Sin[$CellContext`x$] + $CellContext`h2$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`h3$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`h4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`h5$$ 
+                 Sin[5 $CellContext`x$] + $CellContext`h6$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`h7$$ 
+                 Sin[7 $CellContext`x$] + $CellContext`h8$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`h9$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`h10$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`h11$$ 
+                 Sin[11 $CellContext`x$] + $CellContext`h12$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`h13$$ 
+                 Sin[13 $CellContext`x$] + $CellContext`h14$$ 
+                 Sin[14 $CellContext`x$] + $CellContext`h15$$ 
+                 Sin[15 $CellContext`x$] + $CellContext`h16$$ 
+                 Sin[16 $CellContext`x$] + $CellContext`h17$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`h18$$ 
+                 Sin[18 $CellContext`x$] + $CellContext`h19$$ 
+                 Sin[19 $CellContext`x$] + $CellContext`h20$$ 
+                 Sin[20 $CellContext`x$] + $CellContext`h21$$ 
+                 Sin[21 $CellContext`x$] + $CellContext`h22$$ 
+                 Sin[22 $CellContext`x$] + $CellContext`h23$$ 
+                 Sin[23 $CellContext`x$] + $CellContext`h24$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center], 
+            Grid[{{
+               Style["h13", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h13$$], 
+                Range[0, 15]]}, {
+               Style["h14", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h14$$], 
+                Range[0, 15]]}, {
+               Style["h15", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h15$$], 
+                Range[0, 15]]}, {
+               Style["h16", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h16$$], 
+                Range[0, 15]]}, {
+               Style["h17", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h17$$], 
+                Range[0, 15]]}, {
+               Style["h18", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h18$$], 
+                Range[0, 15]]}, {
+               Style["h19", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h19$$], 
+                Range[0, 15]]}, {
+               Style["h20", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h20$$], 
+                Range[0, 15]]}, {
+               Style["h21", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h21$$], 
+                Range[0, 15]]}, {
+               Style["h22", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h22$$], 
+                Range[0, 15]]}, {
+               Style["h23", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h23$$], 
+                Range[0, 15]]}, {
+               Style["h24", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h24$$], 
+                Range[0, 15]]}}, Alignment -> Right]}}], 
+         ImageSize -> {600, 375}]], 
+      "Specifications" :> {{{$CellContext`a$$, True, "drawbars/harmonics"}, {
+         True, False}, ControlPlacement -> Top}, {{$CellContext`d1$$, 9}, 0, 
+         9, 1, ControlType -> None}, {{$CellContext`d2$$, 8}, 0, 9, 1, 
+         ControlType -> None}, {{$CellContext`d3$$, 7}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d4$$, 6}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d5$$, 5}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d6$$, 4}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d7$$, 3}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d8$$, 2}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d9$$, 1}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d10$$, 2}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d11$$, 1}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`h1$$, 15}, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h2$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h3$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h4$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h5$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h6$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h7$$, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h8$$, 6}, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h9$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h10$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h11$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h12$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h13$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h14$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h15$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h16$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h17$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h18$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h19$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h20$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h21$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h22$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h23$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> 
+         Right}, {{$CellContext`h24$$, 4}, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}}, 
+      "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {1, 5, 9}, 
+        SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{231., {51., 56.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->5208967]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = True, $CellContext`d1$$ = 
+    8, $CellContext`d10$$ = 9, $CellContext`d11$$ = 4, $CellContext`d2$$ = 
+    7, $CellContext`d3$$ = 7, $CellContext`d4$$ = 6, $CellContext`d5$$ = 
+    3, $CellContext`d6$$ = 2, $CellContext`d7$$ = 0, $CellContext`d8$$ = 
+    6, $CellContext`d9$$ = 0, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+    0, $CellContext`h11$$ = 0, $CellContext`h12$$ = 0, $CellContext`h13$$ = 
+    0, $CellContext`h14$$ = 0, $CellContext`h15$$ = 0, $CellContext`h16$$ = 
+    0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+    0, $CellContext`h2$$ = 0, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+    0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+    4, $CellContext`h3$$ = 0, $CellContext`h4$$ = 0, $CellContext`h5$$ = 
+    0, $CellContext`h6$$ = 0, $CellContext`h7$$ = 0, $CellContext`h8$$ = 
+    6, $CellContext`h9$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], True, "drawbars/harmonics"}, {True, False}}, {{
+      
+       Hold[$CellContext`d1$$], 8}, 0, 9, 1}, {{
+       Hold[$CellContext`d2$$], 7}, 0, 9, 1}, {{
+       Hold[$CellContext`d3$$], 7}, 0, 9, 1}, {{
+       Hold[$CellContext`d4$$], 6}, 0, 9, 1}, {{
+       Hold[$CellContext`d5$$], 3}, 0, 9, 1}, {{
+       Hold[$CellContext`d6$$], 2}, 0, 9, 1}, {
+      Hold[$CellContext`d7$$], 0, 9, 1}, {{
+       Hold[$CellContext`d8$$], 6}, 0, 9, 1}, {
+      Hold[$CellContext`d9$$], 0, 9, 1}, {{
+       Hold[$CellContext`d10$$], 9}, 0, 9, 1}, {{
+       Hold[$CellContext`d11$$], 4}, 0, 9, 1}, {{
+       Hold[$CellContext`h1$$], 15}, 0, 15, 1}, {
+      Hold[$CellContext`h2$$], 0, 15, 1}, {
+      Hold[$CellContext`h3$$], 0, 15, 1}, {
+      Hold[$CellContext`h4$$], 0, 15, 1}, {
+      Hold[$CellContext`h5$$], 0, 15, 1}, {
+      Hold[$CellContext`h6$$], 0, 15, 1}, {
+      Hold[$CellContext`h7$$], 0, 15, 1}, {{
+       Hold[$CellContext`h8$$], 6}, 0, 15, 1}, {
+      Hold[$CellContext`h9$$], 0, 15, 1}, {
+      Hold[$CellContext`h10$$], 0, 15, 1}, {
+      Hold[$CellContext`h11$$], 0, 15, 1}, {
+      Hold[$CellContext`h12$$], 0, 15, 1}, {
+      Hold[$CellContext`h13$$], 0, 15, 1}, {
+      Hold[$CellContext`h14$$], 0, 15, 1}, {
+      Hold[$CellContext`h15$$], 0, 15, 1}, {
+      Hold[$CellContext`h16$$], 0, 15, 1}, {
+      Hold[$CellContext`h17$$], 0, 15, 1}, {
+      Hold[$CellContext`h18$$], 0, 15, 1}, {
+      Hold[$CellContext`h19$$], 0, 15, 1}, {
+      Hold[$CellContext`h20$$], 0, 15, 1}, {
+      Hold[$CellContext`h21$$], 0, 15, 1}, {
+      Hold[$CellContext`h22$$], 0, 15, 1}, {
+      Hold[$CellContext`h23$$], 0, 15, 1}, {{
+       Hold[$CellContext`h24$$], 4}, 0, 15, 1}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`a$85167$$ = False, $CellContext`d1$85168$$ = 
+    0, $CellContext`d2$85169$$ = 0, $CellContext`d3$85170$$ = 
+    0, $CellContext`d4$85171$$ = 0, $CellContext`d5$85172$$ = 
+    0, $CellContext`d6$85173$$ = 0, $CellContext`d7$85174$$ = 
+    0, $CellContext`d8$85175$$ = 0, $CellContext`d9$85176$$ = 
+    0, $CellContext`d10$85177$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = True, $CellContext`d1$$ = 
+        8, $CellContext`d10$$ = 9, $CellContext`d11$$ = 4, $CellContext`d2$$ = 
+        7, $CellContext`d3$$ = 7, $CellContext`d4$$ = 6, $CellContext`d5$$ = 
+        3, $CellContext`d6$$ = 2, $CellContext`d7$$ = 0, $CellContext`d8$$ = 
+        6, $CellContext`d9$$ = 0, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+        0, $CellContext`h11$$ = 0, $CellContext`h12$$ = 0, $CellContext`h13$$ = 
+        0, $CellContext`h14$$ = 0, $CellContext`h15$$ = 0, $CellContext`h16$$ = 
+        0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+        0, $CellContext`h2$$ = 0, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+        0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+        4, $CellContext`h3$$ = 0, $CellContext`h4$$ = 0, $CellContext`h5$$ = 
+        0, $CellContext`h6$$ = 0, $CellContext`h7$$ = 0, $CellContext`h8$$ = 
+        6, $CellContext`h9$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`a$$, $CellContext`a$85167$$, False], 
+        Hold[$CellContext`d1$$, $CellContext`d1$85168$$, 0], 
+        Hold[$CellContext`d2$$, $CellContext`d2$85169$$, 0], 
+        Hold[$CellContext`d3$$, $CellContext`d3$85170$$, 0], 
+        Hold[$CellContext`d4$$, $CellContext`d4$85171$$, 0], 
+        Hold[$CellContext`d5$$, $CellContext`d5$85172$$, 0], 
+        Hold[$CellContext`d6$$, $CellContext`d6$85173$$, 0], 
+        Hold[$CellContext`d7$$, $CellContext`d7$85174$$, 0], 
+        Hold[$CellContext`d8$$, $CellContext`d8$85175$$, 0], 
+        Hold[$CellContext`d9$$, $CellContext`d9$85176$$, 0], 
+        Hold[$CellContext`d10$$, $CellContext`d10$85177$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> If[$CellContext`a$$, 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["d1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d1$$], 
+                Range[0, 9]]}, {
+               Style["d2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d2$$], 
+                Range[0, 9]]}, {
+               Style["d3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d3$$], 
+                Range[0, 9]]}, {
+               Style["d4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d4$$], 
+                Range[0, 9]]}, {
+               Style["d5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d5$$], 
+                Range[0, 9]]}, {
+               Style["d6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d6$$], 
+                Range[0, 9]]}, {
+               Style["d7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d7$$], 
+                Range[0, 9]]}, {
+               Style["d8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d8$$], 
+                Range[0, 9]]}, {
+               Style["d9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d9$$], 
+                Range[0, 9]]}, {
+               Style["d10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d10$$], 
+                Range[0, 9]]}, {
+               Style["d11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d11$$], 
+                Range[0, 9]]}}], 
+            Column[{
+              
+              Plot[$CellContext`d1$$ Sin[$CellContext`x] + $CellContext`d3$$ 
+                Sin[2 $CellContext`x] + $CellContext`d2$$ 
+                Sin[3 $CellContext`x] + $CellContext`d4$$ 
+                Sin[4 $CellContext`x] + $CellContext`d5$$ 
+                Sin[6 $CellContext`x] + $CellContext`d6$$ 
+                Sin[8 $CellContext`x] + $CellContext`d10$$ 
+                Sin[9 $CellContext`x] + $CellContext`d7$$ 
+                Sin[10 $CellContext`x] + $CellContext`d8$$ 
+                Sin[12 $CellContext`x] + $CellContext`d9$$ 
+                Sin[16 $CellContext`x] + (1/2) $CellContext`d10$$ 
+                Sin[17 $CellContext`x] + $CellContext`d11$$ 
+                Sin[20 $CellContext`x] + (1/2) $CellContext`d11$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`d1$$ 
+                 Sin[$CellContext`x$] + $CellContext`d3$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`d2$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`d4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`d5$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`d6$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`d10$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`d7$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`d8$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`d9$$ 
+                 Sin[16 $CellContext`x$] + (1/2) $CellContext`d10$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`d11$$ 
+                 Sin[20 $CellContext`x$] + (1/2) $CellContext`d11$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center]}}], ImageSize -> {600, 375}], 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["h1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h1$$], 
+                Range[0, 15]]}, {
+               Style["h2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h2$$], 
+                Range[0, 15]]}, {
+               Style["h3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h3$$], 
+                Range[0, 15]]}, {
+               Style["h4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h4$$], 
+                Range[0, 15]]}, {
+               Style["h5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h5$$], 
+                Range[0, 15]]}, {
+               Style["h6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h6$$], 
+                Range[0, 15]]}, {
+               Style["h7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h7$$], 
+                Range[0, 15]]}, {
+               Style["h8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h8$$], 
+                Range[0, 15]]}, {
+               Style["h9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h9$$], 
+                Range[0, 15]]}, {
+               Style["h10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h10$$], 
+                Range[0, 15]]}, {
+               Style["h11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h11$$], 
+                Range[0, 15]]}, {
+               Style["h12", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h12$$], 
+                Range[0, 15]]}}, Alignment -> Right], 
+            Column[{
+              
+              Plot[$CellContext`h1$$ Sin[$CellContext`x] + $CellContext`h2$$ 
+                Sin[2 $CellContext`x] + $CellContext`h3$$ 
+                Sin[3 $CellContext`x] + $CellContext`h4$$ 
+                Sin[4 $CellContext`x] + $CellContext`h5$$ 
+                Sin[5 $CellContext`x] + $CellContext`h6$$ 
+                Sin[6 $CellContext`x] + $CellContext`h7$$ 
+                Sin[7 $CellContext`x] + $CellContext`h8$$ 
+                Sin[8 $CellContext`x] + $CellContext`h9$$ 
+                Sin[9 $CellContext`x] + $CellContext`h10$$ 
+                Sin[10 $CellContext`x] + $CellContext`h11$$ 
+                Sin[11 $CellContext`x] + $CellContext`h12$$ 
+                Sin[12 $CellContext`x] + $CellContext`h13$$ 
+                Sin[13 $CellContext`x] + $CellContext`h14$$ 
+                Sin[14 $CellContext`x] + $CellContext`h15$$ 
+                Sin[15 $CellContext`x] + $CellContext`h16$$ 
+                Sin[16 $CellContext`x] + $CellContext`h17$$ 
+                Sin[17 $CellContext`x] + $CellContext`h18$$ 
+                Sin[18 $CellContext`x] + $CellContext`h19$$ 
+                Sin[19 $CellContext`x] + $CellContext`h20$$ 
+                Sin[20 $CellContext`x] + $CellContext`h21$$ 
+                Sin[21 $CellContext`x] + $CellContext`h22$$ 
+                Sin[22 $CellContext`x] + $CellContext`h23$$ 
+                Sin[23 $CellContext`x] + $CellContext`h24$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`h1$$ 
+                 Sin[$CellContext`x$] + $CellContext`h2$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`h3$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`h4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`h5$$ 
+                 Sin[5 $CellContext`x$] + $CellContext`h6$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`h7$$ 
+                 Sin[7 $CellContext`x$] + $CellContext`h8$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`h9$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`h10$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`h11$$ 
+                 Sin[11 $CellContext`x$] + $CellContext`h12$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`h13$$ 
+                 Sin[13 $CellContext`x$] + $CellContext`h14$$ 
+                 Sin[14 $CellContext`x$] + $CellContext`h15$$ 
+                 Sin[15 $CellContext`x$] + $CellContext`h16$$ 
+                 Sin[16 $CellContext`x$] + $CellContext`h17$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`h18$$ 
+                 Sin[18 $CellContext`x$] + $CellContext`h19$$ 
+                 Sin[19 $CellContext`x$] + $CellContext`h20$$ 
+                 Sin[20 $CellContext`x$] + $CellContext`h21$$ 
+                 Sin[21 $CellContext`x$] + $CellContext`h22$$ 
+                 Sin[22 $CellContext`x$] + $CellContext`h23$$ 
+                 Sin[23 $CellContext`x$] + $CellContext`h24$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center], 
+            Grid[{{
+               Style["h13", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h13$$], 
+                Range[0, 15]]}, {
+               Style["h14", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h14$$], 
+                Range[0, 15]]}, {
+               Style["h15", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h15$$], 
+                Range[0, 15]]}, {
+               Style["h16", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h16$$], 
+                Range[0, 15]]}, {
+               Style["h17", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h17$$], 
+                Range[0, 15]]}, {
+               Style["h18", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h18$$], 
+                Range[0, 15]]}, {
+               Style["h19", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h19$$], 
+                Range[0, 15]]}, {
+               Style["h20", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h20$$], 
+                Range[0, 15]]}, {
+               Style["h21", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h21$$], 
+                Range[0, 15]]}, {
+               Style["h22", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h22$$], 
+                Range[0, 15]]}, {
+               Style["h23", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h23$$], 
+                Range[0, 15]]}, {
+               Style["h24", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h24$$], 
+                Range[0, 15]]}}, Alignment -> Right]}}], 
+         ImageSize -> {600, 375}]], 
+      "Specifications" :> {{{$CellContext`a$$, True, "drawbars/harmonics"}, {
+         True, False}, ControlPlacement -> Top}, {{$CellContext`d1$$, 8}, 0, 
+         9, 1, ControlType -> None}, {{$CellContext`d2$$, 7}, 0, 9, 1, 
+         ControlType -> None}, {{$CellContext`d3$$, 7}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d4$$, 6}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d5$$, 3}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d6$$, 2}, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d7$$, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d8$$, 6}, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d9$$, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d10$$, 9}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d11$$, 4}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`h1$$, 15}, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h2$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h3$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h4$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h5$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h6$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h7$$, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h8$$, 6}, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h9$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h10$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h11$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h12$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h13$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h14$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h15$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h16$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h17$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h18$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h19$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h20$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h21$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h22$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h23$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> 
+         Right}, {{$CellContext`h24$$, 4}, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}}, 
+      "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {1, 5, 9}, 
+        SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{231., {51., 56.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->223655285],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = True, $CellContext`d1$$ = 
+    2, $CellContext`d10$$ = 1, $CellContext`d11$$ = 4, $CellContext`d2$$ = 
+    4, $CellContext`d3$$ = 1, $CellContext`d4$$ = 1, $CellContext`d5$$ = 
+    4, $CellContext`d6$$ = 1, $CellContext`d7$$ = 0, $CellContext`d8$$ = 
+    1, $CellContext`d9$$ = 0, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+    0, $CellContext`h11$$ = 0, $CellContext`h12$$ = 0, $CellContext`h13$$ = 
+    0, $CellContext`h14$$ = 0, $CellContext`h15$$ = 0, $CellContext`h16$$ = 
+    0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+    0, $CellContext`h2$$ = 0, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+    0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+    4, $CellContext`h3$$ = 0, $CellContext`h4$$ = 0, $CellContext`h5$$ = 
+    0, $CellContext`h6$$ = 0, $CellContext`h7$$ = 0, $CellContext`h8$$ = 
+    6, $CellContext`h9$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], True, "drawbars/harmonics"}, {True, False}}, {{
+      
+       Hold[$CellContext`d1$$], 2}, 0, 9, 1}, {{
+       Hold[$CellContext`d2$$], 4}, 0, 9, 1}, {{
+       Hold[$CellContext`d3$$], 1}, 0, 9, 1}, {{
+       Hold[$CellContext`d4$$], 1}, 0, 9, 1}, {{
+       Hold[$CellContext`d5$$], 4}, 0, 9, 1}, {{
+       Hold[$CellContext`d6$$], 1}, 0, 9, 1}, {
+      Hold[$CellContext`d7$$], 0, 9, 1}, {{
+       Hold[$CellContext`d8$$], 1}, 0, 9, 1}, {
+      Hold[$CellContext`d9$$], 0, 9, 1}, {{
+       Hold[$CellContext`d10$$], 1}, 0, 9, 1}, {{
+       Hold[$CellContext`d11$$], 4}, 0, 9, 1}, {{
+       Hold[$CellContext`h1$$], 15}, 0, 15, 1}, {
+      Hold[$CellContext`h2$$], 0, 15, 1}, {
+      Hold[$CellContext`h3$$], 0, 15, 1}, {
+      Hold[$CellContext`h4$$], 0, 15, 1}, {
+      Hold[$CellContext`h5$$], 0, 15, 1}, {
+      Hold[$CellContext`h6$$], 0, 15, 1}, {
+      Hold[$CellContext`h7$$], 0, 15, 1}, {{
+       Hold[$CellContext`h8$$], 6}, 0, 15, 1}, {
+      Hold[$CellContext`h9$$], 0, 15, 1}, {
+      Hold[$CellContext`h10$$], 0, 15, 1}, {
+      Hold[$CellContext`h11$$], 0, 15, 1}, {
+      Hold[$CellContext`h12$$], 0, 15, 1}, {
+      Hold[$CellContext`h13$$], 0, 15, 1}, {
+      Hold[$CellContext`h14$$], 0, 15, 1}, {
+      Hold[$CellContext`h15$$], 0, 15, 1}, {
+      Hold[$CellContext`h16$$], 0, 15, 1}, {
+      Hold[$CellContext`h17$$], 0, 15, 1}, {
+      Hold[$CellContext`h18$$], 0, 15, 1}, {
+      Hold[$CellContext`h19$$], 0, 15, 1}, {
+      Hold[$CellContext`h20$$], 0, 15, 1}, {
+      Hold[$CellContext`h21$$], 0, 15, 1}, {
+      Hold[$CellContext`h22$$], 0, 15, 1}, {
+      Hold[$CellContext`h23$$], 0, 15, 1}, {{
+       Hold[$CellContext`h24$$], 4}, 0, 15, 1}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`a$85360$$ = False, $CellContext`d1$85361$$ = 
+    0, $CellContext`d2$85362$$ = 0, $CellContext`d3$85363$$ = 
+    0, $CellContext`d4$85364$$ = 0, $CellContext`d5$85365$$ = 
+    0, $CellContext`d6$85366$$ = 0, $CellContext`d7$85367$$ = 
+    0, $CellContext`d8$85368$$ = 0, $CellContext`d9$85369$$ = 
+    0, $CellContext`d10$85370$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = True, $CellContext`d1$$ = 
+        2, $CellContext`d10$$ = 1, $CellContext`d11$$ = 4, $CellContext`d2$$ = 
+        4, $CellContext`d3$$ = 1, $CellContext`d4$$ = 1, $CellContext`d5$$ = 
+        4, $CellContext`d6$$ = 1, $CellContext`d7$$ = 0, $CellContext`d8$$ = 
+        1, $CellContext`d9$$ = 0, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+        0, $CellContext`h11$$ = 0, $CellContext`h12$$ = 0, $CellContext`h13$$ = 
+        0, $CellContext`h14$$ = 0, $CellContext`h15$$ = 0, $CellContext`h16$$ = 
+        0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+        0, $CellContext`h2$$ = 0, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+        0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+        4, $CellContext`h3$$ = 0, $CellContext`h4$$ = 0, $CellContext`h5$$ = 
+        0, $CellContext`h6$$ = 0, $CellContext`h7$$ = 0, $CellContext`h8$$ = 
+        6, $CellContext`h9$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`a$$, $CellContext`a$85360$$, False], 
+        Hold[$CellContext`d1$$, $CellContext`d1$85361$$, 0], 
+        Hold[$CellContext`d2$$, $CellContext`d2$85362$$, 0], 
+        Hold[$CellContext`d3$$, $CellContext`d3$85363$$, 0], 
+        Hold[$CellContext`d4$$, $CellContext`d4$85364$$, 0], 
+        Hold[$CellContext`d5$$, $CellContext`d5$85365$$, 0], 
+        Hold[$CellContext`d6$$, $CellContext`d6$85366$$, 0], 
+        Hold[$CellContext`d7$$, $CellContext`d7$85367$$, 0], 
+        Hold[$CellContext`d8$$, $CellContext`d8$85368$$, 0], 
+        Hold[$CellContext`d9$$, $CellContext`d9$85369$$, 0], 
+        Hold[$CellContext`d10$$, $CellContext`d10$85370$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> If[$CellContext`a$$, 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["d1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d1$$], 
+                Range[0, 9]]}, {
+               Style["d2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d2$$], 
+                Range[0, 9]]}, {
+               Style["d3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d3$$], 
+                Range[0, 9]]}, {
+               Style["d4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d4$$], 
+                Range[0, 9]]}, {
+               Style["d5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d5$$], 
+                Range[0, 9]]}, {
+               Style["d6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d6$$], 
+                Range[0, 9]]}, {
+               Style["d7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d7$$], 
+                Range[0, 9]]}, {
+               Style["d8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d8$$], 
+                Range[0, 9]]}, {
+               Style["d9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d9$$], 
+                Range[0, 9]]}, {
+               Style["d10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d10$$], 
+                Range[0, 9]]}, {
+               Style["d11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d11$$], 
+                Range[0, 9]]}}], 
+            Column[{
+              
+              Plot[$CellContext`d1$$ Sin[$CellContext`x] + $CellContext`d3$$ 
+                Sin[2 $CellContext`x] + $CellContext`d2$$ 
+                Sin[3 $CellContext`x] + $CellContext`d4$$ 
+                Sin[4 $CellContext`x] + $CellContext`d5$$ 
+                Sin[6 $CellContext`x] + $CellContext`d6$$ 
+                Sin[8 $CellContext`x] + $CellContext`d10$$ 
+                Sin[9 $CellContext`x] + $CellContext`d7$$ 
+                Sin[10 $CellContext`x] + $CellContext`d8$$ 
+                Sin[12 $CellContext`x] + $CellContext`d9$$ 
+                Sin[16 $CellContext`x] + (1/2) $CellContext`d10$$ 
+                Sin[17 $CellContext`x] + $CellContext`d11$$ 
+                Sin[20 $CellContext`x] + (1/2) $CellContext`d11$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`d1$$ 
+                 Sin[$CellContext`x$] + $CellContext`d3$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`d2$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`d4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`d5$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`d6$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`d10$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`d7$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`d8$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`d9$$ 
+                 Sin[16 $CellContext`x$] + (1/2) $CellContext`d10$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`d11$$ 
+                 Sin[20 $CellContext`x$] + (1/2) $CellContext`d11$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center]}}], ImageSize -> {600, 375}], 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["h1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h1$$], 
+                Range[0, 15]]}, {
+               Style["h2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h2$$], 
+                Range[0, 15]]}, {
+               Style["h3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h3$$], 
+                Range[0, 15]]}, {
+               Style["h4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h4$$], 
+                Range[0, 15]]}, {
+               Style["h5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h5$$], 
+                Range[0, 15]]}, {
+               Style["h6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h6$$], 
+                Range[0, 15]]}, {
+               Style["h7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h7$$], 
+                Range[0, 15]]}, {
+               Style["h8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h8$$], 
+                Range[0, 15]]}, {
+               Style["h9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h9$$], 
+                Range[0, 15]]}, {
+               Style["h10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h10$$], 
+                Range[0, 15]]}, {
+               Style["h11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h11$$], 
+                Range[0, 15]]}, {
+               Style["h12", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h12$$], 
+                Range[0, 15]]}}, Alignment -> Right], 
+            Column[{
+              
+              Plot[$CellContext`h1$$ Sin[$CellContext`x] + $CellContext`h2$$ 
+                Sin[2 $CellContext`x] + $CellContext`h3$$ 
+                Sin[3 $CellContext`x] + $CellContext`h4$$ 
+                Sin[4 $CellContext`x] + $CellContext`h5$$ 
+                Sin[5 $CellContext`x] + $CellContext`h6$$ 
+                Sin[6 $CellContext`x] + $CellContext`h7$$ 
+                Sin[7 $CellContext`x] + $CellContext`h8$$ 
+                Sin[8 $CellContext`x] + $CellContext`h9$$ 
+                Sin[9 $CellContext`x] + $CellContext`h10$$ 
+                Sin[10 $CellContext`x] + $CellContext`h11$$ 
+                Sin[11 $CellContext`x] + $CellContext`h12$$ 
+                Sin[12 $CellContext`x] + $CellContext`h13$$ 
+                Sin[13 $CellContext`x] + $CellContext`h14$$ 
+                Sin[14 $CellContext`x] + $CellContext`h15$$ 
+                Sin[15 $CellContext`x] + $CellContext`h16$$ 
+                Sin[16 $CellContext`x] + $CellContext`h17$$ 
+                Sin[17 $CellContext`x] + $CellContext`h18$$ 
+                Sin[18 $CellContext`x] + $CellContext`h19$$ 
+                Sin[19 $CellContext`x] + $CellContext`h20$$ 
+                Sin[20 $CellContext`x] + $CellContext`h21$$ 
+                Sin[21 $CellContext`x] + $CellContext`h22$$ 
+                Sin[22 $CellContext`x] + $CellContext`h23$$ 
+                Sin[23 $CellContext`x] + $CellContext`h24$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`h1$$ 
+                 Sin[$CellContext`x$] + $CellContext`h2$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`h3$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`h4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`h5$$ 
+                 Sin[5 $CellContext`x$] + $CellContext`h6$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`h7$$ 
+                 Sin[7 $CellContext`x$] + $CellContext`h8$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`h9$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`h10$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`h11$$ 
+                 Sin[11 $CellContext`x$] + $CellContext`h12$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`h13$$ 
+                 Sin[13 $CellContext`x$] + $CellContext`h14$$ 
+                 Sin[14 $CellContext`x$] + $CellContext`h15$$ 
+                 Sin[15 $CellContext`x$] + $CellContext`h16$$ 
+                 Sin[16 $CellContext`x$] + $CellContext`h17$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`h18$$ 
+                 Sin[18 $CellContext`x$] + $CellContext`h19$$ 
+                 Sin[19 $CellContext`x$] + $CellContext`h20$$ 
+                 Sin[20 $CellContext`x$] + $CellContext`h21$$ 
+                 Sin[21 $CellContext`x$] + $CellContext`h22$$ 
+                 Sin[22 $CellContext`x$] + $CellContext`h23$$ 
+                 Sin[23 $CellContext`x$] + $CellContext`h24$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center], 
+            Grid[{{
+               Style["h13", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h13$$], 
+                Range[0, 15]]}, {
+               Style["h14", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h14$$], 
+                Range[0, 15]]}, {
+               Style["h15", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h15$$], 
+                Range[0, 15]]}, {
+               Style["h16", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h16$$], 
+                Range[0, 15]]}, {
+               Style["h17", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h17$$], 
+                Range[0, 15]]}, {
+               Style["h18", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h18$$], 
+                Range[0, 15]]}, {
+               Style["h19", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h19$$], 
+                Range[0, 15]]}, {
+               Style["h20", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h20$$], 
+                Range[0, 15]]}, {
+               Style["h21", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h21$$], 
+                Range[0, 15]]}, {
+               Style["h22", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h22$$], 
+                Range[0, 15]]}, {
+               Style["h23", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h23$$], 
+                Range[0, 15]]}, {
+               Style["h24", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h24$$], 
+                Range[0, 15]]}}, Alignment -> Right]}}], 
+         ImageSize -> {600, 375}]], 
+      "Specifications" :> {{{$CellContext`a$$, True, "drawbars/harmonics"}, {
+         True, False}, ControlPlacement -> Top}, {{$CellContext`d1$$, 2}, 0, 
+         9, 1, ControlType -> None}, {{$CellContext`d2$$, 4}, 0, 9, 1, 
+         ControlType -> None}, {{$CellContext`d3$$, 1}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d4$$, 1}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d5$$, 4}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d6$$, 1}, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d7$$, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d8$$, 1}, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d9$$, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d10$$, 1}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d11$$, 4}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`h1$$, 15}, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h2$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h3$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h4$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h5$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h6$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h7$$, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h8$$, 6}, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h9$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h10$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h11$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h12$$, 0, 15, 1, ControlType -> 
+         None}, {$CellContext`h13$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h14$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h15$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h16$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h17$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h18$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h19$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h20$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h21$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h22$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h23$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> 
+         Right}, {{$CellContext`h24$$, 4}, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}}, 
+      "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {1, 5, 9}, 
+        SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{231., {51., 56.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->257147594],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = False, $CellContext`d1$$ = 
+    9, $CellContext`d10$$ = 0, $CellContext`d11$$ = 4, $CellContext`d2$$ = 
+    0, $CellContext`d3$$ = 0, $CellContext`d4$$ = 0, $CellContext`d5$$ = 
+    0, $CellContext`d6$$ = 0, $CellContext`d7$$ = 0, $CellContext`d8$$ = 
+    6, $CellContext`d9$$ = 0, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+    6, $CellContext`h11$$ = 5, $CellContext`h12$$ = 4, $CellContext`h13$$ = 
+    3, $CellContext`h14$$ = 2, $CellContext`h15$$ = 1, $CellContext`h16$$ = 
+    0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+    0, $CellContext`h2$$ = 14, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+    0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+    4, $CellContext`h3$$ = 13, $CellContext`h4$$ = 12, $CellContext`h5$$ = 
+    11, $CellContext`h6$$ = 10, $CellContext`h7$$ = 9, $CellContext`h8$$ = 
+    8, $CellContext`h9$$ = 7, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], False, "drawbars/harmonics"}, {True, False}}, {{
+       Hold[$CellContext`d1$$], 9}, 0, 9, 1}, {
+      Hold[$CellContext`d2$$], 0, 9, 1}, {
+      Hold[$CellContext`d3$$], 0, 9, 1}, {
+      Hold[$CellContext`d4$$], 0, 9, 1}, {
+      Hold[$CellContext`d5$$], 0, 9, 1}, {
+      Hold[$CellContext`d6$$], 0, 9, 1}, {
+      Hold[$CellContext`d7$$], 0, 9, 1}, {{
+       Hold[$CellContext`d8$$], 6}, 0, 9, 1}, {
+      Hold[$CellContext`d9$$], 0, 9, 1}, {
+      Hold[$CellContext`d10$$], 0, 9, 1}, {{
+       Hold[$CellContext`d11$$], 4}, 0, 9, 1}, {{
+       Hold[$CellContext`h1$$], 15}, 0, 15, 1}, {{
+       Hold[$CellContext`h2$$], 14}, 0, 15, 1}, {{
+       Hold[$CellContext`h3$$], 13}, 0, 15, 1}, {{
+       Hold[$CellContext`h4$$], 12}, 0, 15, 1}, {{
+       Hold[$CellContext`h5$$], 11}, 0, 15, 1}, {{
+       Hold[$CellContext`h6$$], 10}, 0, 15, 1}, {{
+       Hold[$CellContext`h7$$], 9}, 0, 15, 1}, {{
+       Hold[$CellContext`h8$$], 8}, 0, 15, 1}, {{
+       Hold[$CellContext`h9$$], 7}, 0, 15, 1}, {{
+       Hold[$CellContext`h10$$], 6}, 0, 15, 1}, {{
+       Hold[$CellContext`h11$$], 5}, 0, 15, 1}, {{
+       Hold[$CellContext`h12$$], 4}, 0, 15, 1}, {{
+       Hold[$CellContext`h13$$], 3}, 0, 15, 1}, {{
+       Hold[$CellContext`h14$$], 2}, 0, 15, 1}, {{
+       Hold[$CellContext`h15$$], 1}, 0, 15, 1}, {
+      Hold[$CellContext`h16$$], 0, 15, 1}, {
+      Hold[$CellContext`h17$$], 0, 15, 1}, {
+      Hold[$CellContext`h18$$], 0, 15, 1}, {
+      Hold[$CellContext`h19$$], 0, 15, 1}, {
+      Hold[$CellContext`h20$$], 0, 15, 1}, {
+      Hold[$CellContext`h21$$], 0, 15, 1}, {
+      Hold[$CellContext`h22$$], 0, 15, 1}, {
+      Hold[$CellContext`h23$$], 0, 15, 1}, {{
+       Hold[$CellContext`h24$$], 4}, 0, 15, 1}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`a$85553$$ = False, $CellContext`d1$85554$$ = 
+    0, $CellContext`d2$85555$$ = 0, $CellContext`d3$85556$$ = 
+    0, $CellContext`d4$85557$$ = 0, $CellContext`d5$85558$$ = 
+    0, $CellContext`d6$85559$$ = 0, $CellContext`d7$85560$$ = 
+    0, $CellContext`d8$85561$$ = 0, $CellContext`d9$85562$$ = 
+    0, $CellContext`d10$85563$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = False, $CellContext`d1$$ = 
+        9, $CellContext`d10$$ = 0, $CellContext`d11$$ = 4, $CellContext`d2$$ = 
+        0, $CellContext`d3$$ = 0, $CellContext`d4$$ = 0, $CellContext`d5$$ = 
+        0, $CellContext`d6$$ = 0, $CellContext`d7$$ = 0, $CellContext`d8$$ = 
+        6, $CellContext`d9$$ = 0, $CellContext`h1$$ = 15, $CellContext`h10$$ = 
+        6, $CellContext`h11$$ = 5, $CellContext`h12$$ = 4, $CellContext`h13$$ = 
+        3, $CellContext`h14$$ = 2, $CellContext`h15$$ = 1, $CellContext`h16$$ = 
+        0, $CellContext`h17$$ = 0, $CellContext`h18$$ = 0, $CellContext`h19$$ = 
+        0, $CellContext`h2$$ = 14, $CellContext`h20$$ = 0, $CellContext`h21$$ = 
+        0, $CellContext`h22$$ = 0, $CellContext`h23$$ = 0, $CellContext`h24$$ = 
+        4, $CellContext`h3$$ = 13, $CellContext`h4$$ = 12, $CellContext`h5$$ = 
+        11, $CellContext`h6$$ = 10, $CellContext`h7$$ = 9, $CellContext`h8$$ = 
+        8, $CellContext`h9$$ = 7}, "ControllerVariables" :> {
+        Hold[$CellContext`a$$, $CellContext`a$85553$$, False], 
+        Hold[$CellContext`d1$$, $CellContext`d1$85554$$, 0], 
+        Hold[$CellContext`d2$$, $CellContext`d2$85555$$, 0], 
+        Hold[$CellContext`d3$$, $CellContext`d3$85556$$, 0], 
+        Hold[$CellContext`d4$$, $CellContext`d4$85557$$, 0], 
+        Hold[$CellContext`d5$$, $CellContext`d5$85558$$, 0], 
+        Hold[$CellContext`d6$$, $CellContext`d6$85559$$, 0], 
+        Hold[$CellContext`d7$$, $CellContext`d7$85560$$, 0], 
+        Hold[$CellContext`d8$$, $CellContext`d8$85561$$, 0], 
+        Hold[$CellContext`d9$$, $CellContext`d9$85562$$, 0], 
+        Hold[$CellContext`d10$$, $CellContext`d10$85563$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> If[$CellContext`a$$, 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["d1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d1$$], 
+                Range[0, 9]]}, {
+               Style["d2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d2$$], 
+                Range[0, 9]]}, {
+               Style["d3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d3$$], 
+                Range[0, 9]]}, {
+               Style["d4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d4$$], 
+                Range[0, 9]]}, {
+               Style["d5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d5$$], 
+                Range[0, 9]]}, {
+               Style["d6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d6$$], 
+                Range[0, 9]]}, {
+               Style["d7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d7$$], 
+                Range[0, 9]]}, {
+               Style["d8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d8$$], 
+                Range[0, 9]]}, {
+               Style["d9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d9$$], 
+                Range[0, 9]]}, {
+               Style["d10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d10$$], 
+                Range[0, 9]]}, {
+               Style["d11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`d11$$], 
+                Range[0, 9]]}}], 
+            Column[{
+              
+              Plot[$CellContext`d1$$ Sin[$CellContext`x] + $CellContext`d3$$ 
+                Sin[2 $CellContext`x] + $CellContext`d2$$ 
+                Sin[3 $CellContext`x] + $CellContext`d4$$ 
+                Sin[4 $CellContext`x] + $CellContext`d5$$ 
+                Sin[6 $CellContext`x] + $CellContext`d6$$ 
+                Sin[8 $CellContext`x] + $CellContext`d10$$ 
+                Sin[9 $CellContext`x] + $CellContext`d7$$ 
+                Sin[10 $CellContext`x] + $CellContext`d8$$ 
+                Sin[12 $CellContext`x] + $CellContext`d9$$ 
+                Sin[16 $CellContext`x] + (1/2) $CellContext`d10$$ 
+                Sin[17 $CellContext`x] + $CellContext`d11$$ 
+                Sin[20 $CellContext`x] + (1/2) $CellContext`d11$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`d1$$ 
+                 Sin[$CellContext`x$] + $CellContext`d3$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`d2$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`d4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`d5$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`d6$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`d10$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`d7$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`d8$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`d9$$ 
+                 Sin[16 $CellContext`x$] + (1/2) $CellContext`d10$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`d11$$ 
+                 Sin[20 $CellContext`x$] + (1/2) $CellContext`d11$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center]}}], ImageSize -> {600, 375}], 
+        Pane[
+         Grid[{{
+            Grid[{{
+               Style["h1", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h1$$], 
+                Range[0, 15]]}, {
+               Style["h2", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h2$$], 
+                Range[0, 15]]}, {
+               Style["h3", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h3$$], 
+                Range[0, 15]]}, {
+               Style["h4", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h4$$], 
+                Range[0, 15]]}, {
+               Style["h5", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h5$$], 
+                Range[0, 15]]}, {
+               Style["h6", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h6$$], 
+                Range[0, 15]]}, {
+               Style["h7", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h7$$], 
+                Range[0, 15]]}, {
+               Style["h8", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h8$$], 
+                Range[0, 15]]}, {
+               Style["h9", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h9$$], 
+                Range[0, 15]]}, {
+               Style["h10", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h10$$], 
+                Range[0, 15]]}, {
+               Style["h11", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h11$$], 
+                Range[0, 15]]}, {
+               Style["h12", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h12$$], 
+                Range[0, 15]]}}, Alignment -> Right], 
+            Column[{
+              
+              Plot[$CellContext`h1$$ Sin[$CellContext`x] + $CellContext`h2$$ 
+                Sin[2 $CellContext`x] + $CellContext`h3$$ 
+                Sin[3 $CellContext`x] + $CellContext`h4$$ 
+                Sin[4 $CellContext`x] + $CellContext`h5$$ 
+                Sin[5 $CellContext`x] + $CellContext`h6$$ 
+                Sin[6 $CellContext`x] + $CellContext`h7$$ 
+                Sin[7 $CellContext`x] + $CellContext`h8$$ 
+                Sin[8 $CellContext`x] + $CellContext`h9$$ 
+                Sin[9 $CellContext`x] + $CellContext`h10$$ 
+                Sin[10 $CellContext`x] + $CellContext`h11$$ 
+                Sin[11 $CellContext`x] + $CellContext`h12$$ 
+                Sin[12 $CellContext`x] + $CellContext`h13$$ 
+                Sin[13 $CellContext`x] + $CellContext`h14$$ 
+                Sin[14 $CellContext`x] + $CellContext`h15$$ 
+                Sin[15 $CellContext`x] + $CellContext`h16$$ 
+                Sin[16 $CellContext`x] + $CellContext`h17$$ 
+                Sin[17 $CellContext`x] + $CellContext`h18$$ 
+                Sin[18 $CellContext`x] + $CellContext`h19$$ 
+                Sin[19 $CellContext`x] + $CellContext`h20$$ 
+                Sin[20 $CellContext`x] + $CellContext`h21$$ 
+                Sin[21 $CellContext`x] + $CellContext`h22$$ 
+                Sin[22 $CellContext`x] + $CellContext`h23$$ 
+                Sin[23 $CellContext`x] + $CellContext`h24$$ 
+                Sin[24 $CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+               ImageSize -> {400, 250}], 
+              Play[
+               
+               With[{$CellContext`x$ = 
+                 220. $CellContext`t}, $CellContext`h1$$ 
+                 Sin[$CellContext`x$] + $CellContext`h2$$ 
+                 Sin[2 $CellContext`x$] + $CellContext`h3$$ 
+                 Sin[3 $CellContext`x$] + $CellContext`h4$$ 
+                 Sin[4 $CellContext`x$] + $CellContext`h5$$ 
+                 Sin[5 $CellContext`x$] + $CellContext`h6$$ 
+                 Sin[6 $CellContext`x$] + $CellContext`h7$$ 
+                 Sin[7 $CellContext`x$] + $CellContext`h8$$ 
+                 Sin[8 $CellContext`x$] + $CellContext`h9$$ 
+                 Sin[9 $CellContext`x$] + $CellContext`h10$$ 
+                 Sin[10 $CellContext`x$] + $CellContext`h11$$ 
+                 Sin[11 $CellContext`x$] + $CellContext`h12$$ 
+                 Sin[12 $CellContext`x$] + $CellContext`h13$$ 
+                 Sin[13 $CellContext`x$] + $CellContext`h14$$ 
+                 Sin[14 $CellContext`x$] + $CellContext`h15$$ 
+                 Sin[15 $CellContext`x$] + $CellContext`h16$$ 
+                 Sin[16 $CellContext`x$] + $CellContext`h17$$ 
+                 Sin[17 $CellContext`x$] + $CellContext`h18$$ 
+                 Sin[18 $CellContext`x$] + $CellContext`h19$$ 
+                 Sin[19 $CellContext`x$] + $CellContext`h20$$ 
+                 Sin[20 $CellContext`x$] + $CellContext`h21$$ 
+                 Sin[21 $CellContext`x$] + $CellContext`h22$$ 
+                 Sin[22 $CellContext`x$] + $CellContext`h23$$ 
+                 Sin[23 $CellContext`x$] + $CellContext`h24$$ 
+                 Sin[24 $CellContext`x$]], {$CellContext`t, 0, 1.}, 
+               SampleRate -> 22050]}, Center], 
+            Grid[{{
+               Style["h13", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h13$$], 
+                Range[0, 15]]}, {
+               Style["h14", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h14$$], 
+                Range[0, 15]]}, {
+               Style["h15", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h15$$], 
+                Range[0, 15]]}, {
+               Style["h16", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h16$$], 
+                Range[0, 15]]}, {
+               Style["h17", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h17$$], 
+                Range[0, 15]]}, {
+               Style["h18", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h18$$], 
+                Range[0, 15]]}, {
+               Style["h19", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h19$$], 
+                Range[0, 15]]}, {
+               Style["h20", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h20$$], 
+                Range[0, 15]]}, {
+               Style["h21", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h21$$], 
+                Range[0, 15]]}, {
+               Style["h22", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h22$$], 
+                Range[0, 15]]}, {
+               Style["h23", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h23$$], 
+                Range[0, 15]]}, {
+               Style["h24", "Label"], 
+               PopupMenu[
+                Dynamic[$CellContext`h24$$], 
+                Range[0, 15]]}}, Alignment -> Right]}}], 
+         ImageSize -> {600, 375}]], 
+      "Specifications" :> {{{$CellContext`a$$, False, "drawbars/harmonics"}, {
+         True, False}, ControlPlacement -> Top}, {{$CellContext`d1$$, 9}, 0, 
+         9, 1, ControlType -> None}, {$CellContext`d2$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d3$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d4$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d5$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d6$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d7$$, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d8$$, 6}, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d9$$, 0, 9, 1, ControlType -> 
+         None}, {$CellContext`d10$$, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`d11$$, 4}, 0, 9, 1, ControlType -> 
+         None}, {{$CellContext`h1$$, 15}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h2$$, 14}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h3$$, 13}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h4$$, 12}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h5$$, 11}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h6$$, 10}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h7$$, 9}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h8$$, 8}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h9$$, 7}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h10$$, 6}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h11$$, 5}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h12$$, 4}, 0, 15, 1, ControlType -> 
+         None}, {{$CellContext`h13$$, 3}, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {{$CellContext`h14$$, 2}, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> 
+         Right}, {{$CellContext`h15$$, 1}, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h16$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h17$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h18$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h19$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h20$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {$CellContext`h21$$, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}, {$CellContext`h22$$, 0, 15, 1, 
+         ControlType -> None, ControlPlacement -> Right}, {$CellContext`h23$$,
+          0, 15, 1, ControlType -> None, ControlPlacement -> 
+         Right}, {{$CellContext`h24$$, 4}, 0, 15, 1, ControlType -> None, 
+         ControlPlacement -> Right}}, 
+      "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {1, 5, 9}, 
+        SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->210374891]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "DetailsSection"],
+
+Cell[TextData[{
+ "The 11 drawbar stops are based on the Hammond organ model X-66, \
+representing the following stops and harmonics. Stops are given as \"footages\
+\" where 8' is equal to a fundamental's pitch, 16' is one octave lower, 4' is \
+one octave higher, etc. The fractions used are based on the denominators 3, \
+5, and 7 and are related to the ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["5", "th"], TraditionalForm]], "InlineMath"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["3", "rd"], TraditionalForm]], "InlineMath"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["2", "nd"], TraditionalForm]], "InlineMath"],
+ " major scale degrees, respectively. Thus an 8/9' is related to a ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["5", "th"], TraditionalForm]], "InlineMath"],
+ " that is three octaves higher than the fundamental 8' (i.e., -1 octave=16', \
+0 octave=8', 1=4', 2=2', 3=1', and 4=0'). However, in the waveform graphs, \
+the octaves are all adjusted down one octave to allow the most harmonics to \
+be defined based on the lowest drawbar being treated as a fundamental. Thus \
+the table below is to be used as a relative reference to what is implemented \
+in this Demonstration. Note that drawbars 10 and 11 are unique in combining \
+two stops each, with the second stop's amplitude equal to half of the first \
+stop's amplitude. Thus one value is applied to both stops and harmonics \
+simultaneously. More control can be achieved with the harmonic waveform \
+viewer if desired. "
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.444151893375*^9, 3.44415192075*^9}, {
+   3.444151964953125*^9, 3.44415220034375*^9}, {3.444152233671875*^9, 
+   3.44415251575*^9}, {3.444153790671875*^9, 3.444154094171875*^9}, {
+   3.444580442269044*^9, 3.444580592377458*^9}, {3.4446615577873516`*^9, 
+   3.444661650846657*^9}},
+ CellID->36302466],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[GridBox[{
+    {"Drawbar", "Stop", 
+     RowBox[{"+", "Stop2"}], "Harmonic", 
+     RowBox[{"+", "Harmonic2"}]},
+    {"11", 
+     RowBox[{
+      FractionBox["4", "5"], "'"}], 
+     RowBox[{
+      FractionBox["2", "3"], "'"}], "20", "24"},
+    {"10", 
+     RowBox[{"1", "  ", 
+      RowBox[{
+       FractionBox["1", "7"], "'"}]}], 
+     RowBox[{
+      FractionBox["8", "9"], "'"}], "9", 
+     RowBox[{"17", "\[IndentingNewLine]", "\[IndentingNewLine]"}]},
+    {"9", 
+     RowBox[{"1", "'"}], " ", "16", " "},
+    {"8", 
+     RowBox[{"1", " ", 
+      RowBox[{
+       FractionBox["1", "3"], "'"}]}], " ", "12", " "},
+    {"7", 
+     RowBox[{"1", " ", 
+      RowBox[{
+       FractionBox["3", "5"], "'"}]}], " ", "10", 
+     RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]"}]},
+    {"6", 
+     RowBox[{"2", "'"}], " ", "8", " "},
+    {"5", 
+     RowBox[{"2", " ", 
+      RowBox[{
+       FractionBox["2", "3"], "'"}]}], " ", "6", " "},
+    {"4", 
+     RowBox[{"4", "'"}], " ", "4", " "},
+    {
+     RowBox[{" ", "3"}], 
+     RowBox[{"8", "'"}], " ", "2", 
+     RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]"}]},
+    {"2", 
+     RowBox[{"5", " ", 
+      RowBox[{
+       FractionBox["1", "3"], "'"}]}], " ", "3", " "},
+    {"1", 
+     RowBox[{"16", "'"}], " ", "1", " "}
+   }], TraditionalForm]], "InlineMath"]], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.444152536671875*^9, 3.44415254721875*^9}, {
+   3.444152608171875*^9, 3.4441527295625*^9}, {3.444152771625*^9, 
+   3.444152926125*^9}, {3.4441529736875*^9, 3.44415304340625*^9}, {
+   3.444153093421875*^9, 3.444153312640625*^9}, {3.444153343890625*^9, 
+   3.444153356796875*^9}, {3.4441534215*^9, 3.444153582859375*^9}, {
+   3.444153616890625*^9, 3.444153714375*^9}, {3.4443942309387407`*^9, 
+   3.4443942436560125`*^9}},
+ CellID->10400541],
+
+Cell["", "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4441518883125*^9, 3.4441518909375*^9}},
+ CellID->19924906],
+
+Cell["Snapshot 1: diapason 16' [87 7632 000 00].", "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.443627075125*^9, 3.443627171203125*^9}, {
+   3.4436273689375*^9, 3.443627388015625*^9}, {3.443628229875*^9, 
+   3.443628238578125*^9}, {3.444076986625*^9, 3.444077009515625*^9}, {
+   3.444077067140625*^9, 3.444077069765625*^9}, 3.4440773356875*^9, 
+   3.4441518835*^9, {3.444394142043852*^9, 3.44439414212586*^9}, {
+   3.4446616599585676`*^9, 3.4446616600725794`*^9}},
+ CellID->118968990],
+
+Cell["Snapshot 2: contrabass 16' [24 1141 010 10]", "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.444077297015625*^9, {3.444661662431815*^9, 
+   3.444661675211093*^9}},
+ CellID->309390900],
+
+Cell["Snapshot 3: FEDCBA987654321 pulse/saw-like wave", "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.443627098015625*^9, 3.44362710271875*^9}, {
+   3.44362723846875*^9, 3.443627284265625*^9}, {3.44362766809375*^9, 
+   3.44362766809375*^9}, {3.44362824603125*^9, 3.443628274984375*^9}, {
+   3.444077078484375*^9, 3.4440771228125*^9}, 3.4440772295*^9, 
+   3.444077294484375*^9, {3.444077541375*^9, 3.44407762296875*^9}},
+ CellID->645086427],
+
+Cell["\<\
+For two outstanding reference sources for organ drawbar settings and the \
+history of organ stops see:\
+\>", "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.443627669703125*^9, 3.44362769875*^9}, {
+   3.44362791228125*^9, 3.44362791334375*^9}, 3.44407291967673*^9, {
+   3.444154242578125*^9, 3.444154247890625*^9}, {3.44415428209375*^9, 
+   3.444154303796875*^9}},
+ CellID->121100357],
+
+Cell[TextData[{
+ "S. Irwin, ",
+ StyleBox["Dictionary of Hammond Organ Stops: A Translation of Pipe-Organ \
+Stops into Hammond Organ Number-Arrangements",
+  FontSlant->"Italic"],
+ ", 4th ed., New York: G. Shirmer, 1970."
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.444661695472119*^9, 3.4446616998485565`*^9}},
+ CellID->511985176],
+
+Cell[TextData[{
+ "G. A. Audsley, ",
+ StyleBox["Organ-Stops and Their Artistic Registrations",
+  FontSlant->"Italic"],
+ ", New York: H. W. Gray Co., 1921 [renewed 1949]."
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.444661695472119*^9, 3.444661717276299*^9}},
+ CellID->172541174]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["additive synthesis", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4436274986875*^9, 3.443627568109375*^9}, {
+   3.4440729306378264`*^9, 3.4440729310988727`*^9}},
+ CellID->263901158],
+
+Cell["waveforms", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4436274986875*^9, 3.443627568109375*^9}, {
+   3.4440729306378264`*^9, 3.444072933424105*^9}},
+ CellID->220497908],
+
+Cell["harmonics", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4436274986875*^9, 3.443627568109375*^9}, {
+   3.4440729306378264`*^9, 3.4440729359593587`*^9}},
+ CellID->371546674],
+
+Cell["partials", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4436274986875*^9, 3.443627568109375*^9}, {
+   3.4440729306378264`*^9, 3.4440729383716*^9}},
+ CellID->67233567],
+
+Cell["overtones", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4436274986875*^9, 3.443627568109375*^9}, {
+   3.4440729306378264`*^9, 3.444072940423805*^9}},
+ CellID->17677223],
+
+Cell["drawbars", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4436274986875*^9, 3.443627568109375*^9}, {
+   3.4440729306378264`*^9, 3.444072942435006*^9}, {3.44415457496875*^9, 
+   3.44415457496875*^9}},
+ CellID->126939472],
+
+Cell["music", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.444154576140625*^9, 3.44415458659375*^9}},
+ CellID->45779410],
+
+Cell["audio", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.444154587171875*^9, 3.444154588078125*^9}},
+ CellID->187049395]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Hammer Time",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/HammerTime/"], None},
+ ButtonNote->"http://demonstrations.wolfram.com/HammerTime/"]], "RelatedLinks",\
+
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.444394201047752*^9, 3.444394201048752*^9}},
+ CellID->268000739],
+
+Cell[TextData[ButtonBox["Lambdoma Matrix",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/LambdomaMatrix/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/LambdomaMatrix/"]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.444394216576305*^9, 3.444394216576305*^9}},
+ CellID->1032986132],
+
+Cell[TextData[ButtonBox["Rational Harmonics",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/RationalHarmonics/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/RationalHarmonics/"]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4443941842240696`*^9, 3.44439418422507*^9}},
+ CellID->21245280]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Benjamin Robert Tubb",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Benjamin+Robert+\
+Tubb"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Benjamin+Robert+Tubb"]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.44362760240625*^9, 3.443627617296875*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{700, 681},
+WindowMargins->{{10, Automatic}, {Automatic, 0}},
+Magnification->1.,
+FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (November 10, 2008)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[142588, 3045, 312, 8, 22, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[142903, 3055, 678, 16, 22, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "DragLocators"->{
+  Cell[143584, 3073, 340, 11, 22, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "CreateAndDeleteLocators"->{
+  Cell[143927, 3086, 637, 15, 22, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "SliderZoom"->{
+  Cell[144567, 3103, 844, 21, 22, "ControlSuggestions",
+   CellTags->"SliderZoom"]},
+ "GamepadControls"->{
+  Cell[145414, 3126, 369, 9, 22, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "AutomaticAnimation"->{
+  Cell[145786, 3137, 1412, 31, 22, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[147201, 3170, 882, 21, 22, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 151663, 3312},
+ {"RotateAndZoomIn3D", 151773, 3315},
+ {"DragLocators", 151884, 3318},
+ {"CreateAndDeleteLocators", 152001, 3321},
+ {"SliderZoom", 152116, 3324},
+ {"GamepadControls", 152223, 3327},
+ {"AutomaticAnimation", 152337, 3330},
+ {"BookmarkAnimation", 152455, 3333}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 143, 2, 74, "DemoTitle"],
+Cell[713, 26, 33, 0, 266, "InitializationSection"],
+Cell[CellGroupData[{
+Cell[771, 30, 29, 0, 188, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[825, 34, 39470, 873, 2316, "Input"],
+Cell[40298, 909, 18990, 386, 469, "Output",
+ CellID->711938238]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59334, 1301, 36, 0, 166, "ManipulateCaptionSection"],
+Cell[59373, 1303, 478, 8, 37, "ManipulateCaption"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59888, 1316, 28, 0, 168, "ThumbnailSection"],
+Cell[59919, 1318, 19095, 387, 119, "Output",
+ CellID->5208967]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[79051, 1710, 28, 0, 138, "SnapshotsSection"],
+Cell[79082, 1712, 19075, 387, 119, "Output",
+ CellID->223655285],
+Cell[98160, 2101, 19075, 387, 119, "Output",
+ CellID->257147594],
+Cell[117238, 2490, 19112, 384, 37, "Output",
+ CellID->210374891]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[136387, 2879, 26, 0, 332, "DetailsSection"],
+Cell[136416, 2881, 1883, 38, 204, "DetailNotes",
+ CellID->36302466],
+Cell[138302, 2921, 1849, 55, 380, "DetailNotes",
+ CellID->10400541],
+Cell[140154, 2978, 128, 3, 22, "DetailNotes",
+ CellID->19924906],
+Cell[140285, 2983, 500, 8, 22, "DetailNotes",
+ CellID->118968990],
+Cell[140788, 2993, 202, 4, 22, "DetailNotes",
+ CellID->309390900],
+Cell[140993, 2999, 454, 7, 22, "DetailNotes",
+ CellID->645086427],
+Cell[141450, 3008, 407, 9, 37, "DetailNotes",
+ CellID->121100357],
+Cell[141860, 3019, 350, 9, 37, "DetailNotes",
+ CellID->511985176],
+Cell[142213, 3030, 298, 8, 37, "DetailNotes",
+ CellID->172541174]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[142548, 3043, 37, 0, 120, "ControlSuggestionsSection"],
+Cell[142588, 3045, 312, 8, 22, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[142903, 3055, 678, 16, 22, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[143584, 3073, 340, 11, 22, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[143927, 3086, 637, 15, 22, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[144567, 3103, 844, 21, 22, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[145414, 3126, 369, 9, 22, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[145786, 3137, 1412, 31, 22, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[147201, 3170, 882, 21, 22, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[148120, 3196, 30, 0, 152, "SearchTermsSection"],
+Cell[148153, 3198, 203, 4, 22, "SearchTerms",
+ CellID->263901158],
+Cell[148359, 3204, 192, 4, 22, "SearchTerms",
+ CellID->220497908],
+Cell[148554, 3210, 194, 4, 22, "SearchTerms",
+ CellID->371546674],
+Cell[148751, 3216, 188, 4, 22, "SearchTerms",
+ CellID->67233567],
+Cell[148942, 3222, 191, 4, 22, "SearchTerms",
+ CellID->17677223],
+Cell[149136, 3228, 239, 5, 22, "SearchTerms",
+ CellID->126939472],
+Cell[149378, 3235, 136, 3, 22, "SearchTerms",
+ CellID->45779410],
+Cell[149517, 3240, 138, 3, 22, "SearchTerms",
+ CellID->187049395]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[149692, 3248, 31, 0, 138, "RelatedLinksSection"],
+Cell[149726, 3250, 334, 8, 22, "RelatedLinks",
+ CellID->268000739],
+Cell[150063, 3260, 348, 8, 22, "RelatedLinks",
+ CellID->1032986132],
+Cell[150414, 3270, 356, 8, 22, "RelatedLinks",
+ CellID->21245280]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[150807, 3283, 25, 0, 136, "AuthorSection"],
+Cell[150835, 3285, 406, 11, 22, "Author"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

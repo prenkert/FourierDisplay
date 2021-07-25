@@ -1,0 +1,2115 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     88968,       2106]
+NotebookOptionsPosition[     84593,       1968]
+NotebookOutlinePosition[     86202,       2019]
+CellTagsIndexPosition[     85874,       2007]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Comparing Fourier Series and Fourier Transform\
+\>", "DemoTitle",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133520469593782`*^9, 3.5133520677250032`*^9}, 
+   3.5134346530233345`*^9, {3.51406170414447*^9, 3.514061711106063*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["", "InitializationSection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"rect", "[", 
+   RowBox[{"x_", ",", "amp_", ",", "per_", ",", "off_"}], "]"}], ":=", 
+  RowBox[{"Piecewise", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"amp", "+", "off"}], ",", 
+       RowBox[{"0", "\[LessEqual]", 
+        RowBox[{"Mod", "[", 
+         RowBox[{"x", ",", "per"}], "]"}], "<", 
+        FractionBox["per", "2"]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "amp"}], "+", "off"}], ",", 
+       RowBox[{
+        FractionBox["per", "2"], "\[LessEqual]", 
+        RowBox[{"Mod", "[", 
+         RowBox[{"x", ",", "per"}], "]"}], "<", "per"}]}], "}"}]}], "}"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tria", "[", 
+   RowBox[{"x_", ",", "amp_", ",", "per_", ",", "off_"}], "]"}], ":=", 
+  RowBox[{"Piecewise", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"4", "amp", "*", 
+          FractionBox[
+           RowBox[{"per", "-", 
+            RowBox[{"Mod", "[", 
+             RowBox[{
+              RowBox[{"x", "-", 
+               FractionBox["per", "4"]}], ",", "per"}], "]"}]}], "per"]}], 
+         "-", 
+         RowBox[{"3", "amp"}], "+", "off"}], ")"}], ",", 
+       RowBox[{"0", "\[LessEqual]", 
+        RowBox[{"Mod", "[", 
+         RowBox[{
+          RowBox[{"x", "-", 
+           FractionBox["per", "4"]}], ",", "per"}], "]"}], "<", 
+        FractionBox["per", "2"]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"4", "amp", "*", 
+          FractionBox[
+           RowBox[{"Mod", "[", 
+            RowBox[{
+             RowBox[{"x", "-", 
+              FractionBox["per", "4"]}], ",", "per"}], "]"}], "per"]}], "-", 
+         RowBox[{"3", "amp"}], "+", "off"}], ")"}], ",", 
+       RowBox[{
+        FractionBox["per", "2"], "\[LessEqual]", 
+        RowBox[{"Mod", "[", 
+         RowBox[{
+          RowBox[{"x", "-", 
+           FractionBox["per", "4"]}], ",", "per"}], "]"}], "<", "per"}]}], 
+      "}"}]}], "}"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sin", "[", 
+   RowBox[{"x_", ",", "amp_", ",", "per_", ",", "off_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Sin", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"amp", "*", "x"}], ")"}], "*", 
+     FractionBox["per", 
+      RowBox[{"2", "\[Pi]"}]]}], "]"}], "+", "off"}]}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133521603500032`*^9, 3.5133521642562532`*^9}, {
+   3.5133558664281282`*^9, 3.5133558921781282`*^9}, {3.5133578726156282`*^9, 
+   3.5133578829281282`*^9}, {3.5133658586000032`*^9, 
+   3.5133658926156282`*^9}, {3.5133698496000032`*^9, 3.5133698507093782`*^9}},
+ CellID->427735805],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ao", "[", 
+   RowBox[{"func_", ",", "per_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"2", "\[Pi]"}]], 
+   RowBox[{
+    SubsuperscriptBox["\[Integral]", "0", "per"], 
+    RowBox[{"func", 
+     RowBox[{"\[DifferentialD]", "x"}]}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"an", "[", 
+   RowBox[{"func_", ",", "per_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", "\[Pi]"], 
+   RowBox[{
+    SubsuperscriptBox["\[Integral]", "0", "per"], 
+    RowBox[{"func", "*", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"n", "*", "x"}], "]"}], 
+     RowBox[{"\[DifferentialD]", "x"}]}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bn", "[", 
+   RowBox[{"func_", ",", "per_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", "\[Pi]"], 
+   RowBox[{
+    SubsuperscriptBox["\[Integral]", "0", "per"], 
+    RowBox[{"func", "*", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"n", "*", "x"}], "]"}], 
+     RowBox[{"\[DifferentialD]", "x"}]}]}]}]}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133525960531282`*^9, 3.5133525986312532`*^9}},
+ CellID->476037277],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Ao", "[", 
+   RowBox[{"func_", ",", "per_"}], "]"}], ":=", 
+  RowBox[{"ao", "[", 
+   RowBox[{"func", ",", "per"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"An", "[", 
+   RowBox[{"func_", ",", "per_", ",", "n_"}], "]"}], ":=", 
+  SqrtBox[
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"an", "[", 
+      RowBox[{"func", ",", "per", ",", "n"}], "]"}], "2"], "+", 
+    SuperscriptBox[
+     RowBox[{"bn", "[", 
+      RowBox[{"func", ",", "per", ",", "n"}], "]"}], "2"]}]]}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133603700218782`*^9, 3.5133604055218782`*^9}, {
+   3.5133604450062532`*^9, 3.5133604837250032`*^9}, {3.5133605278968782`*^9, 
+   3.5133605903187532`*^9}},
+ CellID->741820790],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"phA", "[", 
+   RowBox[{"func_", ",", "per_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"Arg", "[", 
+   RowBox[{
+    RowBox[{"bn", "[", 
+     RowBox[{"func", ",", "per", ",", "n"}], "]"}], "+", 
+    RowBox[{"\[ImaginaryJ]", "*", 
+     RowBox[{"an", "[", 
+      RowBox[{"func", ",", "per", ",", "n"}], "]"}]}]}], "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133645570375032`*^9, 3.5133646026312532`*^9}, {
+   3.5133655632562532`*^9, 3.5133655738812532`*^9}},
+ CellID->143658254],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"h", "[", 
+   RowBox[{"func_", ",", "per_", ",", "x_", ",", "lim_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"ao", "[", 
+    RowBox[{"func", ",", "per"}], "]"}], "+", 
+   RowBox[{
+    UnderoverscriptBox["\[Sum]", 
+     RowBox[{"n", "=", "1"}], "lim"], 
+    RowBox[{
+     RowBox[{"an", "[", 
+      RowBox[{"func", ",", "per", ",", "n"}], "]"}], "*", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"n", "*", "x"}], "]"}]}]}], "+", 
+   RowBox[{
+    UnderoverscriptBox["\[Sum]", 
+     RowBox[{"n", "=", "1"}], "lim"], 
+    RowBox[{
+     RowBox[{"bn", "[", 
+      RowBox[{"func", ",", "per", ",", "n"}], "]"}], "*", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"n", "*", "x"}], "]"}]}]}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133530458656282`*^9, 3.5133530500218782`*^9}, 
+   3.5133599371312532`*^9, 3.5133600959593782`*^9},
+ CellID->449804097],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"X", "[", 
+   RowBox[{"func_", ",", "per_", ",", "\[Omega]_"}], "]"}], ":=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", 
+     FractionBox["per", "2"]}], 
+    FractionBox["per", "2"]], 
+   RowBox[{"func", "*", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{
+      RowBox[{"-", "\[ImaginaryJ]"}], "*", "\[Omega]", "*", "x"}]], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133668077406282`*^9, 3.5133668219593782`*^9}, {
+   3.5133674849593782`*^9, 3.5133675295218782`*^9}},
+ CellID->522323752]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"four", ",", "abs", ",", "pha", ",", "fourtrans", ",", "phx"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"four", "=", 
+       RowBox[{"h", "[", 
+        RowBox[{"func", ",", 
+         RowBox[{"2", "\[Pi]"}], ",", "x", ",", "deg"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"abs", "=", 
+       RowBox[{"Join", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{"ao", "[", 
+             RowBox[{"func", ",", 
+              RowBox[{"2", "\[Pi]"}]}], "]"}]}], "}"}], "}"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"n", ",", 
+             RowBox[{"An", "[", 
+              RowBox[{"func", ",", 
+               RowBox[{"2", "\[Pi]"}], ",", "n"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"n", ",", "1", ",", "deg"}], "}"}]}], "]"}]}], "]"}]}], 
+      ";", 
+      RowBox[{"pha", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"n", ",", 
+           FractionBox[
+            RowBox[{"180", "*", 
+             RowBox[{"phA", "[", 
+              RowBox[{"func", ",", 
+               RowBox[{"2", "\[Pi]"}], ",", "n"}], "]"}]}], 
+            RowBox[{"2", "\[Pi]"}]]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"n", ",", "1", ",", "deg"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"fourtrans", "=", 
+       RowBox[{"X", "[", 
+        RowBox[{"func", ",", 
+         RowBox[{"2", "\[Pi]"}], ",", "\[Omega]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"phx", "=", 
+       FractionBox[
+        RowBox[{"180", "*", 
+         RowBox[{"Arg", "[", "fourtrans", "]"}]}], 
+        RowBox[{"2", "\[Pi]"}]]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Switch", "[", 
+       RowBox[{
+       "ctrl", ",", "\[IndentingNewLine]", "1", ",", "\[IndentingNewLine]", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Plot", "[", 
+            RowBox[{"four", ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", 
+               RowBox[{
+                RowBox[{"-", "2"}], "\[Pi]"}], ",", 
+               RowBox[{"4", "\[Pi]"}]}], "}"}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"350", ",", "200"}], "}"}]}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"Piecewise", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"0", ",", 
+                  RowBox[{"x", "<", 
+                   RowBox[{"-", "\[Pi]"}]}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"func", ",", 
+                  RowBox[{
+                   RowBox[{"-", "\[Pi]"}], "<", "x", "<", "\[Pi]"}]}], "}"}], 
+                ",", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", 
+                  RowBox[{"x", ">", "\[Pi]"}]}], "}"}]}], "}"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", 
+               RowBox[{
+                RowBox[{"-", "2"}], "\[Pi]"}], ",", 
+               RowBox[{"4", "\[Pi]"}]}], "}"}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"350", ",", "200"}], "}"}]}]}], "]"}]}], 
+          "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+        "2", ",", "\[IndentingNewLine]", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"abs", ",", 
+             RowBox[{"PlotRange", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "0.1"}], ",", "1.5"}], "}"}]}], ",", 
+             RowBox[{"Joined", "\[Rule]", "False"}], ",", 
+             RowBox[{"Filling", "\[Rule]", "Axis"}], ",", 
+             RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+             RowBox[{"Axes", "\[Rule]", "True"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"FrameLabel", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"None", ",", "None"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "\"\<harmonic\>\"", ",", " ", 
+                  "\"\<Fourier Series Spectrum\>\""}], "}"}]}], "}"}]}], ",", 
+             RowBox[{"FrameTicks", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"Automatic", ",", "Automatic"}], "}"}]}], ",", 
+             RowBox[{"PlotRangeClipping", "\[Rule]", "True"}], ",", 
+             RowBox[{"AspectRatio", "\[Rule]", "0.4"}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"350", ",", "200"}], "}"}]}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"Abs", "[", "fourtrans", "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"\[Omega]", ",", "0", ",", "deg"}], "}"}], ",", 
+             RowBox[{"Filling", "\[Rule]", "Axis"}], ",", 
+             RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+             RowBox[{"Axes", "\[Rule]", "True"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"FrameLabel", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"None", ",", "None"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "\"\<harmonic\>\"", ",", " ", 
+                  "\"\<Fourier Transform Spectrum\>\""}], "}"}]}], "}"}]}], 
+             ",", 
+             RowBox[{"FrameTicks", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"Automatic", ",", "Automatic"}], "}"}]}], ",", 
+             RowBox[{"PlotRangeClipping", "\[Rule]", "True"}], ",", 
+             RowBox[{"AspectRatio", "\[Rule]", "0.4"}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"350", ",", "200"}], "}"}]}]}], "]"}]}], 
+          "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+        "3", ",", "\[IndentingNewLine]", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"pha", ",", 
+             RowBox[{"PlotRange", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "180"}], ",", "180"}], "}"}]}], ",", 
+             RowBox[{"Joined", "\[Rule]", "False"}], ",", 
+             RowBox[{"Filling", "\[Rule]", "Axis"}], ",", 
+             RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+             RowBox[{"Axes", "\[Rule]", "True"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"FrameLabel", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"None", ",", "None"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "\"\<harmonic\>\"", ",", " ", 
+                  "\"\<Fourier Series Phase\>\""}], "}"}]}], "}"}]}], ",", 
+             RowBox[{"FrameTicks", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"Automatic", ",", "Automatic"}], "}"}]}], ",", 
+             RowBox[{"PlotRangeClipping", "\[Rule]", "True"}], ",", 
+             RowBox[{"AspectRatio", "\[Rule]", "0.4"}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"350", ",", "200"}], "}"}]}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Plot", "[", 
+            RowBox[{"phx", ",", 
+             RowBox[{"{", 
+              RowBox[{"\[Omega]", ",", "1", ",", "deg"}], "}"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "180"}], ",", "180"}], "}"}]}], ",", 
+             RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+             RowBox[{"Axes", "\[Rule]", "True"}], ",", 
+             RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+             RowBox[{"FrameLabel", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"None", ",", "None"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "\"\<harmonic\>\"", ",", " ", 
+                  "\"\<Fourier Transform Phase\>\""}], "}"}]}], "}"}]}], ",", 
+             RowBox[{"FrameTicks", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"Automatic", ",", "Automatic"}], "}"}]}], ",", 
+             RowBox[{"PlotRangeClipping", "\[Rule]", "True"}], ",", 
+             RowBox[{"AspectRatio", "\[Rule]", "0.4"}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"350", ",", "200"}], "}"}]}]}], "]"}]}], 
+          "\[IndentingNewLine]", "}"}], "]"}]}], "]"}]}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"ctrl", ",", "1", ",", "\"\<\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "\[Rule]", "\"\<wave\>\""}], ",", 
+       RowBox[{"2", "\[Rule]", "\"\<spectrum\>\""}], ",", 
+       RowBox[{"3", "\[Rule]", "\"\<phase\>\""}]}], "}"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Top"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"func", ",", 
+       RowBox[{"sin", "[", 
+        RowBox[{"x", ",", "1", ",", 
+         RowBox[{"2", "\[Pi]"}], ",", "0"}], "]"}], ",", "\"\<function\>\""}],
+       "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"sin", "[", 
+         RowBox[{"x", ",", "1", ",", 
+          RowBox[{"2", "\[Pi]"}], ",", "0"}], "]"}], "\[Rule]", 
+        "\"\<sine\>\""}], ",", 
+       RowBox[{
+        RowBox[{"rect", "[", 
+         RowBox[{"x", ",", "1", ",", 
+          RowBox[{"2", "\[Pi]"}], ",", "0"}], "]"}], "\[Rule]", 
+        "\"\<rectangular\>\""}], ",", 
+       RowBox[{
+        RowBox[{"tria", "[", 
+         RowBox[{"x", ",", "1", ",", 
+          RowBox[{"2", "\[Pi]"}], ",", "0"}], "]"}], "\[Rule]", 
+        "\"\<triangular\>\""}]}], "}"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", "PopupMenu"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"deg", ",", "5", ",", "\"\<degree of Fourier series\>\""}], 
+      "}"}], ",", 
+     RowBox[{"Range", "[", "20", "]"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", "PopupMenu"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+    RowBox[{"{", 
+     RowBox[{"ctrl", ",", "func", ",", "deg"}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"SynchronousUpdating", "\[Rule]", "False"}], ",", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.5133525309281282`*^9, {3.5133526639906282`*^9, 
+   3.5133527049750032`*^9}, 3.5133527404281282`*^9, {3.5133528751156282`*^9, 
+   3.5133528788812532`*^9}, {3.5133529440375032`*^9, 
+   3.5133529696312532`*^9}, {3.5133531019125032`*^9, 
+   3.5133532036312532`*^9}, {3.5133544497562532`*^9, 
+   3.5133544810843782`*^9}, {3.5133545791468782`*^9, 
+   3.5133545811312532`*^9}, {3.5133546371625032`*^9, 
+   3.5133546485062532`*^9}, {3.5133546825531282`*^9, 
+   3.5133546946000032`*^9}, {3.5133547254593782`*^9, 
+   3.5133547909281282`*^9}, {3.5133548320531282`*^9, 
+   3.5133548581625032`*^9}, {3.5133553004593782`*^9, 
+   3.5133554675375032`*^9}, {3.5133557486625032`*^9, 
+   3.5133557550062532`*^9}, {3.5133606171000032`*^9, 
+   3.5133606599906282`*^9}, {3.5133607294437532`*^9, 
+   3.5133608482875032`*^9}, {3.5133608788812532`*^9, 
+   3.5133610572406282`*^9}, {3.5133610919437532`*^9, 
+   3.5133611196468782`*^9}, {3.5133612176312532`*^9, 
+   3.5133612243343782`*^9}, {3.5133613170062532`*^9, 
+   3.5133613709437532`*^9}, {3.5133614397562532`*^9, 
+   3.5133614415531282`*^9}, {3.5133616192875032`*^9, 
+   3.5133616356937532`*^9}, {3.5133616690687532`*^9, 
+   3.5133616736000032`*^9}, {3.5133617673812532`*^9, 
+   3.5133617745687532`*^9}, {3.5133618227875032`*^9, 
+   3.5133618381937532`*^9}, {3.5133619293031282`*^9, 
+   3.5133619294125032`*^9}, {3.5133620888343782`*^9, 
+   3.5133620890062532`*^9}, {3.5133622698031282`*^9, 
+   3.5133622770062532`*^9}, {3.5133625156625032`*^9, 
+   3.5133626975375032`*^9}, {3.5133635025375032`*^9, 
+   3.5133635068031282`*^9}, {3.5133635605531282`*^9, 
+   3.5133636357093782`*^9}, {3.5133637461781282`*^9, 
+   3.5133637514906282`*^9}, {3.5133638023031282`*^9, 
+   3.5133638123031282`*^9}, {3.5133640145375032`*^9, 
+   3.5133640689125032`*^9}, {3.5133642069906282`*^9, 
+   3.5133642167093782`*^9}, {3.5133644015062532`*^9, 3.5133644223500032`*^9}, 
+   3.5133646308968782`*^9, {3.5133653843656282`*^9, 3.5133654840218782`*^9}, {
+   3.5133656128812532`*^9, 3.5133656396000032`*^9}, 3.5133656731937532`*^9, {
+   3.5133657461625032`*^9, 3.5133657543500032`*^9}, {3.5133657961781282`*^9, 
+   3.5133658011312532`*^9}, {3.5133659542718782`*^9, 
+   3.5133660039281282`*^9}, {3.5133660654750032`*^9, 
+   3.5133661801000032`*^9}, {3.5133662279281282`*^9, 
+   3.5133662426312532`*^9}, {3.5133664305062532`*^9, 
+   3.5133664336156282`*^9}, {3.5133664700843782`*^9, 3.5133664732875032`*^9}, 
+   3.5133665619750032`*^9, {3.5133666152562532`*^9, 3.5133666726781282`*^9}, 
+   3.5133667981468782`*^9, {3.5133679173187532`*^9, 3.5133679197250032`*^9}, {
+   3.5133679794281282`*^9, 3.5133681540531282`*^9}, {3.5133681898656282`*^9, 
+   3.5133682433500032`*^9}, {3.5133683639593782`*^9, 
+   3.5133683651468782`*^9}, {3.5133684654125032`*^9, 
+   3.5133685105843782`*^9}, {3.5133685866625032`*^9, 3.5133685913343782`*^9}, 
+   3.5133686570375032`*^9, {3.5133686884125032`*^9, 3.5133687316625032`*^9}, {
+   3.5133688487875032`*^9, 3.5133688489281282`*^9}, {3.5133689572562532`*^9, 
+   3.5133689990062532`*^9}, {3.5133690513656282`*^9, 
+   3.5133691466625032`*^9}, {3.5133692128656282`*^9, 3.5133692235843782`*^9}, 
+   3.5133692962406282`*^9, {3.5133693298812532`*^9, 3.5133693630218782`*^9}, {
+   3.5133695639437532`*^9, 3.5133696133343782`*^9}, {3.5133696705218782`*^9, 
+   3.5133696923812532`*^9}, {3.5133705440218782`*^9, 
+   3.5133705865687532`*^9}, {3.5133707460375032`*^9, 
+   3.5133707474593782`*^9}, {3.5133710707093782`*^9, 
+   3.5133711230531282`*^9}, {3.5133712191156282`*^9, 
+   3.5133712344437532`*^9}, {3.5134340148295217`*^9, 3.513434079711009*^9}, {
+   3.513434161360173*^9, 3.5134342071187487`*^9}, {3.513434241982235*^9, 
+   3.5134342512821646`*^9}, {3.5134343052095566`*^9, 3.513434312951331*^9}, {
+   3.51343445195723*^9, 3.5134344591509495`*^9}, {3.513434580087042*^9, 
+   3.5134345932763605`*^9}, {3.5139441695250053`*^9, 3.513944492131263*^9}, {
+   3.513944534416491*^9, 3.5139445449555445`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`ctrl$$ = 1, $CellContext`deg$$ = 
+    5, $CellContext`func$$ = Sin[$CellContext`x], Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`ctrl$$], 1, ""}, {
+      1 -> "wave", 2 -> "spectrum", 3 -> "phase"}}, {{
+       Hold[$CellContext`func$$], 
+       Sin[$CellContext`x], "function"}, {
+      Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+           Inequality[0, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+           Inequality[Pi, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+       Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+             Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+           Inequality[0, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+            Pi]}, {-3 + (2/Pi) Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+           Inequality[Pi, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> 
+       "triangular"}}, {{
+       Hold[$CellContext`deg$$], 5, "degree of Fourier series"}, {1, 2, 3, 4, 
+      5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}}}, 
+    Typeset`size$$ = {350., {199.84375, 205.15625}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`ctrl$134253$$ = False, $CellContext`func$134254$$ = 
+    False, $CellContext`deg$134255$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`ctrl$$ = 1, $CellContext`deg$$ = 
+        5, $CellContext`func$$ = Sin[$CellContext`x]}, "ControllerVariables" :> {
+        Hold[$CellContext`ctrl$$, $CellContext`ctrl$134253$$, False], 
+        Hold[$CellContext`func$$, $CellContext`func$134254$$, False], 
+        Hold[$CellContext`deg$$, $CellContext`deg$134255$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`four$, $CellContext`abs$, $CellContext`pha$, \
+$CellContext`fourtrans$, $CellContext`phx$}, $CellContext`four$ = \
+$CellContext`h[$CellContext`func$$, 2 
+           Pi, $CellContext`x, $CellContext`deg$$]; $CellContext`abs$ = 
+         Join[{{0, 
+             $CellContext`ao[$CellContext`func$$, 2 Pi]}}, 
+           Table[{$CellContext`n, 
+             $CellContext`An[$CellContext`func$$, 2 
+              Pi, $CellContext`n]}, {$CellContext`n, 
+             1, $CellContext`deg$$}]]; $CellContext`pha$ = 
+         Table[{$CellContext`n, 
+            180 ($CellContext`phA[$CellContext`func$$, 2 Pi, $CellContext`n]/(
+             2 Pi))}, {$CellContext`n, 
+            1, $CellContext`deg$$}]; $CellContext`fourtrans$ = \
+$CellContext`X[$CellContext`func$$, 2 
+           Pi, $CellContext`\[Omega]]; $CellContext`phx$ = 
+         180 (Arg[$CellContext`fourtrans$]/(2 Pi)); 
+        Switch[$CellContext`ctrl$$, 1, 
+          Column[{
+            
+            Plot[$CellContext`four$, {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}], 
+            Plot[
+             
+             Piecewise[{{
+               0, $CellContext`x < -Pi}, {$CellContext`func$$, -
+                 Pi < $CellContext`x < Pi}, {
+               0, $CellContext`x > Pi}}], {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}]}], 2, 
+          Column[{
+            
+            ListPlot[$CellContext`abs$, PlotRange -> {-0.1, 1.5}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            Plot[
+             
+             Abs[$CellContext`fourtrans$], {$CellContext`\[Omega], 
+              0, $CellContext`deg$$}, Filling -> Axis, Frame -> True, Axes -> 
+             True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}], 3, 
+          Column[{
+            
+            ListPlot[$CellContext`pha$, PlotRange -> {-180, 180}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            
+            Plot[$CellContext`phx$, {$CellContext`\[Omega], 
+              1, $CellContext`deg$$}, PlotRange -> {-180, 180}, Frame -> True,
+              Axes -> True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}]]], 
+      "Specifications" :> {{{$CellContext`ctrl$$, 1, ""}, {
+         1 -> "wave", 2 -> "spectrum", 3 -> "phase"}, ControlPlacement -> 
+         Top}, {{$CellContext`func$$, 
+          Sin[$CellContext`x], "function"}, {
+         Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+              Inequality[0, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+              Inequality[Pi, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+          Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+                Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+              Inequality[0, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+               Pi]}, {-3 + (2/Pi) 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+              Inequality[Pi, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 
+            0] -> "triangular"}, ControlType -> PopupMenu, ControlPlacement -> 
+         Left}, {{$CellContext`deg$$, 5, "degree of Fourier series"}, {1, 2, 
+         3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, 
+         ControlType -> PopupMenu, ControlPlacement -> Left}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`ctrl$$, $CellContext`func$$, \
+$CellContext`deg$$}, SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{613., {241., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`h[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`lim, 
+          Blank[]]] := $CellContext`ao[$CellContext`func, $CellContext`per] + 
+        Sum[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}] + 
+        Sum[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}], $CellContext`ao[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]]] := (1/(2 Pi)) 
+        Integrate[$CellContext`func, {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`an[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`bn[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`An[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Sqrt[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2 + $CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2], $CellContext`phA[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Arg[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] + 
+         I $CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]], $CellContext`X[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`\[Omega], 
+          Blank[]]] := 
+       Integrate[$CellContext`func/
+         E^((I $CellContext`\[Omega]) $CellContext`x), {$CellContext`x, \
+-($CellContext`per/2), $CellContext`per/2}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->753661978]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell[TextData[{
+ "This Demonstration shows the differences between the Fourier series and the \
+Fourier transform. The Fourier series use the sine-cosine representation. The \
+three functions used each have period ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"2", " ", "\[Pi]"}], TraditionalForm]], "InlineMath"],
+ "."
+}], "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133523085843782`*^9, 3.5133523514125032`*^9}, {
+   3.513434238462883*^9, 3.513434238887925*^9}, {3.514061672608323*^9, 
+   3.5140616948193827`*^9}, {3.5140617389956913`*^9, 3.514061805593211*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`ctrl$$ = 2, $CellContext`deg$$ = 
+    10, $CellContext`func$$ = Piecewise[{{1, 
+       Inequality[0, LessEqual, 
+        Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+       Inequality[Pi, LessEqual, 
+        Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0], Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`ctrl$$], 1, ""}, {
+      1 -> "wave", 2 -> "spectrum", 3 -> "phase"}}, {{
+       Hold[$CellContext`func$$], 
+       Piecewise[{{1, 
+          Inequality[0, LessEqual, 
+           Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+          Inequality[Pi, LessEqual, 
+           Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0], "function"}, {
+      Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+           Inequality[0, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+           Inequality[Pi, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+       Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+             Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+           Inequality[0, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+            Pi]}, {-3 + (2/Pi) Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+           Inequality[Pi, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> 
+       "triangular"}}, {{
+       Hold[$CellContext`deg$$], 10, "degree of Fourier series"}, {1, 2, 3, 4,
+       5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}}}, 
+    Typeset`size$$ = {350., {199.84375, 205.15625}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`ctrl$134316$$ = False, $CellContext`func$134317$$ = 
+    False, $CellContext`deg$134318$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`ctrl$$ = 1, $CellContext`deg$$ = 
+        10, $CellContext`func$$ = Piecewise[{{1, 
+            Inequality[0, LessEqual, 
+             Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+            Inequality[Pi, LessEqual, 
+             Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0]}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`ctrl$$, $CellContext`ctrl$134316$$, False], 
+        Hold[$CellContext`func$$, $CellContext`func$134317$$, False], 
+        Hold[$CellContext`deg$$, $CellContext`deg$134318$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`four$, $CellContext`abs$, $CellContext`pha$, \
+$CellContext`fourtrans$, $CellContext`phx$}, $CellContext`four$ = \
+$CellContext`h[$CellContext`func$$, 2 
+           Pi, $CellContext`x, $CellContext`deg$$]; $CellContext`abs$ = 
+         Join[{{0, 
+             $CellContext`ao[$CellContext`func$$, 2 Pi]}}, 
+           Table[{$CellContext`n, 
+             $CellContext`An[$CellContext`func$$, 2 
+              Pi, $CellContext`n]}, {$CellContext`n, 
+             1, $CellContext`deg$$}]]; $CellContext`pha$ = 
+         Table[{$CellContext`n, 
+            180 ($CellContext`phA[$CellContext`func$$, 2 Pi, $CellContext`n]/(
+             2 Pi))}, {$CellContext`n, 
+            1, $CellContext`deg$$}]; $CellContext`fourtrans$ = \
+$CellContext`X[$CellContext`func$$, 2 
+           Pi, $CellContext`\[Omega]]; $CellContext`phx$ = 
+         180 (Arg[$CellContext`fourtrans$]/(2 Pi)); 
+        Switch[$CellContext`ctrl$$, 1, 
+          Column[{
+            
+            Plot[$CellContext`four$, {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}], 
+            Plot[
+             
+             Piecewise[{{
+               0, $CellContext`x < -Pi}, {$CellContext`func$$, -
+                 Pi < $CellContext`x < Pi}, {
+               0, $CellContext`x > Pi}}], {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}]}], 2, 
+          Column[{
+            
+            ListPlot[$CellContext`abs$, PlotRange -> {-0.1, 1.5}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            Plot[
+             
+             Abs[$CellContext`fourtrans$], {$CellContext`\[Omega], 
+              0, $CellContext`deg$$}, Filling -> Axis, Frame -> True, Axes -> 
+             True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}], 3, 
+          Column[{
+            
+            ListPlot[$CellContext`pha$, PlotRange -> {-180, 180}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            
+            Plot[$CellContext`phx$, {$CellContext`\[Omega], 
+              1, $CellContext`deg$$}, PlotRange -> {-180, 180}, Frame -> True,
+              Axes -> True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}]]], 
+      "Specifications" :> {{{$CellContext`ctrl$$, 1, ""}, {
+         1 -> "wave", 2 -> "spectrum", 3 -> "phase"}, ControlPlacement -> 
+         Top}, {{$CellContext`func$$, 
+          Piecewise[{{1, 
+             Inequality[0, LessEqual, 
+              Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+             Inequality[Pi, LessEqual, 
+              Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0], "function"}, {
+         Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+              Inequality[0, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+              Inequality[Pi, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+          Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+                Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+              Inequality[0, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+               Pi]}, {-3 + (2/Pi) 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+              Inequality[Pi, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 
+            0] -> "triangular"}, ControlType -> PopupMenu, ControlPlacement -> 
+         Left}, {{$CellContext`deg$$, 10, "degree of Fourier series"}, {1, 2, 
+         3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, 
+         ControlType -> PopupMenu, ControlPlacement -> Left}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`ctrl$$, $CellContext`func$$, \
+$CellContext`deg$$}, SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{613., {241., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`h[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`lim, 
+          Blank[]]] := $CellContext`ao[$CellContext`func, $CellContext`per] + 
+        Sum[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}] + 
+        Sum[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}], $CellContext`ao[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]]] := (1/(2 Pi)) 
+        Integrate[$CellContext`func, {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`an[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`bn[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`An[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Sqrt[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2 + $CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2], $CellContext`phA[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Arg[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] + 
+         I $CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]], $CellContext`X[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`\[Omega], 
+          Blank[]]] := 
+       Integrate[$CellContext`func/
+         E^((I $CellContext`\[Omega]) $CellContext`x), {$CellContext`x, \
+-($CellContext`per/2), $CellContext`per/2}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->11239048]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`ctrl$$ = 1, $CellContext`deg$$ = 
+    6, $CellContext`func$$ = Sin[$CellContext`x], Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`ctrl$$], 1, ""}, {
+      1 -> "wave", 2 -> "spectrum", 3 -> "phase"}}, {{
+       Hold[$CellContext`func$$], 
+       Sin[$CellContext`x], "function"}, {
+      Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+           Inequality[0, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+           Inequality[Pi, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+       Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+             Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+           Inequality[0, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+            Pi]}, {-3 + (2/Pi) Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+           Inequality[Pi, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> 
+       "triangular"}}, {{
+       Hold[$CellContext`deg$$], 6, "degree of Fourier series"}, {1, 2, 3, 4, 
+      5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}}}, 
+    Typeset`size$$ = {350., {199.84375, 205.15625}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`ctrl$134379$$ = False, $CellContext`func$134380$$ = 
+    False, $CellContext`deg$134381$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`ctrl$$ = 1, $CellContext`deg$$ = 
+        6, $CellContext`func$$ = Sin[$CellContext`x]}, "ControllerVariables" :> {
+        Hold[$CellContext`ctrl$$, $CellContext`ctrl$134379$$, False], 
+        Hold[$CellContext`func$$, $CellContext`func$134380$$, False], 
+        Hold[$CellContext`deg$$, $CellContext`deg$134381$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`four$, $CellContext`abs$, $CellContext`pha$, \
+$CellContext`fourtrans$, $CellContext`phx$}, $CellContext`four$ = \
+$CellContext`h[$CellContext`func$$, 2 
+           Pi, $CellContext`x, $CellContext`deg$$]; $CellContext`abs$ = 
+         Join[{{0, 
+             $CellContext`ao[$CellContext`func$$, 2 Pi]}}, 
+           Table[{$CellContext`n, 
+             $CellContext`An[$CellContext`func$$, 2 
+              Pi, $CellContext`n]}, {$CellContext`n, 
+             1, $CellContext`deg$$}]]; $CellContext`pha$ = 
+         Table[{$CellContext`n, 
+            180 ($CellContext`phA[$CellContext`func$$, 2 Pi, $CellContext`n]/(
+             2 Pi))}, {$CellContext`n, 
+            1, $CellContext`deg$$}]; $CellContext`fourtrans$ = \
+$CellContext`X[$CellContext`func$$, 2 
+           Pi, $CellContext`\[Omega]]; $CellContext`phx$ = 
+         180 (Arg[$CellContext`fourtrans$]/(2 Pi)); 
+        Switch[$CellContext`ctrl$$, 1, 
+          Column[{
+            
+            Plot[$CellContext`four$, {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}], 
+            Plot[
+             
+             Piecewise[{{
+               0, $CellContext`x < -Pi}, {$CellContext`func$$, -
+                 Pi < $CellContext`x < Pi}, {
+               0, $CellContext`x > Pi}}], {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}]}], 2, 
+          Column[{
+            
+            ListPlot[$CellContext`abs$, PlotRange -> {-0.1, 1.5}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            Plot[
+             
+             Abs[$CellContext`fourtrans$], {$CellContext`\[Omega], 
+              0, $CellContext`deg$$}, Filling -> Axis, Frame -> True, Axes -> 
+             True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}], 3, 
+          Column[{
+            
+            ListPlot[$CellContext`pha$, PlotRange -> {-180, 180}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            
+            Plot[$CellContext`phx$, {$CellContext`\[Omega], 
+              1, $CellContext`deg$$}, PlotRange -> {-180, 180}, Frame -> True,
+              Axes -> True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}]]], 
+      "Specifications" :> {{{$CellContext`ctrl$$, 1, ""}, {
+         1 -> "wave", 2 -> "spectrum", 3 -> "phase"}, ControlPlacement -> 
+         Top}, {{$CellContext`func$$, 
+          Sin[$CellContext`x], "function"}, {
+         Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+              Inequality[0, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+              Inequality[Pi, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+          Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+                Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+              Inequality[0, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+               Pi]}, {-3 + (2/Pi) 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+              Inequality[Pi, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 
+            0] -> "triangular"}, ControlType -> PopupMenu, ControlPlacement -> 
+         Left}, {{$CellContext`deg$$, 6, "degree of Fourier series"}, {1, 2, 
+         3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, 
+         ControlType -> PopupMenu, ControlPlacement -> Left}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`ctrl$$, $CellContext`func$$, \
+$CellContext`deg$$}, SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{613., {241., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`h[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`lim, 
+          Blank[]]] := $CellContext`ao[$CellContext`func, $CellContext`per] + 
+        Sum[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}] + 
+        Sum[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}], $CellContext`ao[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]]] := (1/(2 Pi)) 
+        Integrate[$CellContext`func, {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`an[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`bn[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`An[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Sqrt[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2 + $CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2], $CellContext`phA[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Arg[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] + 
+         I $CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]], $CellContext`X[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`\[Omega], 
+          Blank[]]] := 
+       Integrate[$CellContext`func/
+         E^((I $CellContext`\[Omega]) $CellContext`x), {$CellContext`x, \
+-($CellContext`per/2), $CellContext`per/2}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->284378145],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`ctrl$$ = 1, $CellContext`deg$$ = 
+    11, $CellContext`func$$ = Piecewise[{{1, 
+       Inequality[0, LessEqual, 
+        Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+       Inequality[Pi, LessEqual, 
+        Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0], Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`ctrl$$], 1, ""}, {
+      1 -> "wave", 2 -> "spectrum", 3 -> "phase"}}, {{
+       Hold[$CellContext`func$$], 
+       Piecewise[{{1, 
+          Inequality[0, LessEqual, 
+           Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+          Inequality[Pi, LessEqual, 
+           Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0], "function"}, {
+      Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+           Inequality[0, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+           Inequality[Pi, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+       Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+             Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+           Inequality[0, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+            Pi]}, {-3 + (2/Pi) Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+           Inequality[Pi, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> 
+       "triangular"}}, {{
+       Hold[$CellContext`deg$$], 11, "degree of Fourier series"}, {1, 2, 3, 4,
+       5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}}}, 
+    Typeset`size$$ = {350., {199.84375, 205.15625}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`ctrl$134442$$ = False, $CellContext`func$134443$$ = 
+    False, $CellContext`deg$134444$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`ctrl$$ = 1, $CellContext`deg$$ = 
+        11, $CellContext`func$$ = Piecewise[{{1, 
+            Inequality[0, LessEqual, 
+             Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+            Inequality[Pi, LessEqual, 
+             Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0]}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`ctrl$$, $CellContext`ctrl$134442$$, False], 
+        Hold[$CellContext`func$$, $CellContext`func$134443$$, False], 
+        Hold[$CellContext`deg$$, $CellContext`deg$134444$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`four$, $CellContext`abs$, $CellContext`pha$, \
+$CellContext`fourtrans$, $CellContext`phx$}, $CellContext`four$ = \
+$CellContext`h[$CellContext`func$$, 2 
+           Pi, $CellContext`x, $CellContext`deg$$]; $CellContext`abs$ = 
+         Join[{{0, 
+             $CellContext`ao[$CellContext`func$$, 2 Pi]}}, 
+           Table[{$CellContext`n, 
+             $CellContext`An[$CellContext`func$$, 2 
+              Pi, $CellContext`n]}, {$CellContext`n, 
+             1, $CellContext`deg$$}]]; $CellContext`pha$ = 
+         Table[{$CellContext`n, 
+            180 ($CellContext`phA[$CellContext`func$$, 2 Pi, $CellContext`n]/(
+             2 Pi))}, {$CellContext`n, 
+            1, $CellContext`deg$$}]; $CellContext`fourtrans$ = \
+$CellContext`X[$CellContext`func$$, 2 
+           Pi, $CellContext`\[Omega]]; $CellContext`phx$ = 
+         180 (Arg[$CellContext`fourtrans$]/(2 Pi)); 
+        Switch[$CellContext`ctrl$$, 1, 
+          Column[{
+            
+            Plot[$CellContext`four$, {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}], 
+            Plot[
+             
+             Piecewise[{{
+               0, $CellContext`x < -Pi}, {$CellContext`func$$, -
+                 Pi < $CellContext`x < Pi}, {
+               0, $CellContext`x > Pi}}], {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}]}], 2, 
+          Column[{
+            
+            ListPlot[$CellContext`abs$, PlotRange -> {-0.1, 1.5}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            Plot[
+             
+             Abs[$CellContext`fourtrans$], {$CellContext`\[Omega], 
+              0, $CellContext`deg$$}, Filling -> Axis, Frame -> True, Axes -> 
+             True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}], 3, 
+          Column[{
+            
+            ListPlot[$CellContext`pha$, PlotRange -> {-180, 180}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            
+            Plot[$CellContext`phx$, {$CellContext`\[Omega], 
+              1, $CellContext`deg$$}, PlotRange -> {-180, 180}, Frame -> True,
+              Axes -> True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}]]], 
+      "Specifications" :> {{{$CellContext`ctrl$$, 1, ""}, {
+         1 -> "wave", 2 -> "spectrum", 3 -> "phase"}, ControlPlacement -> 
+         Top}, {{$CellContext`func$$, 
+          Piecewise[{{1, 
+             Inequality[0, LessEqual, 
+              Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+             Inequality[Pi, LessEqual, 
+              Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0], "function"}, {
+         Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+              Inequality[0, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+              Inequality[Pi, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+          Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+                Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+              Inequality[0, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+               Pi]}, {-3 + (2/Pi) 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+              Inequality[Pi, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 
+            0] -> "triangular"}, ControlType -> PopupMenu, ControlPlacement -> 
+         Left}, {{$CellContext`deg$$, 11, "degree of Fourier series"}, {1, 2, 
+         3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, 
+         ControlType -> PopupMenu, ControlPlacement -> Left}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`ctrl$$, $CellContext`func$$, \
+$CellContext`deg$$}, SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{613., {241., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`h[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`lim, 
+          Blank[]]] := $CellContext`ao[$CellContext`func, $CellContext`per] + 
+        Sum[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}] + 
+        Sum[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}], $CellContext`ao[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]]] := (1/(2 Pi)) 
+        Integrate[$CellContext`func, {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`an[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`bn[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`An[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Sqrt[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2 + $CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2], $CellContext`phA[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Arg[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] + 
+         I $CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]], $CellContext`X[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`\[Omega], 
+          Blank[]]] := 
+       Integrate[$CellContext`func/
+         E^((I $CellContext`\[Omega]) $CellContext`x), {$CellContext`x, \
+-($CellContext`per/2), $CellContext`per/2}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->649888],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`ctrl$$ = 1, $CellContext`deg$$ = 
+    20, $CellContext`func$$ = 
+    Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+         Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+       Inequality[0, LessEqual, 
+        Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+        Pi]}, {-3 + (2/Pi) Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+       Inequality[Pi, LessEqual, 
+        Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 0], 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`ctrl$$], 1, ""}, {
+      1 -> "wave", 2 -> "spectrum", 3 -> "phase"}}, {{
+       Hold[$CellContext`func$$], 
+       Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+            Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+          Inequality[0, LessEqual, 
+           Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+           Pi]}, {-3 + (2/Pi) Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+          Inequality[Pi, LessEqual, 
+           Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 0], 
+       "function"}, {Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+           Inequality[0, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+           Inequality[Pi, LessEqual, 
+            Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+       Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+             Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+           Inequality[0, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+            Pi]}, {-3 + (2/Pi) Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+           Inequality[Pi, LessEqual, 
+            Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> 
+       "triangular"}}, {{
+       Hold[$CellContext`deg$$], 20, "degree of Fourier series"}, {1, 2, 3, 4,
+       5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}}}, 
+    Typeset`size$$ = {350., {200., 205.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`ctrl$134505$$ = False, $CellContext`func$134506$$ = 
+    False, $CellContext`deg$134507$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`ctrl$$ = 1, $CellContext`deg$$ = 
+        20, $CellContext`func$$ = 
+        Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+              Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+            Inequality[0, LessEqual, 
+             Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+             Pi]}, {-3 + (2/Pi) 
+             Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+            Inequality[Pi, LessEqual, 
+             Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 
+          0]}, "ControllerVariables" :> {
+        Hold[$CellContext`ctrl$$, $CellContext`ctrl$134505$$, False], 
+        Hold[$CellContext`func$$, $CellContext`func$134506$$, False], 
+        Hold[$CellContext`deg$$, $CellContext`deg$134507$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`four$, $CellContext`abs$, $CellContext`pha$, \
+$CellContext`fourtrans$, $CellContext`phx$}, $CellContext`four$ = \
+$CellContext`h[$CellContext`func$$, 2 
+           Pi, $CellContext`x, $CellContext`deg$$]; $CellContext`abs$ = 
+         Join[{{0, 
+             $CellContext`ao[$CellContext`func$$, 2 Pi]}}, 
+           Table[{$CellContext`n, 
+             $CellContext`An[$CellContext`func$$, 2 
+              Pi, $CellContext`n]}, {$CellContext`n, 
+             1, $CellContext`deg$$}]]; $CellContext`pha$ = 
+         Table[{$CellContext`n, 
+            180 ($CellContext`phA[$CellContext`func$$, 2 Pi, $CellContext`n]/(
+             2 Pi))}, {$CellContext`n, 
+            1, $CellContext`deg$$}]; $CellContext`fourtrans$ = \
+$CellContext`X[$CellContext`func$$, 2 
+           Pi, $CellContext`\[Omega]]; $CellContext`phx$ = 
+         180 (Arg[$CellContext`fourtrans$]/(2 Pi)); 
+        Switch[$CellContext`ctrl$$, 1, 
+          Column[{
+            
+            Plot[$CellContext`four$, {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}], 
+            Plot[
+             
+             Piecewise[{{
+               0, $CellContext`x < -Pi}, {$CellContext`func$$, -
+                 Pi < $CellContext`x < Pi}, {
+               0, $CellContext`x > Pi}}], {$CellContext`x, (-2) Pi, 4 Pi}, 
+             ImageSize -> {350, 200}]}], 2, 
+          Column[{
+            
+            ListPlot[$CellContext`abs$, PlotRange -> {-0.1, 1.5}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            Plot[
+             
+             Abs[$CellContext`fourtrans$], {$CellContext`\[Omega], 
+              0, $CellContext`deg$$}, Filling -> Axis, Frame -> True, Axes -> 
+             True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Spectrum"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}], 3, 
+          Column[{
+            
+            ListPlot[$CellContext`pha$, PlotRange -> {-180, 180}, Joined -> 
+             False, Filling -> Axis, Frame -> True, Axes -> True, PlotRange -> 
+             All, FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Series Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}], 
+            
+            Plot[$CellContext`phx$, {$CellContext`\[Omega], 
+              1, $CellContext`deg$$}, PlotRange -> {-180, 180}, Frame -> True,
+              Axes -> True, PlotRange -> All, 
+             FrameLabel -> {{None, None}, {
+               "harmonic", "Fourier Transform Phase"}}, 
+             FrameTicks -> {Automatic, Automatic}, PlotRangeClipping -> True, 
+             AspectRatio -> 0.4, ImageSize -> {350, 200}]}]]], 
+      "Specifications" :> {{{$CellContext`ctrl$$, 1, ""}, {
+         1 -> "wave", 2 -> "spectrum", 3 -> "phase"}, ControlPlacement -> 
+         Top}, {{$CellContext`func$$, 
+          
+          Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+               Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+             Inequality[0, LessEqual, 
+              Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+              Pi]}, {-3 + (2/Pi) 
+              Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+             Inequality[Pi, LessEqual, 
+              Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 
+           0], "function"}, {Sin[$CellContext`x] -> "sine", Piecewise[{{1, 
+              Inequality[0, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, Pi]}, {-1, 
+              Inequality[Pi, LessEqual, 
+               Mod[$CellContext`x, 2 Pi], Less, 2 Pi]}}, 0] -> "rectangular", 
+          Piecewise[{{-3 + (2/Pi) (2 Pi - Mod[
+                Rational[-1, 2] Pi + $CellContext`x, 2 Pi]), 
+              Inequality[0, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 
+               Pi]}, {-3 + (2/Pi) 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], 
+              Inequality[Pi, LessEqual, 
+               Mod[Rational[-1, 2] Pi + $CellContext`x, 2 Pi], Less, 2 Pi]}}, 
+            0] -> "triangular"}, ControlType -> PopupMenu, ControlPlacement -> 
+         Left}, {{$CellContext`deg$$, 20, "degree of Fourier series"}, {1, 2, 
+         3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, 
+         ControlType -> PopupMenu, ControlPlacement -> Left}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`ctrl$$, $CellContext`func$$, \
+$CellContext`deg$$}, SynchronousUpdating -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{613., {241., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`h[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`lim, 
+          Blank[]]] := $CellContext`ao[$CellContext`func, $CellContext`per] + 
+        Sum[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}] + 
+        Sum[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`n, 
+           1, $CellContext`lim}], $CellContext`ao[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]]] := (1/(2 Pi)) 
+        Integrate[$CellContext`func, {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`an[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Cos[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`bn[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := (1/Pi) 
+        Integrate[$CellContext`func 
+          Sin[$CellContext`n $CellContext`x], {$CellContext`x, 
+           0, $CellContext`per}], $CellContext`An[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Sqrt[$CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2 + $CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n]^2], $CellContext`phA[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Arg[$CellContext`bn[$CellContext`func, $CellContext`per, \
+$CellContext`n] + 
+         I $CellContext`an[$CellContext`func, $CellContext`per, \
+$CellContext`n]], $CellContext`X[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`per, 
+          Blank[]], 
+         Pattern[$CellContext`\[Omega], 
+          Blank[]]] := 
+       Integrate[$CellContext`func/
+         E^((I $CellContext`\[Omega]) $CellContext`x), {$CellContext`x, \
+-($CellContext`per/2), $CellContext`per/2}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->62640923]
+}, Open  ]],
+
+Cell["", "DetailsSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.5134345452085543`*^9},
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0, CellBaseline -> Baseline], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.514061729593732*^9},
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["fourier", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133714021156282`*^9, 3.5133714399125032`*^9}, {
+   3.513434548023836*^9, 3.5134345486548986`*^9}},
+ CellID->418644965],
+
+Cell["transformation", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133714021156282`*^9, 3.5133714399125032`*^9}, {
+   3.513434548023836*^9, 3.5134345511201453`*^9}},
+ CellID->296733255],
+
+Cell["series", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133714021156282`*^9, 3.5133714399125032`*^9}, {
+   3.513434548023836*^9, 3.5134345511171455`*^9}},
+ CellID->60312983]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Fourier Series",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/FourierSeries.html"], None},
+ ButtonNote->
+  "http://mathworld.wolfram.com/FourierSeries.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.513434686102642*^9, 3.51343469238127*^9}},
+ CellID->571910219],
+
+Cell[TextData[ButtonBox["Fourier Transform",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/FourierTransform.html"], None},
+ ButtonNote->
+  "http://mathworld.wolfram.com/FourierTransform.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.5134347221282444`*^9, 3.513434730774109*^9}},
+ CellID->72214134]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Martin Jungwith",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Martin+\
+Jungwith"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Martin+Jungwith"]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.5133524640062532`*^9, 3.5133524672406282`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1059, 923},
+WindowMargins->{{18, Automatic}, {Automatic, 9}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 23, \
+2011)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[77059, 1752, 355, 9, 29, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[77417, 1763, 678, 16, 29, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "DragLocators"->{
+  Cell[78098, 1781, 340, 11, 29, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "CreateAndDeleteLocators"->{
+  Cell[78441, 1794, 637, 15, 29, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "SliderZoom"->{
+  Cell[79081, 1811, 844, 21, 29, "ControlSuggestions",
+   CellTags->"SliderZoom"]},
+ "GamepadControls"->{
+  Cell[79928, 1834, 369, 9, 29, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "AutomaticAnimation"->{
+  Cell[80300, 1845, 1505, 32, 29, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[81808, 1879, 908, 21, 29, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 84975, 1980},
+ {"RotateAndZoomIn3D", 85084, 1983},
+ {"DragLocators", 85194, 1986},
+ {"CreateAndDeleteLocators", 85310, 1989},
+ {"SliderZoom", 85424, 1992},
+ {"GamepadControls", 85530, 1995},
+ {"AutomaticAnimation", 85643, 1998},
+ {"BookmarkAnimation", 85760, 2001}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 242, 5, 74, "DemoTitle"],
+Cell[CellGroupData[{
+Cell[846, 31, 33, 0, 266, "InitializationSection"],
+Cell[882, 33, 2806, 82, 214, "Input",
+ InitializationCell->True,
+ CellID->427735805],
+Cell[3691, 117, 1161, 36, 116, "Input",
+ InitializationCell->True,
+ CellID->476037277],
+Cell[4855, 155, 777, 22, 56, "Input",
+ InitializationCell->True,
+ CellID->741820790],
+Cell[5635, 179, 554, 15, 27, "Input",
+ InitializationCell->True,
+ CellID->143658254],
+Cell[6192, 196, 911, 27, 51, "Input",
+ InitializationCell->True,
+ CellID->449804097],
+Cell[7106, 225, 638, 18, 50, "Input",
+ InitializationCell->True,
+ CellID->522323752]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[7781, 248, 29, 0, 188, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[7835, 252, 15401, 342, 789, "Input"],
+Cell[23239, 596, 9974, 209, 500, "Output",
+ CellID->753661978]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33259, 811, 36, 0, 166, "ManipulateCaptionSection"],
+Cell[33298, 813, 582, 12, 37, "ManipulateCaption"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33917, 830, 28, 0, 168, "ThumbnailSection"],
+Cell[33948, 832, 10716, 226, 500, "Output",
+ CellID->11239048]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44701, 1063, 28, 0, 138, "SnapshotsSection"],
+Cell[44732, 1065, 9974, 209, 500, "Output",
+ CellID->284378145],
+Cell[54709, 1276, 10714, 226, 500, "Output",
+ CellID->649888],
+Cell[65426, 1504, 11527, 239, 500, "Output",
+ CellID->62640923]
+}, Open  ]],
+Cell[76968, 1746, 26, 0, 332, "DetailsSection"],
+Cell[CellGroupData[{
+Cell[77019, 1750, 37, 0, 108, "ControlSuggestionsSection"],
+Cell[77059, 1752, 355, 9, 29, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[77417, 1763, 678, 16, 29, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[78098, 1781, 340, 11, 29, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[78441, 1794, 637, 15, 29, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[79081, 1811, 844, 21, 29, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[79928, 1834, 369, 9, 29, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[80300, 1845, 1505, 32, 29, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[81808, 1879, 908, 21, 29, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[82753, 1905, 30, 0, 152, "SearchTermsSection"],
+Cell[82786, 1907, 196, 4, 21, "SearchTerms",
+ CellID->418644965],
+Cell[82985, 1913, 203, 4, 21, "SearchTerms",
+ CellID->296733255],
+Cell[83191, 1919, 194, 4, 21, "SearchTerms",
+ CellID->60312983]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[83422, 1928, 31, 0, 138, "RelatedLinksSection"],
+Cell[83456, 1930, 317, 7, 21, "RelatedLinks",
+ CellID->571910219],
+Cell[83776, 1939, 328, 7, 21, "RelatedLinks",
+ CellID->72214134]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[84141, 1951, 25, 0, 136, "AuthorSection"],
+Cell[84169, 1953, 396, 11, 21, "Author"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

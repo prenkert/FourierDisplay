@@ -1,0 +1,1100 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     46650,       1091]
+NotebookOptionsPosition[     42710,        966]
+NotebookOutlinePosition[     44327,       1017]
+CellTagsIndexPosition[     44007,       1005]
+WindowFrame->Normal
+ContainsDynamic->True *)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Fourier Sound Synthesis", "DemoTitle",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.376355911682836*^9, 3.376355929168662*^9}, {
+   3.3764222021958427`*^9, 3.3764222092243633`*^9}, {3.376424268836857*^9, 
+   3.3764242762430553`*^9}, {3.376424490290485*^9, 3.376424491497837*^9}, {
+   3.376468804379695*^9, 3.376468811941732*^9}, {3.376474198367092*^9, 
+   3.3764742085822887`*^9}, {3.376474243437251*^9, 3.37647424539149*^9}, {
+   3.376744430160829*^9, 3.376744451991967*^9}, {3.3767445031878357`*^9, 
+   3.3767445041702423`*^9}, {3.376825998882863*^9, 3.376826002909115*^9}, {
+   3.376988412945436*^9, 3.376988422448969*^9}, {3.377002194919228*^9, 
+   3.377002199751536*^9}, {3.377024172130084*^9, 3.377024201906777*^9}, {
+   3.377252204844445*^9, 3.3772522094651613`*^9}, {3.377256033245821*^9, 
+   3.377256035547015*^9}, {3.377342927415804*^9, 3.3773429352217407`*^9}, 
+   3.377345151895447*^9, {3.3779758992579536`*^9, 3.3779759028265944`*^9}, {
+   3.3780285613115664`*^9, 3.378028566853285*^9}, {3.378419339667581*^9, 
+   3.378419352978414*^9}, {3.3784939661186457`*^9, 3.378494002964785*^9}, {
+   3.378494047453474*^9, 3.378494051870183*^9}, {3.378545730008119*^9, 
+   3.378545740759096*^9}, {3.37906645391044*^9, 3.379066462637385*^9}, {
+   3.379077868341321*^9, 3.379077877692966*^9}},
+ CellID->700863240],
+
+Cell[CellGroupData[{
+
+Cell["", "InitializationSection"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"notenames", "=", 
+   RowBox[{"Drop", "[", 
+    RowBox[{
+     RowBox[{"Flatten", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Map", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"StringJoin", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"ToString", "[", "k", "]"}]}], "]"}], "&"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<C\>\"", ",", "\"\<C#\>\"", ",", "\"\<D\>\"", ",", 
+            "\"\<D#\>\"", ",", "\"\<E\>\"", ",", "\"\<F\>\"", ",", 
+            "\"\<F#\>\"", ",", "\"\<G\>\"", ",", "\"\<G#\>\"", ",", 
+            "\"\<A\>\"", ",", "\"\<A#\>\"", ",", "\"\<B\>\""}], "}"}]}], 
+         "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "0", ",", "10", ",", "1"}], "}"}]}], "]"}], "]"}], 
+     ",", 
+     RowBox[{"-", "4"}]}], "]"}]}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{3.35696210375764*^9, 3.3790654492574987`*^9},
+ CellID->658458693]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"fs", "=", 
+       RowBox[{"DeleteCases", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+          "f1", ",", "f2", ",", "f3", ",", "f4", ",", "f5", ",", "f6"}], 
+          "}"}], ",", "0"}], "]"}]}], "}"}], ",", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"df", "=", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"fs", "\[Equal]", 
+            RowBox[{"{", "}"}]}], ",", 
+           RowBox[{"{", "}"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"#", "/", 
+              RowBox[{"Max", "[", "#", "]"}]}], "&"}], "[", 
+            RowBox[{"Re", "[", 
+             RowBox[{"InverseFourier", "[", 
+              RowBox[{"SparseArray", "[", 
+               RowBox[{
+                RowBox[{"Flatten", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", "#"}], ")"}], "\[Rule]", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1"}], "/", "1."}], "+", 
+                    RowBox[{"I", "/", "1"}]}]}], ",", 
+                    RowBox[{
+                    RowBox[{"1", "+", "8192", "-", "#"}], "\[Rule]", 
+                    RowBox[{
+                    RowBox[{"1", "/", "1."}], "-", 
+                    RowBox[{"I", "/", "1"}]}]}]}], "}"}], "&"}], "/@", "fs"}],
+                  "]"}], ",", "8192"}], "]"}], "]"}], "]"}], "]"}]}], "]"}]}],
+         "}"}], ",", 
+       RowBox[{
+        RowBox[{"ControlActive", "[", 
+         RowBox[{
+          RowBox[{"{", "}"}], ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"fs", "\[Equal]", 
+             RowBox[{"{", "}"}]}], ",", 
+            RowBox[{"{", "}"}], ",", 
+            RowBox[{"EmitSound", "[", 
+             RowBox[{"Sound", "[", 
+              RowBox[{
+               RowBox[{"SampledSoundFunction", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"df", "[", 
+                   RowBox[{"[", "#", "]"}], "]"}], " ", "&"}], ",", "8192", 
+                 ",", "8192"}], "]"}], ",", 
+               RowBox[{"Scaled", "[", "d", "]"}]}], "]"}], "]"}]}], "]"}]}], 
+         "]"}], ";", 
+        RowBox[{"ListLinePlot", "[", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"fs", "\[Equal]", 
+             RowBox[{"{", "}"}]}], ",", 
+            RowBox[{"0", " ", 
+             RowBox[{"Range", "[", "8192", "]"}]}], ",", "df"}], "]"}], ",", 
+          RowBox[{"AspectRatio", "\[Rule]", 
+           RowBox[{"2", "/", "4"}]}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"400", ",", "200"}], "}"}]}]}], "]"}]}]}], "]"}]}], "]"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"d", ",", ".5", ",", "\"\<seconds\>\""}], "}"}], ",", ".01", 
+     ",", "3", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f1", ",", "440", ",", "\"\<first frequency\>\""}], "}"}], ",", 
+     "0", ",", "4096", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f2", ",", "660", ",", "\"\<second frequency\>\""}], "}"}], ",",
+      "0", ",", "4096", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f3", ",", "0", ",", "\"\<third frequency\>\""}], "}"}], ",", 
+     "0", ",", "4096", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f4", ",", "0", ",", "\"\<fourth frequency\>\""}], "}"}], ",", 
+     "0", ",", "4096", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f5", ",", "0", ",", "\"\<fifth frequency\>\""}], "}"}], ",", 
+     "0", ",", "4096", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f6", ",", "0", ",", "\"\<sixth frequency\>\""}], "}"}], ",", 
+     "0", ",", "4096", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", "3", ",", "4", ",", "5", ",", "6", ",", "7"}], "}"}]}],
+    ",", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.376355337475934*^9, 3.37635536330241*^9}, 
+   3.376422231529573*^9, 3.3764223168074837`*^9, {3.3764225715792723`*^9, 
+   3.3764225722422123`*^9}, 3.3764243841571083`*^9, {3.376468841698243*^9, 
+   3.376468865470909*^9}, 3.376474299105185*^9, {3.37647438839402*^9, 
+   3.376474428324573*^9}, {3.376744472969616*^9, 3.376744474957415*^9}, {
+   3.3768260260418262`*^9, 3.376826040267877*^9}, {3.376826134643714*^9, 
+   3.3768261366135597`*^9}, {3.376826502943166*^9, 3.376826520258506*^9}, {
+   3.3768265937812357`*^9, 3.376826629084712*^9}, {3.376826666399287*^9, 
+   3.3768267560379066`*^9}, {3.376826794892627*^9, 3.376826821906885*^9}, 
+   3.3769865060416613`*^9, {3.376986659477189*^9, 3.376986889164192*^9}, {
+   3.376986934665111*^9, 3.376986948202853*^9}, {3.376986999539034*^9, 
+   3.376987039121625*^9}, {3.3769871354629717`*^9, 3.376987225278214*^9}, {
+   3.37698735543106*^9, 3.376987781121582*^9}, {3.3769878222485533`*^9, 
+   3.376988003260048*^9}, {3.376988036256072*^9, 3.37698805909753*^9}, {
+   3.376988891326146*^9, 3.376988913674275*^9}, 3.376989027733687*^9, {
+   3.377002077721789*^9, 3.3770021091658688`*^9}, {3.37700265736733*^9, 
+   3.3770026639832697`*^9}, {3.377003279767272*^9, 3.377003351688298*^9}, 
+   3.377024244845386*^9, 3.377024907658757*^9, 3.3772524107320747`*^9, {
+   3.377252478822167*^9, 3.377252494944372*^9}, {3.3773090860739393`*^9, 
+   3.377309123251178*^9}, {3.377343028992938*^9, 3.377343041397778*^9}, 
+   3.3773452476612577`*^9, 3.377974546136319*^9, 3.378028668708919*^9, {
+   3.378030578131266*^9, 3.378030582142929*^9}, {3.37803263230802*^9, 
+   3.378032641667487*^9}, 3.3780343807771263`*^9, {3.37811549205447*^9, 
+   3.3781155028491983`*^9}, 3.378115548232864*^9, {3.3781156131165648`*^9, 
+   3.378115657222612*^9}, {3.378115777613523*^9, 3.3781157988193703`*^9}, {
+   3.378233246884625*^9, 3.3782333080959673`*^9}, {3.378233397001727*^9, 
+   3.3782334318177567`*^9}, {3.378233666743403*^9, 3.378233737941312*^9}, {
+   3.378233775926852*^9, 3.378233778958592*^9}, {3.378233864702569*^9, 
+   3.378233971395835*^9}, {3.3782348596263027`*^9, 3.3782348689272614`*^9}, {
+   3.378235506917412*^9, 3.3782355107392693`*^9}, 3.3784193645880117`*^9, {
+   3.378419492412183*^9, 3.378419520370089*^9}, {3.378419673432138*^9, 
+   3.3784197012169333`*^9}, {3.378494066585853*^9, 3.378494089401441*^9}, 
+   3.3784943243420353`*^9, 3.378545801936499*^9, {3.37854585033153*^9, 
+   3.3785458831749573`*^9}, 3.37854715167072*^9, 3.378547254278942*^9, {
+   3.3789190636818666`*^9, 3.378919150359621*^9}, 3.378919339644836*^9, 
+   3.379065432905529*^9, {3.379076770655109*^9, 3.3790768087423897`*^9}, {
+   3.3860022523206143`*^9, 3.386002255765568*^9}, {3.386392555825727*^9, 
+   3.3863926353492813`*^9}},
+ CellID->1496021318],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+    440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 0, $CellContext`f4$$ = 
+    0, $CellContext`f5$$ = 0, $CellContext`f6$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`d$$], 0.5, "seconds"}, 0.01, 3}, {{
+       Hold[$CellContext`f1$$], 440, "first frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f2$$], 660, "second frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f3$$], 0, "third frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f4$$], 0, "fourth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f5$$], 0, "fifth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f6$$], 0, "sixth frequency"}, 0, 4096, 1}}, 
+    Typeset`size$$ = {400., {98., 102.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`d$780493$$ = 0, $CellContext`f1$780494$$ = 
+    0, $CellContext`f2$780495$$ = 0, $CellContext`f3$780496$$ = 
+    0, $CellContext`f4$780497$$ = 0, $CellContext`f5$780498$$ = 
+    0, $CellContext`f6$780499$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+        440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 
+        0, $CellContext`f4$$ = 0, $CellContext`f5$$ = 0, $CellContext`f6$$ = 
+        0}, "ControllerVariables" :> {
+        Hold[$CellContext`d$$, $CellContext`d$780493$$, 0], 
+        Hold[$CellContext`f1$$, $CellContext`f1$780494$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780495$$, 0], 
+        Hold[$CellContext`f3$$, $CellContext`f3$780496$$, 0], 
+        Hold[$CellContext`f4$$, $CellContext`f4$780497$$, 0], 
+        Hold[$CellContext`f5$$, $CellContext`f5$780498$$, 0], 
+        Hold[$CellContext`f6$$, $CellContext`f6$780499$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      With[{$CellContext`fs$ = 
+         DeleteCases[{$CellContext`f1$$, $CellContext`f2$$, \
+$CellContext`f3$$, $CellContext`f4$$, $CellContext`f5$$, $CellContext`f6$$}, 
+           0]}, 
+        With[{$CellContext`df$ = If[$CellContext`fs$ == {}, {}, 
+            (#/Max[#]& )[
+             Re[
+              InverseFourier[
+               SparseArray[
+                Flatten[
+                 
+                 Map[{1 + # -> (-1)/1. + I/1, 1 + 8192 - # -> 
+                   1/1. - I/1}& , $CellContext`fs$]], 8192]]]]]}, 
+         ControlActive[{}, 
+           If[$CellContext`fs$ == {}, {}, 
+            EmitSound[
+             Sound[
+              SampledSoundFunction[Part[$CellContext`df$, #]& , 8192, 8192], 
+              Scaled[$CellContext`d$$]]]]]; ListLinePlot[
+           If[$CellContext`fs$ == {}, 0 Range[8192], $CellContext`df$], 
+           AspectRatio -> 2/4, ImageSize -> {400, 200}]]], 
+      "Specifications" :> {{{$CellContext`d$$, 0.5, "seconds"}, 0.01, 3, 
+         Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`f1$$, 440, "first frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f2$$, 660, "second frequency"}, 0, 4096, 
+         1, Appearance -> 
+         "Labeled"}, {{$CellContext`f3$$, 0, "third frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f4$$, 0, "fourth frequency"}, 0, 4096, 1, 
+         Appearance -> "Labeled"}, {{$CellContext`f5$$, 0, "fifth frequency"},
+          0, 4096, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`f6$$, 0, "sixth frequency"}, 0, 4096, 1, 
+         Appearance -> "Labeled"}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5, 6, 7}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{444., {230., 235.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({Attributes[ControlActive] = {HoldAll, ReadProtected}}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->8796852]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell["\<\
+Mix up to six frequencies and change the duration of this synthetic sound. \
+The phase-centered result of adding the frequencies is constructed in the \
+Fourier domain. The real part of the inverse Fourier transform gives the \
+graph. The sampled function is scaled for shorter or longer sounds to keep \
+the resulting tone constant. The plot, however, shows 8192 amplitudes for all \
+selected durations. \
+\>", "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.378546073670746*^9, 3.3785466188599987`*^9}, {
+   3.378546677990243*^9, 3.378546697007275*^9}, {3.378546730545165*^9, 
+   3.378546834755261*^9}, {3.378547348612656*^9, 3.378547409404339*^9}, {
+   3.378547480294001*^9, 3.378547537969198*^9}, {3.378547601645341*^9, 
+   3.3785476876133738`*^9}, {3.378547720242236*^9, 3.3785477457997427`*^9}, {
+   3.378547782518427*^9, 3.378547951362705*^9}, {3.3785480027328253`*^9, 
+   3.378548113772592*^9}, {3.3785482172716293`*^9, 3.378548330363615*^9}, {
+   3.378548949030929*^9, 3.378549178948251*^9}, {3.379065542185896*^9, 
+   3.379065542191984*^9}, {3.3790655930735807`*^9, 3.379065833745508*^9}, {
+   3.379065877244516*^9, 3.3790659829097233`*^9}, {3.37906601444733*^9, 
+   3.379066048263712*^9}, {3.379066080561904*^9, 3.379066236925975*^9}, {
+   3.3790770233826942`*^9, 3.379077633758009*^9}, {3.3790776689307137`*^9, 
+   3.379077728616687*^9}, {3.379077770817507*^9, 3.379077820751443*^9}, {
+   3.37907802054856*^9, 3.3790780919317513`*^9}, {3.3839191177011156`*^9, 
+   3.3839191186386156`*^9}, {3.386392733266748*^9, 3.386392828006443*^9}, {
+   3.386392860642817*^9, 3.386392870733906*^9}, {3.386392946951532*^9, 
+   3.386392952115683*^9}, {3.386393016900947*^9, 3.386393031130413*^9}, {
+   3.3864419996280746`*^9, 3.386442002385149*^9}},
+ CellID->91700453]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+    440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 1, $CellContext`f4$$ = 
+    2, $CellContext`f5$$ = 4, $CellContext`f6$$ = 6, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`d$$], 0.5, "seconds"}, 0.01, 3}, {{
+       Hold[$CellContext`f1$$], 440, "first frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f2$$], 660, "second frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f3$$], 1, "third frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f4$$], 2, "fourth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f5$$], 4, "fifth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f6$$], 6, "sixth frequency"}, 0, 4096, 1}}, 
+    Typeset`size$$ = {400., {98., 102.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`d$780584$$ = 0, $CellContext`f1$780585$$ = 
+    0, $CellContext`f2$780586$$ = 0, $CellContext`f3$780587$$ = 
+    0, $CellContext`f4$780588$$ = 0, $CellContext`f5$780589$$ = 
+    0, $CellContext`f6$780590$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+        440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 
+        1, $CellContext`f4$$ = 2, $CellContext`f5$$ = 4, $CellContext`f6$$ = 
+        6}, "ControllerVariables" :> {
+        Hold[$CellContext`d$$, $CellContext`d$780584$$, 0], 
+        Hold[$CellContext`f1$$, $CellContext`f1$780585$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780586$$, 0], 
+        Hold[$CellContext`f3$$, $CellContext`f3$780587$$, 0], 
+        Hold[$CellContext`f4$$, $CellContext`f4$780588$$, 0], 
+        Hold[$CellContext`f5$$, $CellContext`f5$780589$$, 0], 
+        Hold[$CellContext`f6$$, $CellContext`f6$780590$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      With[{$CellContext`fs$ = 
+         DeleteCases[{$CellContext`f1$$, $CellContext`f2$$, \
+$CellContext`f3$$, $CellContext`f4$$, $CellContext`f5$$, $CellContext`f6$$}, 
+           0]}, 
+        With[{$CellContext`df$ = If[$CellContext`fs$ == {}, {}, 
+            (#/Max[#]& )[
+             Re[
+              InverseFourier[
+               SparseArray[
+                Flatten[
+                 
+                 Map[{1 + # -> (-1)/1. + I/1, 1 + 8192 - # -> 
+                   1/1. - I/1}& , $CellContext`fs$]], 8192]]]]]}, 
+         ControlActive[{}, 
+           If[$CellContext`fs$ == {}, {}, 
+            EmitSound[
+             Sound[
+              SampledSoundFunction[Part[$CellContext`df$, #]& , 8192, 8192], 
+              Scaled[$CellContext`d$$]]]]]; ListLinePlot[
+           If[$CellContext`fs$ == {}, 0 Range[8192], $CellContext`df$], 
+           AspectRatio -> 2/4, ImageSize -> {400, 200}]]], 
+      "Specifications" :> {{{$CellContext`d$$, 0.5, "seconds"}, 0.01, 3, 
+         Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`f1$$, 440, "first frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f2$$, 660, "second frequency"}, 0, 4096, 
+         1, Appearance -> 
+         "Labeled"}, {{$CellContext`f3$$, 1, "third frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f4$$, 2, "fourth frequency"}, 0, 4096, 1, 
+         Appearance -> "Labeled"}, {{$CellContext`f5$$, 4, "fifth frequency"},
+          0, 4096, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`f6$$, 6, "sixth frequency"}, 0, 4096, 1, 
+         Appearance -> "Labeled"}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5, 6, 7}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{444., {230., 235.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({Attributes[ControlActive] = {HoldAll, ReadProtected}}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1819803568]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+    440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 1, $CellContext`f4$$ = 
+    2, $CellContext`f5$$ = 6, $CellContext`f6$$ = 12, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`d$$], 0.5, "seconds"}, 0.01, 3}, {{
+       Hold[$CellContext`f1$$], 440, "first frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f2$$], 660, "second frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f3$$], 1, "third frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f4$$], 2, "fourth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f5$$], 6, "fifth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f6$$], 12, "sixth frequency"}, 0, 4096, 1}}, 
+    Typeset`size$$ = {400., {98., 102.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`d$780675$$ = 0, $CellContext`f1$780676$$ = 
+    0, $CellContext`f2$780677$$ = 0, $CellContext`f3$780678$$ = 
+    0, $CellContext`f4$780679$$ = 0, $CellContext`f5$780680$$ = 
+    0, $CellContext`f6$780681$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+        440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 
+        1, $CellContext`f4$$ = 2, $CellContext`f5$$ = 6, $CellContext`f6$$ = 
+        12}, "ControllerVariables" :> {
+        Hold[$CellContext`d$$, $CellContext`d$780675$$, 0], 
+        Hold[$CellContext`f1$$, $CellContext`f1$780676$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780677$$, 0], 
+        Hold[$CellContext`f3$$, $CellContext`f3$780678$$, 0], 
+        Hold[$CellContext`f4$$, $CellContext`f4$780679$$, 0], 
+        Hold[$CellContext`f5$$, $CellContext`f5$780680$$, 0], 
+        Hold[$CellContext`f6$$, $CellContext`f6$780681$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      With[{$CellContext`fs$ = 
+         DeleteCases[{$CellContext`f1$$, $CellContext`f2$$, \
+$CellContext`f3$$, $CellContext`f4$$, $CellContext`f5$$, $CellContext`f6$$}, 
+           0]}, 
+        With[{$CellContext`df$ = If[$CellContext`fs$ == {}, {}, 
+            (#/Max[#]& )[
+             Re[
+              InverseFourier[
+               SparseArray[
+                Flatten[
+                 
+                 Map[{1 + # -> (-1)/1. + I/1, 1 + 8192 - # -> 
+                   1/1. - I/1}& , $CellContext`fs$]], 8192]]]]]}, 
+         ControlActive[{}, 
+           If[$CellContext`fs$ == {}, {}, 
+            EmitSound[
+             Sound[
+              SampledSoundFunction[Part[$CellContext`df$, #]& , 8192, 8192], 
+              Scaled[$CellContext`d$$]]]]]; ListLinePlot[
+           If[$CellContext`fs$ == {}, 0 Range[8192], $CellContext`df$], 
+           AspectRatio -> 2/4, ImageSize -> {400, 200}]]], 
+      "Specifications" :> {{{$CellContext`d$$, 0.5, "seconds"}, 0.01, 3, 
+         Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`f1$$, 440, "first frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f2$$, 660, "second frequency"}, 0, 4096, 
+         1, Appearance -> 
+         "Labeled"}, {{$CellContext`f3$$, 1, "third frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f4$$, 2, "fourth frequency"}, 0, 4096, 1, 
+         Appearance -> "Labeled"}, {{$CellContext`f5$$, 6, "fifth frequency"},
+          0, 4096, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`f6$$, 12, "sixth frequency"}, 0, 4096, 1, 
+         Appearance -> "Labeled"}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5, 6, 7}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{444., {230., 235.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({Attributes[ControlActive] = {HoldAll, ReadProtected}}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->976466802],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+    440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 2, $CellContext`f4$$ = 
+    3, $CellContext`f5$$ = 6, $CellContext`f6$$ = 2210, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`d$$], 0.5, "seconds"}, 0.01, 3}, {{
+       Hold[$CellContext`f1$$], 440, "first frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f2$$], 660, "second frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f3$$], 2, "third frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f4$$], 3, "fourth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f5$$], 6, "fifth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f6$$], 2210, "sixth frequency"}, 0, 4096, 1}}, 
+    Typeset`size$$ = {400., {98., 102.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`d$780766$$ = 0, $CellContext`f1$780767$$ = 
+    0, $CellContext`f2$780768$$ = 0, $CellContext`f3$780769$$ = 
+    0, $CellContext`f4$780770$$ = 0, $CellContext`f5$780771$$ = 
+    0, $CellContext`f6$780772$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+        440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 
+        2, $CellContext`f4$$ = 3, $CellContext`f5$$ = 6, $CellContext`f6$$ = 
+        2210}, "ControllerVariables" :> {
+        Hold[$CellContext`d$$, $CellContext`d$780766$$, 0], 
+        Hold[$CellContext`f1$$, $CellContext`f1$780767$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780768$$, 0], 
+        Hold[$CellContext`f3$$, $CellContext`f3$780769$$, 0], 
+        Hold[$CellContext`f4$$, $CellContext`f4$780770$$, 0], 
+        Hold[$CellContext`f5$$, $CellContext`f5$780771$$, 0], 
+        Hold[$CellContext`f6$$, $CellContext`f6$780772$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      With[{$CellContext`fs$ = 
+         DeleteCases[{$CellContext`f1$$, $CellContext`f2$$, \
+$CellContext`f3$$, $CellContext`f4$$, $CellContext`f5$$, $CellContext`f6$$}, 
+           0]}, 
+        With[{$CellContext`df$ = If[$CellContext`fs$ == {}, {}, 
+            (#/Max[#]& )[
+             Re[
+              InverseFourier[
+               SparseArray[
+                Flatten[
+                 
+                 Map[{1 + # -> (-1)/1. + I/1, 1 + 8192 - # -> 
+                   1/1. - I/1}& , $CellContext`fs$]], 8192]]]]]}, 
+         ControlActive[{}, 
+           If[$CellContext`fs$ == {}, {}, 
+            EmitSound[
+             Sound[
+              SampledSoundFunction[Part[$CellContext`df$, #]& , 8192, 8192], 
+              Scaled[$CellContext`d$$]]]]]; ListLinePlot[
+           If[$CellContext`fs$ == {}, 0 Range[8192], $CellContext`df$], 
+           AspectRatio -> 2/4, ImageSize -> {400, 200}]]], 
+      "Specifications" :> {{{$CellContext`d$$, 0.5, "seconds"}, 0.01, 3, 
+         Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`f1$$, 440, "first frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f2$$, 660, "second frequency"}, 0, 4096, 
+         1, Appearance -> 
+         "Labeled"}, {{$CellContext`f3$$, 2, "third frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f4$$, 3, "fourth frequency"}, 0, 4096, 1, 
+         Appearance -> "Labeled"}, {{$CellContext`f5$$, 6, "fifth frequency"},
+          0, 4096, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`f6$$, 2210, "sixth frequency"}, 0, 4096, 
+         1, Appearance -> "Labeled"}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5, 6, 7}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{444., {230., 235.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({Attributes[ControlActive] = {HoldAll, ReadProtected}}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->407510840],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+    440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 2, $CellContext`f4$$ = 
+    3, $CellContext`f5$$ = 2164, $CellContext`f6$$ = 3853, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`d$$], 0.5, "seconds"}, 0.01, 3}, {{
+       Hold[$CellContext`f1$$], 440, "first frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f2$$], 660, "second frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f3$$], 2, "third frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f4$$], 3, "fourth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f5$$], 2164, "fifth frequency"}, 0, 4096, 1}, {{
+       Hold[$CellContext`f6$$], 3853, "sixth frequency"}, 0, 4096, 1}}, 
+    Typeset`size$$ = {400., {98., 102.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`d$780857$$ = 0, $CellContext`f1$780858$$ = 
+    0, $CellContext`f2$780859$$ = 0, $CellContext`f3$780860$$ = 
+    0, $CellContext`f4$780861$$ = 0, $CellContext`f5$780862$$ = 
+    0, $CellContext`f6$780863$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`d$$ = 0.5, $CellContext`f1$$ = 
+        440, $CellContext`f2$$ = 660, $CellContext`f3$$ = 
+        2, $CellContext`f4$$ = 3, $CellContext`f5$$ = 2164, $CellContext`f6$$ = 
+        3853}, "ControllerVariables" :> {
+        Hold[$CellContext`d$$, $CellContext`d$780857$$, 0], 
+        Hold[$CellContext`f1$$, $CellContext`f1$780858$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780859$$, 0], 
+        Hold[$CellContext`f3$$, $CellContext`f3$780860$$, 0], 
+        Hold[$CellContext`f4$$, $CellContext`f4$780861$$, 0], 
+        Hold[$CellContext`f5$$, $CellContext`f5$780862$$, 0], 
+        Hold[$CellContext`f6$$, $CellContext`f6$780863$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      With[{$CellContext`fs$ = 
+         DeleteCases[{$CellContext`f1$$, $CellContext`f2$$, \
+$CellContext`f3$$, $CellContext`f4$$, $CellContext`f5$$, $CellContext`f6$$}, 
+           0]}, 
+        With[{$CellContext`df$ = If[$CellContext`fs$ == {}, {}, 
+            (#/Max[#]& )[
+             Re[
+              InverseFourier[
+               SparseArray[
+                Flatten[
+                 
+                 Map[{1 + # -> (-1)/1. + I/1, 1 + 8192 - # -> 
+                   1/1. - I/1}& , $CellContext`fs$]], 8192]]]]]}, 
+         ControlActive[{}, 
+           If[$CellContext`fs$ == {}, {}, 
+            EmitSound[
+             Sound[
+              SampledSoundFunction[Part[$CellContext`df$, #]& , 8192, 8192], 
+              Scaled[$CellContext`d$$]]]]]; ListLinePlot[
+           If[$CellContext`fs$ == {}, 0 Range[8192], $CellContext`df$], 
+           AspectRatio -> 2/4, ImageSize -> {400, 200}]]], 
+      "Specifications" :> {{{$CellContext`d$$, 0.5, "seconds"}, 0.01, 3, 
+         Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`f1$$, 440, "first frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f2$$, 660, "second frequency"}, 0, 4096, 
+         1, Appearance -> 
+         "Labeled"}, {{$CellContext`f3$$, 2, "third frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f4$$, 3, "fourth frequency"}, 0, 4096, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`f5$$, 2164, "fifth frequency"}, 0, 4096, 
+         1, Appearance -> 
+         "Labeled"}, {{$CellContext`f6$$, 3853, "sixth frequency"}, 0, 4096, 
+         1, Appearance -> "Labeled"}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5, 6, 7}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{444., {230., 235.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({Attributes[ControlActive] = {HoldAll, ReadProtected}}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->709337597]
+}, Open  ]],
+
+Cell["", "DetailsSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["Fourier", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.379077900470574*^9, 3.379077902501603*^9}},
+ CellID->530978149],
+
+Cell["frequency", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3790653700225887`*^9, 3.379065372746722*^9}},
+ CellID->1501309746],
+
+Cell["synthesis", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.379077894109899*^9, 3.379077896661503*^9}},
+ CellID->2115955267]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Fast Fourier Transform",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/FastFourierTransform.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.379077955902198*^9, 3.379077974976885*^9}},
+ CellID->1355196958]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Michael Schreiber",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Michael+\
+Schreiber"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Michael+Schreiber"]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.376355996212413*^9, 3.376356008370171*^9}},
+ CellID->2137581389]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->None,
+WindowSize->{700, Automatic},
+WindowMargins->{{Automatic, 186}, {Automatic, 4}},
+FrontEndVersion->"6.0 for Microsoft Windows (32-bit) (June 19, 2007)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[35908, 764, 310, 8, 70, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[36221, 774, 677, 16, 70, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "DragLocators"->{
+  Cell[36901, 792, 339, 11, 70, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "CreateAndDeleteLocators"->{
+  Cell[37243, 805, 636, 15, 70, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "SliderZoom"->{
+  Cell[37882, 822, 842, 21, 70, "ControlSuggestions",
+   CellTags->"SliderZoom"]},
+ "GamepadControls"->{
+  Cell[38727, 845, 303, 8, 70, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "AutomaticAnimation"->{
+  Cell[39033, 855, 1411, 31, 70, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[40447, 888, 881, 21, 70, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 43116, 978},
+ {"RotateAndZoomIn3D", 43224, 981},
+ {"DragLocators", 43333, 984},
+ {"CreateAndDeleteLocators", 43448, 987},
+ {"SliderZoom", 43561, 990},
+ {"GamepadControls", 43666, 993},
+ {"AutomaticAnimation", 43778, 996},
+ {"BookmarkAnimation", 43894, 999}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[590, 23, 1320, 19, 70, "DemoTitle",
+ CellID->700863240],
+Cell[CellGroupData[{
+Cell[1935, 46, 33, 0, 70, "InitializationSection"],
+Cell[1971, 48, 994, 27, 70, "Input",
+ InitializationCell->True,
+ CellID->658458693]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3002, 80, 29, 0, 70, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[3056, 84, 7869, 175, 70, "Input",
+ CellID->1496021318],
+Cell[10928, 261, 4559, 88, 70, "Output",
+ CellID->8796852]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15533, 355, 36, 0, 70, "ManipulateCaptionSection"],
+Cell[15572, 357, 1793, 27, 70, "ManipulateCaption",
+ CellID->91700453]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17402, 389, 28, 0, 70, "ThumbnailSection"],
+Cell[17433, 391, 4562, 88, 70, "Output",
+ CellID->1819803568]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22032, 484, 28, 0, 70, "SnapshotsSection"],
+Cell[22063, 486, 4565, 88, 70, "Output",
+ CellID->976466802],
+Cell[26631, 576, 4573, 88, 70, "Output",
+ CellID->407510840],
+Cell[31207, 666, 4595, 89, 70, "Output",
+ CellID->709337597]
+}, Open  ]],
+Cell[35817, 758, 26, 0, 70, "DetailsSection"],
+Cell[CellGroupData[{
+Cell[35868, 762, 37, 0, 70, "ControlSuggestionsSection"],
+Cell[35908, 764, 310, 8, 70, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[36221, 774, 677, 16, 70, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[36901, 792, 339, 11, 70, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[37243, 805, 636, 15, 70, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[37882, 822, 842, 21, 70, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[38727, 845, 303, 8, 70, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[39033, 855, 1411, 31, 70, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[40447, 888, 881, 21, 70, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41365, 914, 30, 0, 70, "SearchTermsSection"],
+Cell[41398, 916, 140, 3, 70, "SearchTerms",
+ CellID->530978149],
+Cell[41541, 921, 145, 3, 70, "SearchTerms",
+ CellID->1501309746],
+Cell[41689, 926, 143, 3, 70, "SearchTerms",
+ CellID->2115955267]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41869, 934, 31, 0, 70, "RelatedLinksSection"],
+Cell[41903, 936, 295, 7, 70, "RelatedLinks",
+ CellID->1355196958]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42235, 948, 25, 0, 70, "AuthorSection"],
+Cell[42263, 950, 419, 12, 70, "Author",
+ CellID->2137581389]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

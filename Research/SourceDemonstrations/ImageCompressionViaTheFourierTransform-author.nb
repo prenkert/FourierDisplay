@@ -1,0 +1,1096 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     42931,       1087]
+NotebookOptionsPosition[     38817,        958]
+NotebookOutlinePosition[     40453,       1010]
+CellTagsIndexPosition[     40133,        998]
+WindowFrame->Normal
+ContainsDynamic->True *)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Image Compression via the Fourier Transform", "DemoTitle",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36190085207571*^9, 3.36190085526531*^9}, {
+   3.361900933104*^9, 3.36190093744586*^9}, {3.36276275084458*^9, 
+   3.36276276013643*^9}, {3.36957475767478*^9, 3.36957476408082*^9}, {
+   3.380398633171875*^9, 3.380398633375*^9}, {3.380401986421875*^9, 
+   3.380401986671875*^9}},
+ CellID->700863240],
+
+Cell["", "InitializationSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"cf", ",", "if"}], "}"}], ",", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"cf", " ", "=", " ", 
+       RowBox[{"Chop", "[", 
+        RowBox[{"flena", ",", 
+         RowBox[{"10", "^", 
+          RowBox[{"Chop", "[", "c", "]"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"if", " ", "=", " ", 
+       RowBox[{"InverseFourier", "[", "cf", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Grid", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Text", "@", 
+            RowBox[{"Row", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Style", "[", 
+                RowBox[{"\"\<original (\>\"", ",", "\"\<Label\>\""}], "]"}], 
+               ",", 
+               RowBox[{"Times", "@@", 
+                RowBox[{"Dimensions", "[", "lena", "]"}]}], ",", 
+               "\"\< bytes)\>\""}], "}"}], "]"}]}], ",", 
+           RowBox[{"Text", "@", 
+            RowBox[{"Row", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Style", "[", 
+                RowBox[{"\"\<compressed (\>\"", ",", "\"\<Label\>\""}], "]"}],
+                ",", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"Times", "@@", 
+                  RowBox[{"Dimensions", "[", "lena", "]"}]}], ")"}], "-", 
+                RowBox[{"Count", "[", 
+                 RowBox[{"cf", ",", "0", ",", 
+                  RowBox[{"{", "2", "}"}]}], "]"}]}], ",", 
+               "\"\< bytes)\>\""}], "}"}], "]"}]}]}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"lenaplot", ",", 
+           RowBox[{"ArrayPlot", "[", 
+            RowBox[{"if", ",", 
+             RowBox[{"ImageSize", "\[Rule]", "200"}], ",", 
+             RowBox[{"PlotRangePadding", "\[Rule]", "None"}], ",", 
+             RowBox[{"Frame", "\[Rule]", "False"}]}], "]"}]}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Text", "@", 
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<error\>\"", ",", "\"\<Label\>\""}], "]"}]}], ",", 
+           RowBox[{"Text", "@", 
+            RowBox[{"Style", "[", 
+             RowBox[{"str", ",", "\"\<Label\>\""}], "]"}]}]}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"ArrayPlot", "[", 
+            RowBox[{
+             RowBox[{"Abs", "[", 
+              RowBox[{"lena", " ", "-", " ", "if"}], "]"}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", "200"}], ",", 
+             RowBox[{"PlotRangePadding", "\[Rule]", "None"}], ",", 
+             RowBox[{"Frame", "\[Rule]", "False"}]}], "]"}], ",", 
+           RowBox[{"ArrayPlot", "[", 
+            RowBox[{
+             RowBox[{"RotateRight", "[", 
+              RowBox[{
+               RowBox[{"switch", "[", 
+                RowBox[{"str", ",", "cf"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"128", ",", "128"}], "}"}]}], "]"}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", "200"}], ",", 
+             RowBox[{"PlotRangePadding", "\[Rule]", "None"}], ",", 
+             RowBox[{"Frame", "\[Rule]", "False"}]}], "]"}]}], "}"}]}], "}"}],
+        "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", 
+       RowBox[{"-", "3"}], ",", "\"\<compression\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", ".1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "str", ",", "\"\<power spectrum\>\"", ",", 
+       "\"\<spectrum selection\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<power spectrum\>\"", ",", "\"\<phase spectrum\>\""}], 
+      "}"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], ",", 
+   RowBox[{"Initialization", "\[RuleDelayed]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"lena", " ", "=", 
+       RowBox[{"Transpose", "@", 
+        RowBox[{"Take", "[", 
+         RowBox[{
+          RowBox[{"Transpose", "[", 
+           RowBox[{"Take", "[", 
+            RowBox[{
+             RowBox[{"N", "@", 
+              RowBox[{"Map", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"255", "-", 
+                  RowBox[{"Mean", "[", "#", "]"}]}], "&"}], ",", 
+                RowBox[{"ExampleData", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"\"\<TestImage\>\"", ",", "\"\<Lena\>\""}], "}"}], 
+                  ",", "\"\<Data\>\""}], "]"}], ",", 
+                RowBox[{"{", "2", "}"}]}], "]"}]}], ",", 
+             RowBox[{"{", 
+              RowBox[{"200", ",", "300"}], "}"}]}], "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"250", ",", "350"}], "}"}]}], "]"}]}]}], ";", "\n", 
+      RowBox[{
+       RowBox[{"switch", "[", 
+        RowBox[{"str_", ",", "x_"}], "]"}], ":=", " ", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"str", " ", "===", " ", "\"\<power spectrum\>\""}], ",", 
+         RowBox[{"Sqrt", "[", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{"Abs", "[", "x", "]"}], "]"}], "]"}], ",", 
+         RowBox[{"Arg", "[", "x", "]"}]}], "]"}]}], ";", "\n", 
+      RowBox[{"lenaplot", " ", ":=", 
+       RowBox[{"ArrayPlot", "[", 
+        RowBox[{"lena", ",", 
+         RowBox[{"ImageSize", "\[Rule]", "200"}], ",", 
+         RowBox[{"PlotRangePadding", "\[Rule]", "None"}], ",", 
+         RowBox[{"Frame", "\[Rule]", "False"}]}], "]"}]}], ";", "\n", 
+      RowBox[{"flena", ":=", 
+       RowBox[{"Fourier", "[", 
+        RowBox[{"N", "[", "lena", "]"}], "]"}]}], ";"}], "}"}]}], ",", 
+   RowBox[{"SynchronousInitialization", "\[Rule]", "False"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36276326180215*^9, 3.36276338813683*^9}, {
+   3.36276416706492*^9, 3.36276419105613*^9}, {3.36276424238389*^9, 
+   3.36276434757247*^9}, {3.36276438165713*^9, 3.36276455793354*^9}, {
+   3.36276459273154*^9, 3.36276464460369*^9}, {3.36276472675827*^9, 
+   3.36276486967973*^9}, {3.36276489975277*^9, 3.36276491336111*^9}, {
+   3.36276503188569*^9, 3.36276504138537*^9}, {3.36276509673442*^9, 
+   3.36276516154717*^9}, {3.36276554326288*^9, 3.36276562579235*^9}, {
+   3.36276576059363*^9, 3.36276579593328*^9}, {3.36276582890284*^9, 
+   3.36276583247754*^9}, {3.36276686957212*^9, 3.36276688984583*^9}, {
+   3.36276692403946*^9, 3.3627669264598*^9}, {3.36276720662416*^9, 
+   3.36276720885642*^9}, {3.36276724403545*^9, 3.36276724600828*^9}, {
+   3.36276731976605*^9, 3.36276732908766*^9}, {3.36276737337609*^9, 
+   3.36276737455723*^9}, {3.36284013610226*^9, 3.36284028966789*^9}, {
+   3.36284418095676*^9, 3.36284419386056*^9}, {3.36284438093726*^9, 
+   3.36284438178298*^9}, {3.36284456126995*^9, 3.36284456407787*^9}, {
+   3.36284496601625*^9, 3.36284496690851*^9}, {3.36293248362745*^9, 
+   3.36293255901667*^9}, {3.36293284329704*^9, 3.36293284606083*^9}, {
+   3.36965562953125*^9, 3.369655639796875*^9}, {3.3709750180075808`*^9, 
+   3.3709750183357563`*^9}, {3.3709751424641943`*^9, 
+   3.3709751702028294`*^9}, {3.370975237072474*^9, 3.37097524623013*^9}, {
+   3.370975618099741*^9, 3.370975643150463*^9}, {3.370975686719654*^9, 
+   3.3709756887199616`*^9}, {3.3709763773882246`*^9, 3.370976381185683*^9}, {
+   3.3709768148147783`*^9, 3.3709768173776717`*^9}, {3.380397234140625*^9, 
+   3.38039723609375*^9}, {3.380398458171875*^9, 3.380398475*^9}, {
+   3.38039932840625*^9, 3.380399329359375*^9}, {3.3803994886875*^9, 
+   3.380399498921875*^9}, 3.380401895203125*^9, {3.382190299259033*^9, 
+   3.382190301540283*^9}, 3.382190334024658*^9, {3.3853054363620443`*^9, 
+   3.3853054827057943`*^9}, {3.3853055959714193`*^9, 
+   3.3853056130495443`*^9}, {3.3853058388464193`*^9, 
+   3.3853058621276693`*^9}, {3.3853062301432943`*^9, 3.3853063580964193`*^9}},
+ 
+ CellID->854742232],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = -3, $CellContext`str$$ = 
+    "power spectrum", Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], -3, "compression"}, -3, 3, 0.1}, {{
+       Hold[$CellContext`str$$], "power spectrum", "spectrum selection"}, {
+      "power spectrum", "phase spectrum"}}}, Typeset`size$$ = {
+    408., {218.5, 223.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`c$871142$$ = 
+    0, $CellContext`str$871143$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = -3, $CellContext`str$$ = 
+        "power spectrum"}, "ControllerVariables" :> {
+        Hold[$CellContext`c$$, $CellContext`c$871142$$, 0], 
+        Hold[$CellContext`str$$, $CellContext`str$871143$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`cf$, $CellContext`if$}, $CellContext`cf$ = 
+         Chop[$CellContext`flena, 10^
+           Chop[$CellContext`c$$]]; $CellContext`if$ = 
+         InverseFourier[$CellContext`cf$]; Grid[{{
+            Text[
+             Row[{
+               Style["original (", "Label"], 
+               Apply[Times, 
+                Dimensions[$CellContext`lena]], " bytes)"}]], 
+            Text[
+             Row[{
+               Style["compressed (", "Label"], Apply[Times, 
+                 Dimensions[$CellContext`lena]] - 
+               Count[$CellContext`cf$, 0, {2}], 
+               " bytes)"}]]}, {$CellContext`lenaplot, 
+            
+            ArrayPlot[$CellContext`if$, ImageSize -> 200, PlotRangePadding -> 
+             None, Frame -> False]}, {
+            Text[
+             Style["error", "Label"]], 
+            Text[
+             Style[$CellContext`str$$, "Label"]]}, {
+            ArrayPlot[
+             Abs[$CellContext`lena - $CellContext`if$], ImageSize -> 200, 
+             PlotRangePadding -> None, Frame -> False], 
+            ArrayPlot[
+             RotateRight[
+              $CellContext`switch[$CellContext`str$$, $CellContext`cf$], {128,
+               128}], ImageSize -> 200, PlotRangePadding -> None, Frame -> 
+             False]}}]], 
+      "Specifications" :> {{{$CellContext`c$$, -3, "compression"}, -3, 3, 
+         0.1}, {{$CellContext`str$$, "power spectrum", 
+          "spectrum selection"}, {"power spectrum", "phase spectrum"}, 
+         ControlType -> PopupMenu}}, 
+      "Options" :> {SynchronousInitialization -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{454., {275., 280.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`lena = Transpose[
+          Take[
+           Transpose[
+            Take[
+             N[
+              Map[255 - Mean[#]& , 
+               ExampleData[{"TestImage", "Lena"}, "Data"], {2}]], {200, 
+             300}]], {250, 350}]]; $CellContext`switch[
+          Pattern[$CellContext`str, 
+           Blank[]], 
+          Pattern[$CellContext`x, 
+           Blank[]]] := If[$CellContext`str === "power spectrum", 
+          Sqrt[
+           Sqrt[
+            Abs[$CellContext`x]]], 
+          Arg[$CellContext`x]]; $CellContext`lenaplot := 
+        ArrayPlot[$CellContext`lena, ImageSize -> 200, PlotRangePadding -> 
+          None, Frame -> False]; $CellContext`flena := Fourier[
+          N[$CellContext`lena]]; Null}; Typeset`initDone$$ = True),
+    SynchronousInitialization->False,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->722290185]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell["\<\
+An illustration of image compression via the discrete Fourier transform.\
+\>", "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36276588139997*^9, 3.36276591240321*^9}, {
+   3.3846297183306274`*^9, 3.384629722599228*^9}, {3.3852972094245443`*^9, 
+   3.3852972104089193`*^9}},
+ CellID->661206755]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 1.5, $CellContext`str$$ = 
+    "phase spectrum", Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], 1.5, "compression"}, -3, 3, 0.1}, {{
+       Hold[$CellContext`str$$], "phase spectrum", "spectrum selection"}, {
+      "power spectrum", "phase spectrum"}}}, Typeset`size$$ = {
+    408., {218.5, 223.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`c$871197$$ = 
+    0, $CellContext`str$871198$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 1.5, $CellContext`str$$ = 
+        "phase spectrum"}, "ControllerVariables" :> {
+        Hold[$CellContext`c$$, $CellContext`c$871197$$, 0], 
+        Hold[$CellContext`str$$, $CellContext`str$871198$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`cf$, $CellContext`if$}, $CellContext`cf$ = 
+         Chop[$CellContext`flena, 10^
+           Chop[$CellContext`c$$]]; $CellContext`if$ = 
+         InverseFourier[$CellContext`cf$]; Grid[{{
+            Text[
+             Row[{
+               Style["original (", "Label"], 
+               Apply[Times, 
+                Dimensions[$CellContext`lena]], " bytes)"}]], 
+            Text[
+             Row[{
+               Style["compressed (", "Label"], Apply[Times, 
+                 Dimensions[$CellContext`lena]] - 
+               Count[$CellContext`cf$, 0, {2}], 
+               " bytes)"}]]}, {$CellContext`lenaplot, 
+            
+            ArrayPlot[$CellContext`if$, ImageSize -> 200, PlotRangePadding -> 
+             None, Frame -> False]}, {
+            Text[
+             Style["error", "Label"]], 
+            Text[
+             Style[$CellContext`str$$, "Label"]]}, {
+            ArrayPlot[
+             Abs[$CellContext`lena - $CellContext`if$], ImageSize -> 200, 
+             PlotRangePadding -> None, Frame -> False], 
+            ArrayPlot[
+             RotateRight[
+              $CellContext`switch[$CellContext`str$$, $CellContext`cf$], {128,
+               128}], ImageSize -> 200, PlotRangePadding -> None, Frame -> 
+             False]}}]], 
+      "Specifications" :> {{{$CellContext`c$$, 1.5, "compression"}, -3, 3, 
+         0.1}, {{$CellContext`str$$, "phase spectrum", 
+          "spectrum selection"}, {"power spectrum", "phase spectrum"}, 
+         ControlType -> PopupMenu}}, 
+      "Options" :> {SynchronousInitialization -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{454., {275., 280.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`lena = Transpose[
+          Take[
+           Transpose[
+            Take[
+             N[
+              Map[255 - Mean[#]& , 
+               ExampleData[{"TestImage", "Lena"}, "Data"], {2}]], {200, 
+             300}]], {250, 350}]]; $CellContext`switch[
+          Pattern[$CellContext`str, 
+           Blank[]], 
+          Pattern[$CellContext`x, 
+           Blank[]]] := If[$CellContext`str === "power spectrum", 
+          Sqrt[
+           Sqrt[
+            Abs[$CellContext`x]]], 
+          Arg[$CellContext`x]]; $CellContext`lenaplot := 
+        ArrayPlot[$CellContext`lena, ImageSize -> 200, PlotRangePadding -> 
+          None, Frame -> False]; $CellContext`flena := Fourier[
+          N[$CellContext`lena]]; Null}; Typeset`initDone$$ = True),
+    SynchronousInitialization->False,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->187478370]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = -3, $CellContext`str$$ = 
+    "power spectrum", Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], -3, "compression"}, -3, 3, 0.1}, {{
+       Hold[$CellContext`str$$], "power spectrum", "spectrum selection"}, {
+      "power spectrum", "phase spectrum"}}}, Typeset`size$$ = {
+    408., {218.5, 223.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`c$871252$$ = 
+    0, $CellContext`str$871253$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = -3, $CellContext`str$$ = 
+        "power spectrum"}, "ControllerVariables" :> {
+        Hold[$CellContext`c$$, $CellContext`c$871252$$, 0], 
+        Hold[$CellContext`str$$, $CellContext`str$871253$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`cf$, $CellContext`if$}, $CellContext`cf$ = 
+         Chop[$CellContext`flena, 10^
+           Chop[$CellContext`c$$]]; $CellContext`if$ = 
+         InverseFourier[$CellContext`cf$]; Grid[{{
+            Text[
+             Row[{
+               Style["original (", "Label"], 
+               Apply[Times, 
+                Dimensions[$CellContext`lena]], " bytes)"}]], 
+            Text[
+             Row[{
+               Style["compressed (", "Label"], Apply[Times, 
+                 Dimensions[$CellContext`lena]] - 
+               Count[$CellContext`cf$, 0, {2}], 
+               " bytes)"}]]}, {$CellContext`lenaplot, 
+            
+            ArrayPlot[$CellContext`if$, ImageSize -> 200, PlotRangePadding -> 
+             None, Frame -> False]}, {
+            Text[
+             Style["error", "Label"]], 
+            Text[
+             Style[$CellContext`str$$, "Label"]]}, {
+            ArrayPlot[
+             Abs[$CellContext`lena - $CellContext`if$], ImageSize -> 200, 
+             PlotRangePadding -> None, Frame -> False], 
+            ArrayPlot[
+             RotateRight[
+              $CellContext`switch[$CellContext`str$$, $CellContext`cf$], {128,
+               128}], ImageSize -> 200, PlotRangePadding -> None, Frame -> 
+             False]}}]], 
+      "Specifications" :> {{{$CellContext`c$$, -3, "compression"}, -3, 3, 
+         0.1}, {{$CellContext`str$$, "power spectrum", 
+          "spectrum selection"}, {"power spectrum", "phase spectrum"}, 
+         ControlType -> PopupMenu}}, 
+      "Options" :> {SynchronousInitialization -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{454., {275., 280.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`lena = Transpose[
+          Take[
+           Transpose[
+            Take[
+             N[
+              Map[255 - Mean[#]& , 
+               ExampleData[{"TestImage", "Lena"}, "Data"], {2}]], {200, 
+             300}]], {250, 350}]]; $CellContext`switch[
+          Pattern[$CellContext`str, 
+           Blank[]], 
+          Pattern[$CellContext`x, 
+           Blank[]]] := If[$CellContext`str === "power spectrum", 
+          Sqrt[
+           Sqrt[
+            Abs[$CellContext`x]]], 
+          Arg[$CellContext`x]]; $CellContext`lenaplot := 
+        ArrayPlot[$CellContext`lena, ImageSize -> 200, PlotRangePadding -> 
+          None, Frame -> False]; $CellContext`flena := Fourier[
+          N[$CellContext`lena]]; Null}; Typeset`initDone$$ = True),
+    SynchronousInitialization->False,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->457862857],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 
+    1.4000000000000004`, $CellContext`str$$ = "power spectrum", 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], 1.4000000000000004`, "compression"}, -3, 3, 
+      0.1}, {{
+       Hold[$CellContext`str$$], "power spectrum", "spectrum selection"}, {
+      "power spectrum", "phase spectrum"}}}, Typeset`size$$ = {
+    408., {218.5, 223.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`c$871307$$ = 
+    0, $CellContext`str$871308$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 
+        1.4000000000000004`, $CellContext`str$$ = "power spectrum"}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`c$$, $CellContext`c$871307$$, 0], 
+        Hold[$CellContext`str$$, $CellContext`str$871308$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`cf$, $CellContext`if$}, $CellContext`cf$ = 
+         Chop[$CellContext`flena, 10^
+           Chop[$CellContext`c$$]]; $CellContext`if$ = 
+         InverseFourier[$CellContext`cf$]; Grid[{{
+            Text[
+             Row[{
+               Style["original (", "Label"], 
+               Apply[Times, 
+                Dimensions[$CellContext`lena]], " bytes)"}]], 
+            Text[
+             Row[{
+               Style["compressed (", "Label"], Apply[Times, 
+                 Dimensions[$CellContext`lena]] - 
+               Count[$CellContext`cf$, 0, {2}], 
+               " bytes)"}]]}, {$CellContext`lenaplot, 
+            
+            ArrayPlot[$CellContext`if$, ImageSize -> 200, PlotRangePadding -> 
+             None, Frame -> False]}, {
+            Text[
+             Style["error", "Label"]], 
+            Text[
+             Style[$CellContext`str$$, "Label"]]}, {
+            ArrayPlot[
+             Abs[$CellContext`lena - $CellContext`if$], ImageSize -> 200, 
+             PlotRangePadding -> None, Frame -> False], 
+            ArrayPlot[
+             RotateRight[
+              $CellContext`switch[$CellContext`str$$, $CellContext`cf$], {128,
+               128}], ImageSize -> 200, PlotRangePadding -> None, Frame -> 
+             False]}}]], 
+      "Specifications" :> {{{$CellContext`c$$, 1.4000000000000004`, 
+          "compression"}, -3, 3, 
+         0.1}, {{$CellContext`str$$, "power spectrum", 
+          "spectrum selection"}, {"power spectrum", "phase spectrum"}, 
+         ControlType -> PopupMenu}}, 
+      "Options" :> {SynchronousInitialization -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{454., {275., 280.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`lena = Transpose[
+          Take[
+           Transpose[
+            Take[
+             N[
+              Map[255 - Mean[#]& , 
+               ExampleData[{"TestImage", "Lena"}, "Data"], {2}]], {200, 
+             300}]], {250, 350}]]; $CellContext`switch[
+          Pattern[$CellContext`str, 
+           Blank[]], 
+          Pattern[$CellContext`x, 
+           Blank[]]] := If[$CellContext`str === "power spectrum", 
+          Sqrt[
+           Sqrt[
+            Abs[$CellContext`x]]], 
+          Arg[$CellContext`x]]; $CellContext`lenaplot := 
+        ArrayPlot[$CellContext`lena, ImageSize -> 200, PlotRangePadding -> 
+          None, Frame -> False]; $CellContext`flena := Fourier[
+          N[$CellContext`lena]]; Null}; Typeset`initDone$$ = True),
+    SynchronousInitialization->False,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->204958259],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 2.2, $CellContext`str$$ = 
+    "power spectrum", Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], 2.2, "compression"}, -3, 3, 0.1}, {{
+       Hold[$CellContext`str$$], "power spectrum", "spectrum selection"}, {
+      "power spectrum", "phase spectrum"}}}, Typeset`size$$ = {
+    408., {218.5, 223.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`c$871362$$ = 
+    0, $CellContext`str$871363$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 2.2, $CellContext`str$$ = 
+        "power spectrum"}, "ControllerVariables" :> {
+        Hold[$CellContext`c$$, $CellContext`c$871362$$, 0], 
+        Hold[$CellContext`str$$, $CellContext`str$871363$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`cf$, $CellContext`if$}, $CellContext`cf$ = 
+         Chop[$CellContext`flena, 10^
+           Chop[$CellContext`c$$]]; $CellContext`if$ = 
+         InverseFourier[$CellContext`cf$]; Grid[{{
+            Text[
+             Row[{
+               Style["original (", "Label"], 
+               Apply[Times, 
+                Dimensions[$CellContext`lena]], " bytes)"}]], 
+            Text[
+             Row[{
+               Style["compressed (", "Label"], Apply[Times, 
+                 Dimensions[$CellContext`lena]] - 
+               Count[$CellContext`cf$, 0, {2}], 
+               " bytes)"}]]}, {$CellContext`lenaplot, 
+            
+            ArrayPlot[$CellContext`if$, ImageSize -> 200, PlotRangePadding -> 
+             None, Frame -> False]}, {
+            Text[
+             Style["error", "Label"]], 
+            Text[
+             Style[$CellContext`str$$, "Label"]]}, {
+            ArrayPlot[
+             Abs[$CellContext`lena - $CellContext`if$], ImageSize -> 200, 
+             PlotRangePadding -> None, Frame -> False], 
+            ArrayPlot[
+             RotateRight[
+              $CellContext`switch[$CellContext`str$$, $CellContext`cf$], {128,
+               128}], ImageSize -> 200, PlotRangePadding -> None, Frame -> 
+             False]}}]], 
+      "Specifications" :> {{{$CellContext`c$$, 2.2, "compression"}, -3, 3, 
+         0.1}, {{$CellContext`str$$, "power spectrum", 
+          "spectrum selection"}, {"power spectrum", "phase spectrum"}, 
+         ControlType -> PopupMenu}}, 
+      "Options" :> {SynchronousInitialization -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{454., {275., 280.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`lena = Transpose[
+          Take[
+           Transpose[
+            Take[
+             N[
+              Map[255 - Mean[#]& , 
+               ExampleData[{"TestImage", "Lena"}, "Data"], {2}]], {200, 
+             300}]], {250, 350}]]; $CellContext`switch[
+          Pattern[$CellContext`str, 
+           Blank[]], 
+          Pattern[$CellContext`x, 
+           Blank[]]] := If[$CellContext`str === "power spectrum", 
+          Sqrt[
+           Sqrt[
+            Abs[$CellContext`x]]], 
+          Arg[$CellContext`x]]; $CellContext`lenaplot := 
+        ArrayPlot[$CellContext`lena, ImageSize -> 200, PlotRangePadding -> 
+          None, Frame -> False]; $CellContext`flena := Fourier[
+          N[$CellContext`lena]]; Null}; Typeset`initDone$$ = True),
+    SynchronousInitialization->False,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->428569636]
+}, Open  ]],
+
+Cell["", "DetailsSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["discrete Fourier transform", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36276765605309*^9, 3.362767656721*^9}, {
+   3.36957501341659*^9, 3.36957501665086*^9}},
+ CellID->130168426],
+
+Cell["Fourier transform", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36276767225165*^9, 3.36276767754416*^9}, {
+   3.36957501180727*^9, 3.36957501188539*^9}},
+ CellID->1145825658],
+
+Cell["image compression", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36276767845248*^9, 3.36276768098865*^9}, {
+   3.3695750076199*^9, 3.36957500916673*^9}},
+ CellID->1794312737],
+
+Cell["power spectrum", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.36276766980974*^9, {3.36957501793207*^9, 
+   3.3695750195414*^9}, 3.418034711370363*^9},
+ CellID->309105851]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Discrete Fourier Transform",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/DiscreteFourierTransform.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3695749341535*^9, 3.36957493959083*^9}, {
+   3.3803972716875*^9, 3.380397272734375*^9}},
+ CellID->534424199],
+
+Cell[TextData[ButtonBox["Power Spectrum",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/PowerSpectrum.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36957495165294*^9, 3.3695749570434*^9}, {
+   3.380397273734375*^9, 3.380397275875*^9}},
+ CellID->77615249],
+
+Cell[TextData[ButtonBox["Fast Fourier Transform",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/FastFourierTransform.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3695749708242*^9, 3.36957497594904*^9}, {
+   3.380397277265625*^9, 3.380397279390625*^9}},
+ CellID->352465343],
+
+Cell[TextData[ButtonBox["Fourier Transform",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/FourierTransform.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36957498991734*^9, 3.36957499494843*^9}, {
+   3.38039728075*^9, 3.380397282875*^9}},
+ CellID->409284341]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Chris Maes",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Chris+Maes"], 
+    None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Chris+Maes"]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36188816429325*^9, 3.36188816739947*^9}, {
+   3.36957471984786*^9, 3.36957472322275*^9}},
+ CellID->1121372264]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->None,
+WindowSize->{753, 733},
+WindowMargins->{{163, Automatic}, {Automatic, 6}},
+ShowSelection->True,
+FrontEndVersion->"6.0 for Microsoft Windows (32-bit) (February 11, 2008)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[30574, 715, 310, 8, 22, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[30887, 725, 677, 16, 22, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "DragLocators"->{
+  Cell[31567, 743, 339, 11, 22, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "CreateAndDeleteLocators"->{
+  Cell[31909, 756, 636, 15, 22, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "SliderZoom"->{
+  Cell[32548, 773, 843, 21, 22, "ControlSuggestions",
+   CellTags->"SliderZoom"]},
+ "GamepadControls"->{
+  Cell[33394, 796, 303, 8, 22, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "AutomaticAnimation"->{
+  Cell[33700, 806, 1411, 31, 22, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[35114, 839, 881, 21, 22, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 39242, 971},
+ {"RotateAndZoomIn3D", 39350, 974},
+ {"DragLocators", 39459, 977},
+ {"CreateAndDeleteLocators", 39574, 980},
+ {"SliderZoom", 39687, 983},
+ {"GamepadControls", 39792, 986},
+ {"AutomaticAnimation", 39904, 989},
+ {"BookmarkAnimation", 40020, 992}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[590, 23, 407, 7, 74, "DemoTitle",
+ CellID->700863240],
+Cell[1000, 32, 33, 0, 156, "InitializationSection"],
+Cell[CellGroupData[{
+Cell[1058, 36, 29, 0, 188, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[1112, 40, 8112, 182, 528, "Input",
+ CellID->854742232],
+Cell[9227, 224, 4117, 89, 567, "Output",
+ CellID->722290185]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13390, 319, 36, 0, 136, "ManipulateCaptionSection"],
+Cell[13429, 321, 323, 7, 22, "ManipulateCaption",
+ CellID->661206755]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13789, 333, 28, 0, 168, "ThumbnailSection"],
+Cell[13820, 335, 4121, 89, 567, "Output",
+ CellID->187478370]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17978, 429, 28, 0, 138, "SnapshotsSection"],
+Cell[18009, 431, 4117, 89, 567, "Output",
+ CellID->457862857],
+Cell[22129, 522, 4215, 93, 567, "Output",
+ CellID->204958259],
+Cell[26347, 617, 4121, 89, 567, "Output",
+ CellID->428569636]
+}, Open  ]],
+Cell[30483, 709, 26, 0, 232, "DetailsSection"],
+Cell[CellGroupData[{
+Cell[30534, 713, 37, 0, 108, "ControlSuggestionsSection"],
+Cell[30574, 715, 310, 8, 22, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[30887, 725, 677, 16, 22, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[31567, 743, 339, 11, 22, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[31909, 756, 636, 15, 22, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[32548, 773, 843, 21, 22, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[33394, 796, 303, 8, 22, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[33700, 806, 1411, 31, 22, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[35114, 839, 881, 21, 22, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36032, 865, 30, 0, 152, "SearchTermsSection"],
+Cell[36065, 867, 203, 4, 22, "SearchTerms",
+ CellID->130168426],
+Cell[36271, 873, 197, 4, 22, "SearchTerms",
+ CellID->1145825658],
+Cell[36471, 879, 196, 4, 22, "SearchTerms",
+ CellID->1794312737],
+Cell[36670, 885, 191, 4, 22, "SearchTerms",
+ CellID->309105851]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36898, 894, 31, 0, 138, "RelatedLinksSection"],
+Cell[36932, 896, 347, 8, 22, "RelatedLinks",
+ CellID->534424199],
+Cell[37282, 906, 322, 8, 22, "RelatedLinks",
+ CellID->77615249],
+Cell[37607, 916, 341, 8, 22, "RelatedLinks",
+ CellID->352465343],
+Cell[37951, 926, 326, 8, 22, "RelatedLinks",
+ CellID->409284341]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38314, 939, 25, 0, 136, "AuthorSection"],
+Cell[38342, 941, 447, 13, 22, "Author",
+ CellID->1121372264]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

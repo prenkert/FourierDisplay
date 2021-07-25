@@ -1,0 +1,474 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     18663,        466]
+NotebookOptionsPosition[     17228,        432]
+NotebookOutlinePosition[     17570,        447]
+CellTagsIndexPosition[     17527,        444]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "SetDirectory", "[", 
+   "\"\<G:\\\\My Drive\\\\Projects\\\\FourierDisplay\\\\Software\>\"", "]"}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"LoadPack", ":=", 
+   RowBox[{
+   "Get", "[", 
+    "\"\<G:\\\\My \
+Drive\\\\Projects\\\\FourierDisplay\\\\Software\\\\FourierPack.wl\>\"", 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{"LoadPack", ";"}]}], "Code",
+ CellChangeTimes->{{3.786011874948806*^9, 3.7860118874883165`*^9}, {
+  3.786011918100482*^9, 3.786011961742813*^9}, {3.7871520499879875`*^9, 
+  3.7871520588154182`*^9}},ExpressionUUID->"d1c37aa6-3acc-4ba5-b073-\
+a74f3b01059a"],
+
+Cell[CellGroupData[{
+
+Cell["FormFunction", "Section",
+ InitializationCell->True,
+ CellChangeTimes->{{3.786011614555938*^9, 3.7860116324032288`*^9}, {
+  3.787581589707617*^9, 
+  3.787581592410383*^9}},ExpressionUUID->"0d5d7cc7-7ba2-4474-a5e0-\
+398682914475"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"imageForm", "=", 
+   RowBox[{"FormFunction", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\"\<Image\>\"", "\[Rule]", "\"\<Image\>\""}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"Image", "[", "#Image", "]"}], "&"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"funcForm", " ", "=", " ", 
+   RowBox[{"FormFunction", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\"\<Function\>\"", "\[Rule]", "\"\<Expression\>\""}], "}"}], 
+     ",", " ", 
+     RowBox[{
+      RowBox[{"TraditionalForm", "[", "#Function", "]"}], "&"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.7875816247020826`*^9, 3.787581678776471*^9}, {
+   3.787581767814193*^9, 3.787581790814724*^9}, {3.787597742058618*^9, 
+   3.7875977488284054`*^9}, {3.7875980078095465`*^9, 
+   3.7875980098131495`*^9}, {3.7875980479543*^9, 3.787598138828768*^9}, 
+   3.787598169755083*^9},
+ CellLabel->"In[8]:=",ExpressionUUID->"ed6818b4-173b-4289-9470-2060c133410c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Column", "[", 
+  RowBox[{"{", 
+   RowBox[{"imageForm", ",", "funcForm"}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.787581805564292*^9, 3.7875818059103327`*^9}, {
+  3.7875981464653497`*^9, 3.7875981533668942`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"cff4f5f9-50c6-4c38-b2b6-e5a41ba226b6"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     InterpretationBox[
+      RowBox[{
+       TagBox["FormFunction",
+        "SummaryHead"], "[", 
+       TemplateBox[{DynamicModuleBox[{Forms`Format`PackagePrivate`values$$}, 
+          DynamicBox[
+           ToBoxes[
+            If[
+             ValueQ[Forms`Format`PackagePrivate`values$$], 
+             Column[{
+               Panel[
+                Style[
+                 (Image[
+                  Slot["Image"]]& )[Forms`Format`PackagePrivate`values$$], 
+                 "Output", "StandardForm"], Background -> White], 
+               Item[
+                Row[{
+                  Spacer[0], 
+                  Forms`Format`PackagePrivate`formCancelButton["Back", 
+                   Clear[Forms`Format`PackagePrivate`values$$], 
+                   FormObject[
+                    Association[
+                    "Image" -> Association["Interpreter" -> "Image"]]][
+                   AppearanceRules, "FormCancelButtonStyle"]]}], Alignment -> 
+                Right]}, Alignment -> Right], 
+             Forms`Format`PackagePrivate`values$$; Forms`PackageScope`bindForm[
+               Forms`PackageScope`changeAppearanceRule[
+                FormObject[
+                 Association[
+                 "Image" -> Association["Interpreter" -> "Image"]]], 
+                "CancelLabel" -> None], 
+               Forms`Format`PackagePrivate`values$$]], StandardForm], 
+           ImageSizeCache -> {106., {35., 41.}}, 
+           TrackedSymbols :> {Forms`Format`PackagePrivate`values$$}], 
+          DynamicModuleValues :> {}]},
+        "FormPanel"], "]"}],
+      FormFunction[
+       FormObject[
+        Association["Image" -> Association["Interpreter" -> "Image"]]], Image[
+        Slot["Image"]]& ],
+      Editable->False,
+      SelectWithContents->True,
+      Selectable->False]},
+    {
+     InterpretationBox[
+      RowBox[{
+       TagBox["FormFunction",
+        "SummaryHead"], "[", 
+       TemplateBox[{
+        DynamicModuleBox[{
+          Forms`Format`PackagePrivate`values$$ = 
+           Association["Function" -> $CellContext`a + $CellContext`b]}, 
+          DynamicBox[
+           ToBoxes[
+            If[
+             ValueQ[Forms`Format`PackagePrivate`values$$], 
+             Column[{
+               Panel[
+                Style[
+                 (TraditionalForm[
+                  Slot["Function"]]& )[Forms`Format`PackagePrivate`values$$], 
+                 "Output", "StandardForm"], Background -> White], 
+               Item[
+                Row[{
+                  Spacer[0], 
+                  Forms`Format`PackagePrivate`formCancelButton["Back", 
+                   Clear[Forms`Format`PackagePrivate`values$$], 
+                   FormObject[
+                    Association[
+                    "Function" -> 
+                    Association["Interpreter" -> "Expression"]]][
+                   AppearanceRules, "FormCancelButtonStyle"]]}], Alignment -> 
+                Right]}, Alignment -> Right], 
+             Forms`Format`PackagePrivate`values$$; Forms`PackageScope`bindForm[
+               Forms`PackageScope`changeAppearanceRule[
+                FormObject[
+                 Association[
+                 "Function" -> Association["Interpreter" -> "Expression"]]], 
+                "CancelLabel" -> None], 
+               Forms`Format`PackagePrivate`values$$]], StandardForm], 
+           ImageSizeCache -> {60., {33., 39.}}, 
+           TrackedSymbols :> {Forms`Format`PackagePrivate`values$$}], 
+          DynamicModuleValues :> {}]},
+        "FormPanel"], "]"}],
+      FormFunction[
+       FormObject[
+        Association[
+        "Function" -> Association["Interpreter" -> "Expression"]]], 
+       TraditionalForm[
+        Slot["Function"]]& ],
+      Editable->False,
+      SelectWithContents->True,
+      Selectable->False]}
+   },
+   DefaultBaseStyle->"Column",
+   GridBoxAlignment->{"Columns" -> {{Left}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Column"]], "Output",
+ CellChangeTimes->{
+  3.787581806446928*^9, 3.7875977532405767`*^9, {3.7875981540470743`*^9, 
+   3.7875981733205767`*^9}},
+ CellLabel->"Out[10]=",ExpressionUUID->"c3e9c1a4-044e-4b42-9700-18e2bc1a9c9a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"manFunc", " ", "=", " ", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{"Sin", "[", 
+       RowBox[{"n", " ", "\[Pi]", "*", "x"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "0", ",", 
+        RowBox[{"2", "\[Pi]"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "0", ",", "10"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7876505005928836`*^9, 3.7876505032078867`*^9}, {
+  3.78765055015238*^9, 3.787650615129654*^9}},
+ CellLabel->"In[53]:=",ExpressionUUID->"d935bc81-df7d-407a-a690-3dbc3e73b776"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 2.42, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`n$$], 0, 10}}, Typeset`size$$ = {360., {104., 109.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`n$26195$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`n$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$26195$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        Sin[$CellContext`n$$ Pi $CellContext`x], {$CellContext`x, 0, 2 Pi}], 
+      "Specifications" :> {{$CellContext`n$$, 0, 10}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {151., 157.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.787650615811824*^9},
+ CellLabel->"Out[53]=",ExpressionUUID->"a8261e2a-8a16-492b-b244-a95e0328c4f3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"multPageForm", " ", "=", " ", 
+  RowBox[{"FormFunction", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<inputType\>\"", ",", "\"\<Input Type\>\""}], "}"}], 
+        "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Image\>\"", ",", " ", "\"\<Function\>\"", ",", " ", 
+          "\"\<Drawing\>\""}], "}"}]}], "}"}], ",", 
+      RowBox[{"Function", "[", 
+       RowBox[{"{", 
+        RowBox[{"\"\<input\>\"", "\[Rule]", 
+         RowBox[{"Switch", "[", 
+          RowBox[{
+          "#inputType", ",", "\"\<Image\>\"", ",", "\"\<Image\>\"", ",", 
+           "\"\<Function\>\"", ",", "\"\<Expression\>\""}], "]"}]}], "}"}], 
+       "]"}]}], "}"}], ",", " ", 
+    RowBox[{"manFunc", "&"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.787600622094421*^9, 3.7876006329085364`*^9}, {
+   3.787649277740871*^9, 3.787649324888604*^9}, {3.7876493609412327`*^9, 
+   3.7876493719767256`*^9}, {3.7876495700954685`*^9, 
+   3.7876496597851434`*^9}, {3.7876506302841687`*^9, 3.787650630868568*^9}, 
+   3.7876506938043056`*^9},
+ CellLabel->"In[55]:=",ExpressionUUID->"51a3ed48-0e50-41ba-9e22-1ce2f377338d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["FormFunction",
+    "SummaryHead"], "[", 
+   TemplateBox[{DynamicModuleBox[{Forms`Format`PackagePrivate`values$$ = {
+         Association["inputType" -> "Function"], 
+         Association["input" -> $CellContext`a + $CellContext`b]}, 
+       Forms`Format`PackagePrivate`stepvalues$$, 
+       Forms`Format`PackagePrivate`step$$ = 3, 
+       Forms`Format`PackagePrivate`obj$$, 
+       Forms`PackageScope`$Asked$$ = {{"Input Type", 
+          Item["Function", Alignment -> Right]}, {"input", 
+          Item[$CellContext`a + $CellContext`b, Alignment -> Right]}}}, 
+      DynamicBox[
+       ToBoxes[
+        Which[Forms`Format`PackagePrivate`step$$ > Length[{
+            FormObject[
+             Association[
+             "inputType" -> 
+              Association[
+               "Interpreter" -> {"Image", "Function", "Drawing"}, "Label" -> 
+                "Input Type"]]], {"input" -> Switch[
+               Slot["inputType"], "Image", "Image", "Function", 
+               "Expression"]}& }], 
+         Column[{
+           Panel[
+            Style[
+             ($CellContext`manFunc& )[
+              Apply[Join, Forms`Format`PackagePrivate`values$$]], "Output", 
+             "StandardForm"], Background -> White], 
+           Item[
+            Row[{
+              Spacer[0], 
+              Forms`Format`PackagePrivate`formCancelButton[
+              "Back", Forms`Format`PackagePrivate`values$$ = 
+                Most[Forms`Format`PackagePrivate`values$$]; 
+               Decrement[Forms`Format`PackagePrivate`step$$], 
+               First[{
+                 FormObject[
+                  Association[
+                  "inputType" -> 
+                   Association[
+                    "Interpreter" -> {"Image", "Function", "Drawing"}, 
+                    "Label" -> "Input Type"]]], {"input" -> Switch[
+                    Slot["inputType"], "Image", "Image", "Function", 
+                    "Expression"]}& }][
+               AppearanceRules, "FormCancelButtonStyle"]]}], Alignment -> 
+            Right]}, Alignment -> Right], 
+         ValueQ[Forms`Format`PackagePrivate`stepvalues$$], 
+         AppendTo[
+          Forms`Format`PackagePrivate`values$$, 
+           Forms`Format`PackagePrivate`stepvalues$$]; 
+         AppendTo[Forms`PackageScope`$Asked$$, 
+           Forms`PackageScope`getOldInputs[
+            Forms`PackageScope`addData[
+             Forms`PackageScope`stepForm[
+              Apply[Join, Forms`Format`PackagePrivate`values$$], 
+              Part[{
+                FormObject[
+                 Association[
+                 "inputType" -> 
+                  Association[
+                   "Interpreter" -> {"Image", "Function", "Drawing"}, "Label" -> 
+                    "Input Type"]]], {"input" -> Switch[
+                   Slot["inputType"], "Image", "Image", "Function", 
+                   "Expression"]}& }, 
+               Forms`Format`PackagePrivate`step$$], {}], 
+             Apply[Join, Forms`Format`PackagePrivate`values$$]]]]; 
+         Increment[Forms`Format`PackagePrivate`step$$]; 
+         Clear[Forms`Format`PackagePrivate`stepvalues$$], True, 
+         Forms`Format`PackagePrivate`values$$; 
+         Forms`Format`PackagePrivate`stepvalues$$; Forms`PackageScope`bindForm[
+           Forms`PackageScope`changeAppearanceRule[
+            Forms`PackageScope`stepForm[
+             Apply[Join, Forms`Format`PackagePrivate`values$$], 
+             Part[{
+               FormObject[
+                Association[
+                "inputType" -> 
+                 Association[
+                  "Interpreter" -> {"Image", "Function", "Drawing"}, "Label" -> 
+                   "Input Type"]]], {"input" -> Switch[
+                  Slot["inputType"], "Image", "Image", "Function", 
+                  "Expression"]}& }, Forms`Format`PackagePrivate`step$$], 
+             Forms`PackageScope`$Asked$$], {
+            "CurrentSubmitLabel" :> 
+             If[Forms`Format`PackagePrivate`step$$ == Length[{
+                  FormObject[
+                   Association[
+                   "inputType" -> 
+                    Association[
+                    "Interpreter" -> {"Image", "Function", "Drawing"}, 
+                    "Label" -> "Input Type"]]], {"input" -> Switch[
+                    Slot["inputType"], "Image", "Image", "Function", 
+                    "Expression"]}& }], "SubmitLabel", "NextLabel"], 
+             "CancelLabel" :> 
+             If[Forms`Format`PackagePrivate`step$$ == 1, None, "Back"]}], 
+           Forms`Format`PackagePrivate`stepvalues$$, (
+           Forms`Format`PackagePrivate`stepvalues$$ = #)& , (
+           Forms`Format`PackagePrivate`values$$ = 
+            Most[Forms`Format`PackagePrivate`values$$]; 
+           Decrement[Forms`Format`PackagePrivate`step$$]; 
+           Clear[Forms`Format`PackagePrivate`stepvalues$$])& ]], 
+        StandardForm], ImageSizeCache -> {429., {179.5, 185.5}}, 
+       TrackedSymbols :> {
+        Forms`Format`PackagePrivate`values$$, 
+         Forms`Format`PackagePrivate`stepvalues$$}], 
+      DynamicModuleValues :> {}]},
+    "FormPanel"], "]"}],
+  FormFunction[{
+    FormObject[
+     Association[
+     "inputType" -> 
+      Association[
+       "Interpreter" -> {"Image", "Function", "Drawing"}, "Label" -> 
+        "Input Type"]]], {"input" -> Switch[
+       Slot["inputType"], "Image", "Image", "Function", 
+       "Expression"]}& }, $CellContext`manFunc& ],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{
+  3.7876006334510555`*^9, 3.7876492882754936`*^9, 3.7876493254909954`*^9, 
+   3.787649372815479*^9, 3.787649609497116*^9, {3.787649649405787*^9, 
+   3.7876496605998573`*^9}, 3.7876506314969625`*^9, 3.787650694557288*^9},
+ CellLabel->"Out[55]=",ExpressionUUID->"77c74be7-515a-4d29-bd41-b424f5abde06"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CloudDeploy", "[", "multPageForm", "]"}]], "Input",
+ CellChangeTimes->{{3.7876503989629087`*^9, 3.787650403350215*^9}},
+ CellLabel->"In[56]:=",ExpressionUUID->"9aeadcb1-af72-43fc-9d4b-e50bb77e4a4f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TemplateBox[{
+    "\"https://www.wolframcloud.com/obj/c295de60-c2fd-4104-9f00-958e40ec3ac2\"\
+","https://www.wolframcloud.com/obj/c295de60-c2fd-4104-9f00-958e40ec3ac2"},
+    "HyperlinkURL"], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/obj/c295de60-c2fd-4104-9f00-958e40ec3ac2"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{3.787650433383917*^9, 3.787650723260586*^9},
+ CellLabel->"Out[56]=",ExpressionUUID->"2a18a819-e379-4223-a31f-ea1f0861f11f"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1531, 771},
+WindowMargins->{{Automatic, -5}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 606, 17, 87, "Code",ExpressionUUID->"d1c37aa6-3acc-4ba5-b073-a74f3b01059a"],
+Cell[CellGroupData[{
+Cell[1189, 41, 235, 5, 67, "Section",ExpressionUUID->"0d5d7cc7-7ba2-4474-a5e0-398682914475",
+ InitializationCell->True],
+Cell[1427, 48, 992, 25, 48, "Input",ExpressionUUID->"ed6818b4-173b-4289-9470-2060c133410c"],
+Cell[CellGroupData[{
+Cell[2444, 77, 321, 6, 28, "Input",ExpressionUUID->"cff4f5f9-50c6-4c38-b2b6-e5a41ba226b6"],
+Cell[2768, 85, 4195, 104, 296, "Output",ExpressionUUID->"c3e9c1a4-044e-4b42-9700-18e2bc1a9c9a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7000, 194, 613, 15, 28, "Input",ExpressionUUID->"d935bc81-df7d-407a-a690-3dbc3e73b776"],
+Cell[7616, 211, 1692, 34, 327, "Output",ExpressionUUID->"a8261e2a-8a16-492b-b244-a95e0328c4f3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9345, 250, 1210, 29, 28, "Input",ExpressionUUID->"51a3ed48-0e50-41ba-9e22-1ce2f377338d"],
+Cell[10558, 281, 5841, 126, 447, "Output",ExpressionUUID->"77c74be7-515a-4d29-bd41-b424f5abde06"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16436, 412, 222, 3, 28, "Input",ExpressionUUID->"9aeadcb1-af72-43fc-9d4b-e50bb77e4a4f"],
+Cell[16661, 417, 539, 11, 68, "Output",ExpressionUUID->"2a18a819-e379-4223-a31f-ea1f0861f11f"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,1597 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframCDFPlayer 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       163,          7]
+NotebookDataLength[     68792,       1588]
+NotebookOptionsPosition[     64554,       1456]
+NotebookOutlinePosition[     66208,       1508]
+CellTagsIndexPosition[     65880,       1496]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Trigonometric Fitting and Interpolation", "DemoTitle"],
+
+Cell["", "InitializationSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "x", ",", "n", ",", "y", ",", "pt", ",", "points", ",", "polyInterp"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "the", " ", "sliders", " ", "input", " ", "the", " ", "function", " ", 
+       "values", " ", "at", " ", "10", " ", "equally", " ", "spaced", " ", 
+       "points", " ", "on", " ", "the", " ", 
+       RowBox[{"interval", " ", "[", 
+        RowBox[{"0", ",", "1"}], "]"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"x", "=", 
+       RowBox[{"{", 
+        RowBox[{
+        "x1", ",", "x2", ",", "x3", ",", "x4", ",", "x5", ",", "x6", ",", 
+         "x7", ",", "x8", ",", "x9", ",", "x10"}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"n", "=", "10"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "find", " ", "discrete", " ", "Fourier", " ", "transform", " ", "of", 
+        " ", "the", " ", "input", " ", "values"}], " ", "*)"}], 
+      RowBox[{"y", "=", 
+       RowBox[{"Fourier", "[", 
+        RowBox[{"x", ",", 
+         RowBox[{"FourierParameters", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{"-", "1"}]}], "}"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "calculate", " ", "the", " ", "fitting", " ", "or", " ", 
+        "interpolating", " ", "function"}], " ", "*)"}], " ", 
+      RowBox[{
+       RowBox[{"pt", "[", 
+        RowBox[{"t_", ",", "m_"}], "]"}], ":=", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"Re", "[", 
+          RowBox[{"y", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}], 
+         SqrtBox["n"]], "+", 
+        RowBox[{
+         FractionBox["2", 
+          SqrtBox["n"]], 
+         RowBox[{
+          UnderoverscriptBox["\[Sum]", 
+           RowBox[{"k", "=", "1"}], 
+           RowBox[{
+            FractionBox["m", "2"], "-", "1"}]], 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Re", "[", 
+              RowBox[{"y", "[", 
+               RowBox[{"[", 
+                RowBox[{"k", "+", "1"}], "]"}], "]"}], "]"}], " ", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"2", " ", "\[Pi]", " ", "k", " ", "t"}], "]"}]}], "-", 
+            RowBox[{
+             RowBox[{"Im", "[", 
+              RowBox[{"y", "[", 
+               RowBox[{"[", 
+                RowBox[{"k", "+", "1"}], "]"}], "]"}], "]"}], " ", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"2", " ", "\[Pi]", " ", "k", " ", "t"}], "]"}]}]}], 
+           ")"}]}]}], "+", 
+        FractionBox[
+         RowBox[{
+          RowBox[{"Re", "[", 
+           RowBox[{"y", "[", 
+            RowBox[{"[", 
+             RowBox[{"1", "+", 
+              FractionBox["n", "2"]}], "]"}], "]"}], "]"}], 
+          RowBox[{"Cos", "[", 
+           RowBox[{"m", " ", "\[Pi]", " ", "t"}], "]"}]}], 
+         SqrtBox["n"]]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"form", " ", "the", " ", "coordinate", " ", "pairs"}], " ", 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"points", "=", 
+       RowBox[{"Transpose", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{"0", ",", 
+             RowBox[{"n", "-", "1"}]}], "]"}], "/", "n"}], ",", "x"}], "}"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"polyInterp", " ", "is", " ", "the", " ", "built"}], "-", 
+        RowBox[{
+        "in", " ", "polynomial", " ", "interpolation", " ", "for", " ", 
+         "comparison"}]}], " ", "*)"}], 
+      RowBox[{"polyInterp", "=", 
+       RowBox[{"Interpolation", "[", "points", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Plot", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"pt", "[", 
+               RowBox[{"t", ",", "m"}], "]"}], ",", 
+              RowBox[{"If", "[", 
+               RowBox[{"poly", ",", 
+                RowBox[{"polyInterp", "[", "t", "]"}]}], "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", 
+          RowBox[{"ListPlot", "[", "points", "]"}]}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "0.2"}], ",", "1.2"}], "}"}]}], ",", 
+        RowBox[{"AxesOrigin", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+        RowBox[{"PlotLabel", "\[Rule]", 
+         RowBox[{"Pane", "[", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{
+             RowBox[{"Simplify", "[", 
+              RowBox[{"pt", "[", 
+               RowBox[{"t", ",", "m"}], "]"}], "]"}], ",", "12", ",", 
+             RowBox[{"PrintPrecision", "\[Rule]", "3"}]}], "]"}], ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"300", ",", "70"}], "}"}]}]}], "]"}]}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"550", ",", "300"}], "}"}]}]}], "]"}]}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "poly", ",", "False", ",", "\"\<show polynomial interpolation\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", "True"}], "}"}], ",", "Checkbox"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "m", ",", "10", ",", "\"\<order of trigonometric functions\>\""}], 
+      "}"}], ",", "2", ",", "10", ",", "2", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Item", "[", 
+         RowBox[{"\"\<\>\"", ",", 
+          RowBox[{"ItemSize", "\[Rule]", "12"}]}], "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x1", ",", "1.0", ",", "\"\<\>\""}], "}"}], ",", "0", ",",
+            "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x2", ",", "0.75", ",", "\"\<\>\""}], "}"}], ",", "0", 
+           ",", "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x3", ",", "0.23", ",", "\"\<\>\""}], "}"}], ",", "0", 
+           ",", "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x4", ",", "0.58", ",", "\"\<\>\""}], "}"}], ",", "0", 
+           ",", "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x5", ",", "0.14", ",", "\"\<\>\""}], "}"}], ",", "0", 
+           ",", "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x6", ",", "0.75", ",", "\"\<\>\""}], "}"}], ",", "0", 
+           ",", "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x7", ",", "0.60", ",", "\"\<\>\""}], "}"}], ",", "0", 
+           ",", "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x8", ",", "0.59", ",", "\"\<\>\""}], "}"}], ",", "0", 
+           ",", "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x9", ",", "0.59", ",", "\"\<\>\""}], "}"}], ",", "0", 
+           ",", "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x10", ",", "0.0", ",", "\"\<\>\""}], "}"}], ",", "0", 
+           ",", "1", ",", "VerticalSlider", ",", 
+           RowBox[{"ImageSize", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50"}], "}"}]}], ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+         "]"}]}], "}"}], "}"}], ",", 
+     RowBox[{"Spacings", "\[Rule]", "0.99"}]}], "]"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Bottom"}]}], "]"}]], "Input",
+ CellID->332151014],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`m$$ = 10, $CellContext`poly$$ = 
+    False, $CellContext`x1$$ = 1., $CellContext`x10$$ = 
+    0., $CellContext`x2$$ = 0.75, $CellContext`x3$$ = 
+    0.23, $CellContext`x4$$ = 0.58, $CellContext`x5$$ = 
+    0.14, $CellContext`x6$$ = 0.75, $CellContext`x7$$ = 
+    0.6, $CellContext`x8$$ = 0.59, $CellContext`x9$$ = 0.59, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`poly$$], False, "show polynomial interpolation"}, {
+      False, True}}, {{
+       Hold[$CellContext`m$$], 10, "order of trigonometric functions"}, 2, 10,
+       2}, {{
+       Hold[$CellContext`x1$$], 1., ""}, 0, 1}, {{
+       Hold[$CellContext`x2$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x3$$], 0.23, ""}, 0, 1}, {{
+       Hold[$CellContext`x4$$], 0.58, ""}, 0, 1}, {{
+       Hold[$CellContext`x5$$], 0.14, ""}, 0, 1}, {{
+       Hold[$CellContext`x6$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x7$$], 0.6, ""}, 0, 1}, {{
+       Hold[$CellContext`x8$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x9$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x10$$], 0., ""}, 0, 1}, {
+      Hold[
+       Grid[{{
+          Item["", ItemSize -> 12], 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3], 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6], 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9], 
+          Manipulate`Place[10]}}, Spacings -> 0.99]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    550., {148., 152.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`poly$11964$$ = 
+    False, $CellContext`m$11965$$ = 0, $CellContext`x1$11966$$ = 
+    0, $CellContext`x2$11967$$ = 0, $CellContext`x3$11968$$ = 
+    0, $CellContext`x4$11969$$ = 0, $CellContext`x5$11970$$ = 
+    0, $CellContext`x6$11971$$ = 0, $CellContext`x7$11972$$ = 
+    0, $CellContext`x8$11973$$ = 0, $CellContext`x9$11974$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`m$$ = 10, $CellContext`poly$$ = 
+        False, $CellContext`x1$$ = 1., $CellContext`x10$$ = 
+        0., $CellContext`x2$$ = 0.75, $CellContext`x3$$ = 
+        0.23, $CellContext`x4$$ = 0.58, $CellContext`x5$$ = 
+        0.14, $CellContext`x6$$ = 0.75, $CellContext`x7$$ = 
+        0.6, $CellContext`x8$$ = 0.59, $CellContext`x9$$ = 0.59}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`poly$$, $CellContext`poly$11964$$, False], 
+        Hold[$CellContext`m$$, $CellContext`m$11965$$, 0], 
+        Hold[$CellContext`x1$$, $CellContext`x1$11966$$, 0], 
+        Hold[$CellContext`x2$$, $CellContext`x2$11967$$, 0], 
+        Hold[$CellContext`x3$$, $CellContext`x3$11968$$, 0], 
+        Hold[$CellContext`x4$$, $CellContext`x4$11969$$, 0], 
+        Hold[$CellContext`x5$$, $CellContext`x5$11970$$, 0], 
+        Hold[$CellContext`x6$$, $CellContext`x6$11971$$, 0], 
+        Hold[$CellContext`x7$$, $CellContext`x7$11972$$, 0], 
+        Hold[$CellContext`x8$$, $CellContext`x8$11973$$, 0], 
+        Hold[$CellContext`x9$$, $CellContext`x9$11974$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`x$, $CellContext`n$, $CellContext`y$, \
+$CellContext`pt$, $CellContext`points$, $CellContext`polyInterp$}, \
+$CellContext`x$ = {$CellContext`x1$$, $CellContext`x2$$, $CellContext`x3$$, \
+$CellContext`x4$$, $CellContext`x5$$, $CellContext`x6$$, $CellContext`x7$$, \
+$CellContext`x8$$, $CellContext`x9$$, $CellContext`x10$$}; $CellContext`n$ = 
+         10; $CellContext`y$ = 
+         Fourier[$CellContext`x$, 
+           FourierParameters -> {0, -1}]; $CellContext`pt$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`m$, 
+            Blank[]]] := Re[
+             Part[$CellContext`y$, 1]]/
+           Sqrt[$CellContext`n$] + (2/Sqrt[$CellContext`n$]) Sum[Re[
+                Part[$CellContext`y$, $CellContext`k + 1]] 
+              Cos[((2 Pi) $CellContext`k) $CellContext`t$] - Im[
+               Part[$CellContext`y$, $CellContext`k + 1]] 
+             Sin[((2 Pi) $CellContext`k) $CellContext`t$], {$CellContext`k, 
+              1, $CellContext`m$/2 - 1}] + Re[
+             Part[$CellContext`y$, 1 + $CellContext`n$/2]] (
+            Cos[($CellContext`m$ Pi) $CellContext`t$]/
+            Sqrt[$CellContext`n$]); $CellContext`points$ = 
+         Transpose[{
+           Range[0, $CellContext`n$ - 
+              1]/$CellContext`n$, $CellContext`x$}]; $CellContext`polyInterp$ = 
+         Interpolation[$CellContext`points$]; Show[{
+           Plot[{
+             $CellContext`pt$[$CellContext`t, $CellContext`m$$], 
+             If[$CellContext`poly$$, 
+              $CellContext`polyInterp$[$CellContext`t]]}, {$CellContext`t, 0, 
+             1}], 
+           ListPlot[$CellContext`points$]}, PlotRange -> {-0.2, 1.2}, 
+          AxesOrigin -> {0, 0}, PlotLabel -> Pane[
+            Style[
+             Simplify[
+              $CellContext`pt$[$CellContext`t, $CellContext`m$$]], 12, 
+             PrintPrecision -> 3], ImageSize -> {300, 70}], 
+          ImageSize -> {550, 300}]], 
+      "Specifications" :> {{{$CellContext`poly$$, False, 
+          "show polynomial interpolation"}, {False, True}, ControlType -> 
+         Checkbox}, {{$CellContext`m$$, 10, 
+          "order of trigonometric functions"}, 2, 10, 2, Appearance -> 
+         "Labeled"}, {{$CellContext`x1$$, 1., ""}, 0, 1, ControlType -> 
+         VerticalSlider, ImageSize -> {20, 50}, Appearance -> "Labeled", 
+         ControlPlacement -> 1}, {{$CellContext`x2$$, 0.75, ""}, 0, 1, 
+         ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 2}, {{$CellContext`x3$$, 0.23, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 3}, {{$CellContext`x4$$, 0.58, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 4}, {{$CellContext`x5$$, 0.14, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 5}, {{$CellContext`x6$$, 0.75, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 6}, {{$CellContext`x7$$, 0.6, ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 7}, {{$CellContext`x8$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 8}, {{$CellContext`x9$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 9}, {{$CellContext`x10$$, 0., ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 10}, 
+        Grid[{{
+           Item["", ItemSize -> 12], 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3], 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6], 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9], 
+           Manipulate`Place[10]}}, Spacings -> 0.99]}, 
+      "Options" :> {ControlPlacement -> Bottom}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{599., {256., 263.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->416833659]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell["\<\
+Trigonometric functions might be the best choice for fitting or interpolating \
+periodic data. If the highest order (period) of the trigonometric function is \
+less than 10, then the least-squares fit to the 10 points is shown. If the \
+order is 10, then the interpolating trigonometric function is plotted. The \
+values of the 10 data points are controlled by the 10 sliders. The checkbox \
+adds a polynomial interpolation to the plot for comparison.\
+\>", "ManipulateCaption",
+ CellID->11138430]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`m$$ = 10, $CellContext`poly$$ = 
+    False, $CellContext`x1$$ = 1., $CellContext`x10$$ = 
+    0., $CellContext`x2$$ = 0.75, $CellContext`x3$$ = 
+    0.23, $CellContext`x4$$ = 0.58, $CellContext`x5$$ = 
+    0.14, $CellContext`x6$$ = 0.75, $CellContext`x7$$ = 
+    0.6, $CellContext`x8$$ = 0.59, $CellContext`x9$$ = 0.59, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`poly$$], False, "show polynomial interpolation"}, {
+      False, True}}, {{
+       Hold[$CellContext`m$$], 10, "order of trigonometric functions"}, 2, 10,
+       2}, {{
+       Hold[$CellContext`x1$$], 1., ""}, 0, 1}, {{
+       Hold[$CellContext`x2$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x3$$], 0.23, ""}, 0, 1}, {{
+       Hold[$CellContext`x4$$], 0.58, ""}, 0, 1}, {{
+       Hold[$CellContext`x5$$], 0.14, ""}, 0, 1}, {{
+       Hold[$CellContext`x6$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x7$$], 0.6, ""}, 0, 1}, {{
+       Hold[$CellContext`x8$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x9$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x10$$], 0., ""}, 0, 1}, {
+      Hold[
+       Grid[{{
+          Item["", ItemSize -> 12], 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3], 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6], 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9], 
+          Manipulate`Place[10]}}, Spacings -> 0.99]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    550., {148., 152.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`poly$12085$$ = 
+    False, $CellContext`m$12086$$ = 0, $CellContext`x1$12087$$ = 
+    0, $CellContext`x2$12088$$ = 0, $CellContext`x3$12089$$ = 
+    0, $CellContext`x4$12090$$ = 0, $CellContext`x5$12091$$ = 
+    0, $CellContext`x6$12092$$ = 0, $CellContext`x7$12093$$ = 
+    0, $CellContext`x8$12094$$ = 0, $CellContext`x9$12095$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`m$$ = 10, $CellContext`poly$$ = 
+        False, $CellContext`x1$$ = 1., $CellContext`x10$$ = 
+        0., $CellContext`x2$$ = 0.75, $CellContext`x3$$ = 
+        0.23, $CellContext`x4$$ = 0.58, $CellContext`x5$$ = 
+        0.14, $CellContext`x6$$ = 0.75, $CellContext`x7$$ = 
+        0.6, $CellContext`x8$$ = 0.59, $CellContext`x9$$ = 0.59}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`poly$$, $CellContext`poly$12085$$, False], 
+        Hold[$CellContext`m$$, $CellContext`m$12086$$, 0], 
+        Hold[$CellContext`x1$$, $CellContext`x1$12087$$, 0], 
+        Hold[$CellContext`x2$$, $CellContext`x2$12088$$, 0], 
+        Hold[$CellContext`x3$$, $CellContext`x3$12089$$, 0], 
+        Hold[$CellContext`x4$$, $CellContext`x4$12090$$, 0], 
+        Hold[$CellContext`x5$$, $CellContext`x5$12091$$, 0], 
+        Hold[$CellContext`x6$$, $CellContext`x6$12092$$, 0], 
+        Hold[$CellContext`x7$$, $CellContext`x7$12093$$, 0], 
+        Hold[$CellContext`x8$$, $CellContext`x8$12094$$, 0], 
+        Hold[$CellContext`x9$$, $CellContext`x9$12095$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`x$, $CellContext`n$, $CellContext`y$, \
+$CellContext`pt$, $CellContext`points$, $CellContext`polyInterp$}, \
+$CellContext`x$ = {$CellContext`x1$$, $CellContext`x2$$, $CellContext`x3$$, \
+$CellContext`x4$$, $CellContext`x5$$, $CellContext`x6$$, $CellContext`x7$$, \
+$CellContext`x8$$, $CellContext`x9$$, $CellContext`x10$$}; $CellContext`n$ = 
+         10; $CellContext`y$ = 
+         Fourier[$CellContext`x$, 
+           FourierParameters -> {0, -1}]; $CellContext`pt$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`m$, 
+            Blank[]]] := Re[
+             Part[$CellContext`y$, 1]]/
+           Sqrt[$CellContext`n$] + (2/Sqrt[$CellContext`n$]) Sum[Re[
+                Part[$CellContext`y$, $CellContext`k + 1]] 
+              Cos[((2 Pi) $CellContext`k) $CellContext`t$] - Im[
+               Part[$CellContext`y$, $CellContext`k + 1]] 
+             Sin[((2 Pi) $CellContext`k) $CellContext`t$], {$CellContext`k, 
+              1, $CellContext`m$/2 - 1}] + Re[
+             Part[$CellContext`y$, 1 + $CellContext`n$/2]] (
+            Cos[($CellContext`m$ Pi) $CellContext`t$]/
+            Sqrt[$CellContext`n$]); $CellContext`points$ = 
+         Transpose[{
+           Range[0, $CellContext`n$ - 
+              1]/$CellContext`n$, $CellContext`x$}]; $CellContext`polyInterp$ = 
+         Interpolation[$CellContext`points$]; Show[{
+           Plot[{
+             $CellContext`pt$[$CellContext`t, $CellContext`m$$], 
+             If[$CellContext`poly$$, 
+              $CellContext`polyInterp$[$CellContext`t]]}, {$CellContext`t, 0, 
+             1}], 
+           ListPlot[$CellContext`points$]}, PlotRange -> {-0.2, 1.2}, 
+          AxesOrigin -> {0, 0}, PlotLabel -> Pane[
+            Style[
+             Simplify[
+              $CellContext`pt$[$CellContext`t, $CellContext`m$$]], 12, 
+             PrintPrecision -> 3], ImageSize -> {300, 70}], 
+          ImageSize -> {550, 300}]], 
+      "Specifications" :> {{{$CellContext`poly$$, False, 
+          "show polynomial interpolation"}, {False, True}, ControlType -> 
+         Checkbox}, {{$CellContext`m$$, 10, 
+          "order of trigonometric functions"}, 2, 10, 2, Appearance -> 
+         "Labeled"}, {{$CellContext`x1$$, 1., ""}, 0, 1, ControlType -> 
+         VerticalSlider, ImageSize -> {20, 50}, Appearance -> "Labeled", 
+         ControlPlacement -> 1}, {{$CellContext`x2$$, 0.75, ""}, 0, 1, 
+         ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 2}, {{$CellContext`x3$$, 0.23, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 3}, {{$CellContext`x4$$, 0.58, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 4}, {{$CellContext`x5$$, 0.14, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 5}, {{$CellContext`x6$$, 0.75, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 6}, {{$CellContext`x7$$, 0.6, ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 7}, {{$CellContext`x8$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 8}, {{$CellContext`x9$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 9}, {{$CellContext`x10$$, 0., ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 10}, 
+        Grid[{{
+           Item["", ItemSize -> 12], 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3], 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6], 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9], 
+           Manipulate`Place[10]}}, Spacings -> 0.99]}, 
+      "Options" :> {ControlPlacement -> Bottom}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{599., {256., 263.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->16407616]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`m$$ = 4, $CellContext`poly$$ = 
+    False, $CellContext`x1$$ = 1., $CellContext`x10$$ = 
+    0., $CellContext`x2$$ = 0.75, $CellContext`x3$$ = 
+    0.23, $CellContext`x4$$ = 0.58, $CellContext`x5$$ = 
+    0.14, $CellContext`x6$$ = 0.75, $CellContext`x7$$ = 
+    0.6, $CellContext`x8$$ = 0.59, $CellContext`x9$$ = 0.59, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`poly$$], False, "show polynomial interpolation"}, {
+      False, True}}, {{
+       Hold[$CellContext`m$$], 4, "order of trigonometric functions"}, 2, 10, 
+      2}, {{
+       Hold[$CellContext`x1$$], 1., ""}, 0, 1}, {{
+       Hold[$CellContext`x2$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x3$$], 0.23, ""}, 0, 1}, {{
+       Hold[$CellContext`x4$$], 0.58, ""}, 0, 1}, {{
+       Hold[$CellContext`x5$$], 0.14, ""}, 0, 1}, {{
+       Hold[$CellContext`x6$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x7$$], 0.6, ""}, 0, 1}, {{
+       Hold[$CellContext`x8$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x9$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x10$$], 0., ""}, 0, 1}, {
+      Hold[
+       Grid[{{
+          Item["", ItemSize -> 12], 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3], 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6], 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9], 
+          Manipulate`Place[10]}}, Spacings -> 0.99]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    550., {148., 152.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`poly$12206$$ = 
+    False, $CellContext`m$12207$$ = 0, $CellContext`x1$12208$$ = 
+    0, $CellContext`x2$12209$$ = 0, $CellContext`x3$12210$$ = 
+    0, $CellContext`x4$12211$$ = 0, $CellContext`x5$12212$$ = 
+    0, $CellContext`x6$12213$$ = 0, $CellContext`x7$12214$$ = 
+    0, $CellContext`x8$12215$$ = 0, $CellContext`x9$12216$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`m$$ = 4, $CellContext`poly$$ = 
+        False, $CellContext`x1$$ = 1., $CellContext`x10$$ = 
+        0., $CellContext`x2$$ = 0.75, $CellContext`x3$$ = 
+        0.23, $CellContext`x4$$ = 0.58, $CellContext`x5$$ = 
+        0.14, $CellContext`x6$$ = 0.75, $CellContext`x7$$ = 
+        0.6, $CellContext`x8$$ = 0.59, $CellContext`x9$$ = 0.59}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`poly$$, $CellContext`poly$12206$$, False], 
+        Hold[$CellContext`m$$, $CellContext`m$12207$$, 0], 
+        Hold[$CellContext`x1$$, $CellContext`x1$12208$$, 0], 
+        Hold[$CellContext`x2$$, $CellContext`x2$12209$$, 0], 
+        Hold[$CellContext`x3$$, $CellContext`x3$12210$$, 0], 
+        Hold[$CellContext`x4$$, $CellContext`x4$12211$$, 0], 
+        Hold[$CellContext`x5$$, $CellContext`x5$12212$$, 0], 
+        Hold[$CellContext`x6$$, $CellContext`x6$12213$$, 0], 
+        Hold[$CellContext`x7$$, $CellContext`x7$12214$$, 0], 
+        Hold[$CellContext`x8$$, $CellContext`x8$12215$$, 0], 
+        Hold[$CellContext`x9$$, $CellContext`x9$12216$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`x$, $CellContext`n$, $CellContext`y$, \
+$CellContext`pt$, $CellContext`points$, $CellContext`polyInterp$}, \
+$CellContext`x$ = {$CellContext`x1$$, $CellContext`x2$$, $CellContext`x3$$, \
+$CellContext`x4$$, $CellContext`x5$$, $CellContext`x6$$, $CellContext`x7$$, \
+$CellContext`x8$$, $CellContext`x9$$, $CellContext`x10$$}; $CellContext`n$ = 
+         10; $CellContext`y$ = 
+         Fourier[$CellContext`x$, 
+           FourierParameters -> {0, -1}]; $CellContext`pt$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`m$, 
+            Blank[]]] := Re[
+             Part[$CellContext`y$, 1]]/
+           Sqrt[$CellContext`n$] + (2/Sqrt[$CellContext`n$]) Sum[Re[
+                Part[$CellContext`y$, $CellContext`k + 1]] 
+              Cos[((2 Pi) $CellContext`k) $CellContext`t$] - Im[
+               Part[$CellContext`y$, $CellContext`k + 1]] 
+             Sin[((2 Pi) $CellContext`k) $CellContext`t$], {$CellContext`k, 
+              1, $CellContext`m$/2 - 1}] + Re[
+             Part[$CellContext`y$, 1 + $CellContext`n$/2]] (
+            Cos[($CellContext`m$ Pi) $CellContext`t$]/
+            Sqrt[$CellContext`n$]); $CellContext`points$ = 
+         Transpose[{
+           Range[0, $CellContext`n$ - 
+              1]/$CellContext`n$, $CellContext`x$}]; $CellContext`polyInterp$ = 
+         Interpolation[$CellContext`points$]; Show[{
+           Plot[{
+             $CellContext`pt$[$CellContext`t, $CellContext`m$$], 
+             If[$CellContext`poly$$, 
+              $CellContext`polyInterp$[$CellContext`t]]}, {$CellContext`t, 0, 
+             1}], 
+           ListPlot[$CellContext`points$]}, PlotRange -> {-0.2, 1.2}, 
+          AxesOrigin -> {0, 0}, PlotLabel -> Pane[
+            Style[
+             Simplify[
+              $CellContext`pt$[$CellContext`t, $CellContext`m$$]], 12, 
+             PrintPrecision -> 3], ImageSize -> {300, 70}], 
+          ImageSize -> {550, 300}]], 
+      "Specifications" :> {{{$CellContext`poly$$, False, 
+          "show polynomial interpolation"}, {False, True}, ControlType -> 
+         Checkbox}, {{$CellContext`m$$, 4, 
+          "order of trigonometric functions"}, 2, 10, 2, Appearance -> 
+         "Labeled"}, {{$CellContext`x1$$, 1., ""}, 0, 1, ControlType -> 
+         VerticalSlider, ImageSize -> {20, 50}, Appearance -> "Labeled", 
+         ControlPlacement -> 1}, {{$CellContext`x2$$, 0.75, ""}, 0, 1, 
+         ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 2}, {{$CellContext`x3$$, 0.23, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 3}, {{$CellContext`x4$$, 0.58, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 4}, {{$CellContext`x5$$, 0.14, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 5}, {{$CellContext`x6$$, 0.75, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 6}, {{$CellContext`x7$$, 0.6, ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 7}, {{$CellContext`x8$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 8}, {{$CellContext`x9$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 9}, {{$CellContext`x10$$, 0., ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 10}, 
+        Grid[{{
+           Item["", ItemSize -> 12], 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3], 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6], 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9], 
+           Manipulate`Place[10]}}, Spacings -> 0.99]}, 
+      "Options" :> {ControlPlacement -> Bottom}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{599., {256., 263.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->242169023],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`m$$ = 8, $CellContext`poly$$ = 
+    False, $CellContext`x1$$ = 1., $CellContext`x10$$ = 
+    0., $CellContext`x2$$ = 0.75, $CellContext`x3$$ = 
+    0.23, $CellContext`x4$$ = 0.58, $CellContext`x5$$ = 
+    0.14, $CellContext`x6$$ = 0.75, $CellContext`x7$$ = 
+    0.6, $CellContext`x8$$ = 0.59, $CellContext`x9$$ = 0.59, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`poly$$], False, "show polynomial interpolation"}, {
+      False, True}}, {{
+       Hold[$CellContext`m$$], 8, "order of trigonometric functions"}, 2, 10, 
+      2}, {{
+       Hold[$CellContext`x1$$], 1., ""}, 0, 1}, {{
+       Hold[$CellContext`x2$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x3$$], 0.23, ""}, 0, 1}, {{
+       Hold[$CellContext`x4$$], 0.58, ""}, 0, 1}, {{
+       Hold[$CellContext`x5$$], 0.14, ""}, 0, 1}, {{
+       Hold[$CellContext`x6$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x7$$], 0.6, ""}, 0, 1}, {{
+       Hold[$CellContext`x8$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x9$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x10$$], 0., ""}, 0, 1}, {
+      Hold[
+       Grid[{{
+          Item["", ItemSize -> 12], 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3], 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6], 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9], 
+          Manipulate`Place[10]}}, Spacings -> 0.99]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    550., {148., 152.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`poly$12327$$ = 
+    False, $CellContext`m$12328$$ = 0, $CellContext`x1$12329$$ = 
+    0, $CellContext`x2$12330$$ = 0, $CellContext`x3$12331$$ = 
+    0, $CellContext`x4$12332$$ = 0, $CellContext`x5$12333$$ = 
+    0, $CellContext`x6$12334$$ = 0, $CellContext`x7$12335$$ = 
+    0, $CellContext`x8$12336$$ = 0, $CellContext`x9$12337$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`m$$ = 8, $CellContext`poly$$ = 
+        False, $CellContext`x1$$ = 1., $CellContext`x10$$ = 
+        0., $CellContext`x2$$ = 0.75, $CellContext`x3$$ = 
+        0.23, $CellContext`x4$$ = 0.58, $CellContext`x5$$ = 
+        0.14, $CellContext`x6$$ = 0.75, $CellContext`x7$$ = 
+        0.6, $CellContext`x8$$ = 0.59, $CellContext`x9$$ = 0.59}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`poly$$, $CellContext`poly$12327$$, False], 
+        Hold[$CellContext`m$$, $CellContext`m$12328$$, 0], 
+        Hold[$CellContext`x1$$, $CellContext`x1$12329$$, 0], 
+        Hold[$CellContext`x2$$, $CellContext`x2$12330$$, 0], 
+        Hold[$CellContext`x3$$, $CellContext`x3$12331$$, 0], 
+        Hold[$CellContext`x4$$, $CellContext`x4$12332$$, 0], 
+        Hold[$CellContext`x5$$, $CellContext`x5$12333$$, 0], 
+        Hold[$CellContext`x6$$, $CellContext`x6$12334$$, 0], 
+        Hold[$CellContext`x7$$, $CellContext`x7$12335$$, 0], 
+        Hold[$CellContext`x8$$, $CellContext`x8$12336$$, 0], 
+        Hold[$CellContext`x9$$, $CellContext`x9$12337$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`x$, $CellContext`n$, $CellContext`y$, \
+$CellContext`pt$, $CellContext`points$, $CellContext`polyInterp$}, \
+$CellContext`x$ = {$CellContext`x1$$, $CellContext`x2$$, $CellContext`x3$$, \
+$CellContext`x4$$, $CellContext`x5$$, $CellContext`x6$$, $CellContext`x7$$, \
+$CellContext`x8$$, $CellContext`x9$$, $CellContext`x10$$}; $CellContext`n$ = 
+         10; $CellContext`y$ = 
+         Fourier[$CellContext`x$, 
+           FourierParameters -> {0, -1}]; $CellContext`pt$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`m$, 
+            Blank[]]] := Re[
+             Part[$CellContext`y$, 1]]/
+           Sqrt[$CellContext`n$] + (2/Sqrt[$CellContext`n$]) Sum[Re[
+                Part[$CellContext`y$, $CellContext`k + 1]] 
+              Cos[((2 Pi) $CellContext`k) $CellContext`t$] - Im[
+               Part[$CellContext`y$, $CellContext`k + 1]] 
+             Sin[((2 Pi) $CellContext`k) $CellContext`t$], {$CellContext`k, 
+              1, $CellContext`m$/2 - 1}] + Re[
+             Part[$CellContext`y$, 1 + $CellContext`n$/2]] (
+            Cos[($CellContext`m$ Pi) $CellContext`t$]/
+            Sqrt[$CellContext`n$]); $CellContext`points$ = 
+         Transpose[{
+           Range[0, $CellContext`n$ - 
+              1]/$CellContext`n$, $CellContext`x$}]; $CellContext`polyInterp$ = 
+         Interpolation[$CellContext`points$]; Show[{
+           Plot[{
+             $CellContext`pt$[$CellContext`t, $CellContext`m$$], 
+             If[$CellContext`poly$$, 
+              $CellContext`polyInterp$[$CellContext`t]]}, {$CellContext`t, 0, 
+             1}], 
+           ListPlot[$CellContext`points$]}, PlotRange -> {-0.2, 1.2}, 
+          AxesOrigin -> {0, 0}, PlotLabel -> Pane[
+            Style[
+             Simplify[
+              $CellContext`pt$[$CellContext`t, $CellContext`m$$]], 12, 
+             PrintPrecision -> 3], ImageSize -> {300, 70}], 
+          ImageSize -> {550, 300}]], 
+      "Specifications" :> {{{$CellContext`poly$$, False, 
+          "show polynomial interpolation"}, {False, True}, ControlType -> 
+         Checkbox}, {{$CellContext`m$$, 8, 
+          "order of trigonometric functions"}, 2, 10, 2, Appearance -> 
+         "Labeled"}, {{$CellContext`x1$$, 1., ""}, 0, 1, ControlType -> 
+         VerticalSlider, ImageSize -> {20, 50}, Appearance -> "Labeled", 
+         ControlPlacement -> 1}, {{$CellContext`x2$$, 0.75, ""}, 0, 1, 
+         ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 2}, {{$CellContext`x3$$, 0.23, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 3}, {{$CellContext`x4$$, 0.58, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 4}, {{$CellContext`x5$$, 0.14, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 5}, {{$CellContext`x6$$, 0.75, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 6}, {{$CellContext`x7$$, 0.6, ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 7}, {{$CellContext`x8$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 8}, {{$CellContext`x9$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 9}, {{$CellContext`x10$$, 0., ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 10}, 
+        Grid[{{
+           Item["", ItemSize -> 12], 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3], 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6], 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9], 
+           Manipulate`Place[10]}}, Spacings -> 0.99]}, 
+      "Options" :> {ControlPlacement -> Bottom}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{599., {256., 263.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->241725847],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`m$$ = 10, $CellContext`poly$$ = 
+    True, $CellContext`x1$$ = 1., $CellContext`x10$$ = 0., $CellContext`x2$$ =
+     0.75, $CellContext`x3$$ = 0.23, $CellContext`x4$$ = 
+    0.58, $CellContext`x5$$ = 0.14, $CellContext`x6$$ = 
+    0.75, $CellContext`x7$$ = 0.6, $CellContext`x8$$ = 
+    0.59, $CellContext`x9$$ = 0.59, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`poly$$], True, "show polynomial interpolation"}, {
+      False, True}}, {{
+       Hold[$CellContext`m$$], 10, "order of trigonometric functions"}, 2, 10,
+       2}, {{
+       Hold[$CellContext`x1$$], 1., ""}, 0, 1}, {{
+       Hold[$CellContext`x2$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x3$$], 0.23, ""}, 0, 1}, {{
+       Hold[$CellContext`x4$$], 0.58, ""}, 0, 1}, {{
+       Hold[$CellContext`x5$$], 0.14, ""}, 0, 1}, {{
+       Hold[$CellContext`x6$$], 0.75, ""}, 0, 1}, {{
+       Hold[$CellContext`x7$$], 0.6, ""}, 0, 1}, {{
+       Hold[$CellContext`x8$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x9$$], 0.59, ""}, 0, 1}, {{
+       Hold[$CellContext`x10$$], 0., ""}, 0, 1}, {
+      Hold[
+       Grid[{{
+          Item["", ItemSize -> 12], 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3], 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6], 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9], 
+          Manipulate`Place[10]}}, Spacings -> 0.99]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    550., {148., 152.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`poly$12448$$ = 
+    False, $CellContext`m$12449$$ = 0, $CellContext`x1$12450$$ = 
+    0, $CellContext`x2$12451$$ = 0, $CellContext`x3$12452$$ = 
+    0, $CellContext`x4$12453$$ = 0, $CellContext`x5$12454$$ = 
+    0, $CellContext`x6$12455$$ = 0, $CellContext`x7$12456$$ = 
+    0, $CellContext`x8$12457$$ = 0, $CellContext`x9$12458$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`m$$ = 10, $CellContext`poly$$ = 
+        True, $CellContext`x1$$ = 1., $CellContext`x10$$ = 
+        0., $CellContext`x2$$ = 0.75, $CellContext`x3$$ = 
+        0.23, $CellContext`x4$$ = 0.58, $CellContext`x5$$ = 
+        0.14, $CellContext`x6$$ = 0.75, $CellContext`x7$$ = 
+        0.6, $CellContext`x8$$ = 0.59, $CellContext`x9$$ = 0.59}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`poly$$, $CellContext`poly$12448$$, False], 
+        Hold[$CellContext`m$$, $CellContext`m$12449$$, 0], 
+        Hold[$CellContext`x1$$, $CellContext`x1$12450$$, 0], 
+        Hold[$CellContext`x2$$, $CellContext`x2$12451$$, 0], 
+        Hold[$CellContext`x3$$, $CellContext`x3$12452$$, 0], 
+        Hold[$CellContext`x4$$, $CellContext`x4$12453$$, 0], 
+        Hold[$CellContext`x5$$, $CellContext`x5$12454$$, 0], 
+        Hold[$CellContext`x6$$, $CellContext`x6$12455$$, 0], 
+        Hold[$CellContext`x7$$, $CellContext`x7$12456$$, 0], 
+        Hold[$CellContext`x8$$, $CellContext`x8$12457$$, 0], 
+        Hold[$CellContext`x9$$, $CellContext`x9$12458$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`x$, $CellContext`n$, $CellContext`y$, \
+$CellContext`pt$, $CellContext`points$, $CellContext`polyInterp$}, \
+$CellContext`x$ = {$CellContext`x1$$, $CellContext`x2$$, $CellContext`x3$$, \
+$CellContext`x4$$, $CellContext`x5$$, $CellContext`x6$$, $CellContext`x7$$, \
+$CellContext`x8$$, $CellContext`x9$$, $CellContext`x10$$}; $CellContext`n$ = 
+         10; $CellContext`y$ = 
+         Fourier[$CellContext`x$, 
+           FourierParameters -> {0, -1}]; $CellContext`pt$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`m$, 
+            Blank[]]] := Re[
+             Part[$CellContext`y$, 1]]/
+           Sqrt[$CellContext`n$] + (2/Sqrt[$CellContext`n$]) Sum[Re[
+                Part[$CellContext`y$, $CellContext`k + 1]] 
+              Cos[((2 Pi) $CellContext`k) $CellContext`t$] - Im[
+               Part[$CellContext`y$, $CellContext`k + 1]] 
+             Sin[((2 Pi) $CellContext`k) $CellContext`t$], {$CellContext`k, 
+              1, $CellContext`m$/2 - 1}] + Re[
+             Part[$CellContext`y$, 1 + $CellContext`n$/2]] (
+            Cos[($CellContext`m$ Pi) $CellContext`t$]/
+            Sqrt[$CellContext`n$]); $CellContext`points$ = 
+         Transpose[{
+           Range[0, $CellContext`n$ - 
+              1]/$CellContext`n$, $CellContext`x$}]; $CellContext`polyInterp$ = 
+         Interpolation[$CellContext`points$]; Show[{
+           Plot[{
+             $CellContext`pt$[$CellContext`t, $CellContext`m$$], 
+             If[$CellContext`poly$$, 
+              $CellContext`polyInterp$[$CellContext`t]]}, {$CellContext`t, 0, 
+             1}], 
+           ListPlot[$CellContext`points$]}, PlotRange -> {-0.2, 1.2}, 
+          AxesOrigin -> {0, 0}, PlotLabel -> Pane[
+            Style[
+             Simplify[
+              $CellContext`pt$[$CellContext`t, $CellContext`m$$]], 12, 
+             PrintPrecision -> 3], ImageSize -> {300, 70}], 
+          ImageSize -> {550, 300}]], 
+      "Specifications" :> {{{$CellContext`poly$$, True, 
+          "show polynomial interpolation"}, {False, True}, ControlType -> 
+         Checkbox}, {{$CellContext`m$$, 10, 
+          "order of trigonometric functions"}, 2, 10, 2, Appearance -> 
+         "Labeled"}, {{$CellContext`x1$$, 1., ""}, 0, 1, ControlType -> 
+         VerticalSlider, ImageSize -> {20, 50}, Appearance -> "Labeled", 
+         ControlPlacement -> 1}, {{$CellContext`x2$$, 0.75, ""}, 0, 1, 
+         ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 2}, {{$CellContext`x3$$, 0.23, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 3}, {{$CellContext`x4$$, 0.58, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 4}, {{$CellContext`x5$$, 0.14, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 5}, {{$CellContext`x6$$, 0.75, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 6}, {{$CellContext`x7$$, 0.6, ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 7}, {{$CellContext`x8$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 8}, {{$CellContext`x9$$, 0.59, ""}, 0,
+          1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 9}, {{$CellContext`x10$$, 0., ""}, 0, 
+         1, ControlType -> VerticalSlider, ImageSize -> {20, 50}, Appearance -> 
+         "Labeled", ControlPlacement -> 10}, 
+        Grid[{{
+           Item["", ItemSize -> 12], 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3], 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6], 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9], 
+           Manipulate`Place[10]}}, Spacings -> 0.99]}, 
+      "Options" :> {ControlPlacement -> Bottom}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{599., {256., 263.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->296121034]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "DetailsSection"],
+
+Cell[TextData[{
+ "Because of the orthogonality of trigonometric functions, coefficients \
+obtained from the discrete Fourier transform give the proper weights for both \
+least-squares fitting and interpolation. From [1], if ",
+ Cell[BoxData[
+  FormBox["m", TraditionalForm]], "InlineMath"],
+ " is the order of the trigonometric polynomial and ",
+ Cell[BoxData[
+  FormBox["n", TraditionalForm]], "InlineMath"],
+ " is the number of data points, then"
+}], "DetailNotes",
+ CellChangeTimes->{{3.7074930939920936`*^9, 3.707493094257292*^9}},
+ CellID->21838651],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  RowBox[{
+   RowBox[{"p", "(", "t", ")"}], "=", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", 
+      SqrtBox["n"]], 
+     StyleBox["[",
+      FontSize->14], 
+     RowBox[{
+      RowBox[{
+       RowBox[{"cos", "(", 
+        RowBox[{"\[Pi]", " ", "m", " ", "t"}], ")"}], " ", 
+       RowBox[{"Re", "(", 
+        SubscriptBox["y", 
+         RowBox[{
+          RowBox[{"n", "/", "2"}], "+", "1"}]], ")"}]}], "+", 
+      RowBox[{"Re", "(", 
+       SubscriptBox["y", "1"], ")"}]}], 
+     StyleBox["]",
+      FontSize->14]}], "+", 
+    RowBox[{
+     FractionBox["2", 
+      SqrtBox["n"]], 
+     RowBox[{
+      StyleBox[
+       UnderoverscriptBox["\[Sum]", 
+        RowBox[{"k", "=", "1"}], 
+        RowBox[{
+         RowBox[{"m", "/", "2"}], "-", "1"}]],
+       FontSize->16], 
+      RowBox[{
+       StyleBox["[",
+        FontSize->14], 
+       RowBox[{
+        RowBox[{
+         RowBox[{"cos", "(", 
+          RowBox[{"2", " ", "\[Pi]", " ", "k", " ", "t"}], ")"}], " ", 
+         RowBox[{"Re", "(", 
+          SubscriptBox["y", 
+           RowBox[{"k", "+", "1"}]], ")"}]}], "-", 
+        RowBox[{
+         RowBox[{"sin", "(", 
+          RowBox[{"2", " ", "\[Pi]", " ", "k", " ", "t"}], ")"}], " ", 
+         RowBox[{"Im", "(", 
+          SubscriptBox["y", 
+           RowBox[{"k", "+", "1"}]], ")"}]}]}], 
+       StyleBox["]",
+        FontSize->14]}]}]}]}]}], TraditionalForm]], "InlineMath",
+ FormatType->"TraditionalForm"]], "DetailNotes",
+ CellChangeTimes->{{3.7074831945689125`*^9, 3.707483197619912*^9}},
+ CellID->81668455],
+
+Cell[TextData[{
+ "is the least-squares fit of the data if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"m", "<", "n"}], TraditionalForm]], "InlineMath"],
+ " and the interpolating function if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"m", "=", "n"}], TraditionalForm]], "InlineMath"],
+ ". In this equation, ",
+ Cell[BoxData[
+  FormBox["y", TraditionalForm]], "InlineMath"],
+ " is the discrete Fourier transform of the data."
+}], "DetailNotes",
+ CellID->129033231],
+
+Cell["Reference", "DetailNotes",
+ CellID->51598865],
+
+Cell[TextData[{
+ "[1] T. Sauer, ",
+ StyleBox["Numerical Analysis",
+  FontSlant->"Italic"],
+ ", 2nd ed., Boston: Pearson, 2012."
+}], "DetailNotes",
+ CellID->142128692]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.707483250609912*^9},
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.707483251960912*^9},
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9, 
+  3.707483252816912*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0, CellBaseline -> Baseline], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.707483253592912*^9},
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["interpolation", "SearchTerms",
+ CellID->712189661],
+
+Cell["least squares fitting", "SearchTerms",
+ CellID->691694371],
+
+Cell["discrete Fourier transform", "SearchTerms",
+ CellID->399873396],
+
+Cell["periodic functions", "SearchTerms",
+ CellID->152151048]
+}, Open  ]],
+
+Cell["", "RelatedLinksSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Bruce Atwood",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Bruce+Atwood"], 
+    None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Bruce+Atwood"],
+ " and ",
+ ButtonBox["Rikley Buckingham",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Rikley+\
+Buckingham"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Rikley+Buckingham"]
+}], "Author",
+ CellID->1053801986],
+
+Cell["(Beloit College)", "Author",
+ CellChangeTimes->{{3.7074931740551457`*^9, 3.707493174991038*^9}},
+ CellID->32685488]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{952, 722},
+WindowMargins->{{Automatic, 0}, {Automatic, 74}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"10.2 for Microsoft Windows (64-bit) (July 29, 2015)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "AutomaticAnimation"->{
+  Cell[60972, 1349, 1505, 32, 22, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[62480, 1383, 908, 21, 22, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]},
+ "CreateAndDeleteLocators"->{
+  Cell[59048, 1296, 637, 15, 22, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "DragLocators"->{
+  Cell[58705, 1283, 340, 11, 22, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "GamepadControls"->{
+  Cell[60576, 1337, 393, 10, 22, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "ResizeImages"->{
+  Cell[57668, 1254, 353, 9, 22, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[58024, 1265, 678, 16, 22, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "SliderZoom"->{
+  Cell[59688, 1313, 885, 22, 22, "ControlSuggestions",
+   CellTags->"SliderZoom"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"AutomaticAnimation", 64986, 1469},
+ {"BookmarkAnimation", 65103, 1472},
+ {"CreateAndDeleteLocators", 65224, 1475},
+ {"DragLocators", 65340, 1478},
+ {"GamepadControls", 65448, 1481},
+ {"ResizeImages", 65556, 1484},
+ {"RotateAndZoomIn3D", 65665, 1487},
+ {"SliderZoom", 65773, 1490}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[585, 22, 60, 0, 74, "DemoTitle"],
+Cell[648, 24, 33, 0, 287, "InitializationSection"],
+Cell[CellGroupData[{
+Cell[706, 28, 29, 0, 192, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[760, 32, 10800, 279, 614, "Input",
+ CellID->332151014],
+Cell[11563, 313, 8487, 160, 531, "Output",
+ CellID->416833659]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20099, 479, 36, 0, 169, "ManipulateCaptionSection"],
+Cell[20138, 481, 507, 8, 67, "ManipulateCaption",
+ CellID->11138430]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20682, 494, 28, 0, 173, "ThumbnailSection"],
+Cell[20713, 496, 8486, 160, 531, "Output",
+ CellID->16407616]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29236, 661, 28, 0, 143, "SnapshotsSection"],
+Cell[29267, 663, 8483, 160, 531, "Output",
+ CellID->242169023],
+Cell[37753, 825, 8483, 160, 531, "Output",
+ CellID->241725847],
+Cell[46239, 987, 8483, 160, 531, "Output",
+ CellID->296121034]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54759, 1152, 26, 0, 336, "DetailsSection"],
+Cell[54788, 1154, 554, 12, 53, "DetailNotes",
+ CellID->21838651],
+Cell[55345, 1168, 1565, 52, 40, "DetailNotes",
+ CellID->81668455],
+Cell[56913, 1222, 455, 14, 38, "DetailNotes",
+ CellID->129033231],
+Cell[57371, 1238, 51, 1, 22, "DetailNotes",
+ CellID->51598865],
+Cell[57425, 1241, 166, 6, 22, "DetailNotes",
+ CellID->142128692]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[57628, 1252, 37, 0, 126, "ControlSuggestionsSection"],
+Cell[57668, 1254, 353, 9, 22, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[58024, 1265, 678, 16, 22, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[58705, 1283, 340, 11, 22, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[59048, 1296, 637, 15, 22, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[59688, 1313, 885, 22, 22, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[60576, 1337, 393, 10, 22, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[60972, 1349, 1505, 32, 22, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[62480, 1383, 908, 21, 22, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63425, 1409, 30, 0, 155, "SearchTermsSection"],
+Cell[63458, 1411, 56, 1, 22, "SearchTerms",
+ CellID->712189661],
+Cell[63517, 1414, 64, 1, 22, "SearchTerms",
+ CellID->691694371],
+Cell[63584, 1417, 69, 1, 22, "SearchTerms",
+ CellID->399873396],
+Cell[63656, 1420, 61, 1, 22, "SearchTerms",
+ CellID->152151048]
+}, Open  ]],
+Cell[63732, 1424, 31, 0, 141, "RelatedLinksSection"],
+Cell[CellGroupData[{
+Cell[63788, 1428, 25, 0, 129, "AuthorSection"],
+Cell[63816, 1430, 586, 18, 22, "Author",
+ CellID->1053801986],
+Cell[64405, 1450, 121, 2, 22, "Author",
+ CellID->32685488]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

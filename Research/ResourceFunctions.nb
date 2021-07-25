@@ -1,0 +1,196 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6606,        188]
+NotebookOptionsPosition[      5624,        166]
+NotebookOutlinePosition[      5967,        181]
+CellTagsIndexPosition[      5924,        178]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["FourierCurve", "Section",
+ CellChangeTimes->{{3.786715305155264*^9, 3.786715307295802*^9}, {
+  3.786715357467354*^9, 
+  3.786715358901763*^9}},ExpressionUUID->"9c0ece56-7391-40aa-afca-\
+ebfca4101d1e"],
+
+Cell["J.M. ", "Author",
+ CellChangeTimes->{{3.786715322708444*^9, 
+  3.786715331273583*^9}},ExpressionUUID->"580b45af-7c06-455f-b72d-\
+84145bbaa525"],
+
+Cell["\<\
+https://mathematica.stackexchange.com/questions/17704/how-to-create-a-new-\
+person-curve/171658#171658\
+\>", "Abstract",
+ CellChangeTimes->{
+  3.786715349816587*^9},ExpressionUUID->"9c7173f4-b62c-4beb-8408-\
+9975ae423333"],
+
+Cell["\<\
+This was supposed to be a comment to Simon\[CloseCurlyQuote]s answer,but it\
+\[CloseCurlyQuote]s gotten too long.Still,I wanted to share a somewhat \
+cleaned-up version of Simon\[CloseCurlyQuote]s Fourier-fitting function \
+param[] (which I have renamed to FourierCurve[]):\
+\>", "Text",
+ CellChangeTimes->{
+  3.786715370367258*^9},ExpressionUUID->"c730304e-dd86-46ca-a913-\
+d1a7960e9f76"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"FourierCurve", "[", 
+    RowBox[{"x_", ",", "m_", ",", "t_", ",", 
+     RowBox[{"tol_:", " ", "0.01"}]}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"rat", "=", 
+        RowBox[{
+         RowBox[{"Rationalize", "[", 
+          RowBox[{"#", ",", "tol"}], "]"}], "&"}]}], ",", "fc"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"fc", "=", 
+       RowBox[{"Take", "[", 
+        RowBox[{
+         RowBox[{"Chop", "[", 
+          RowBox[{"Fourier", "[", 
+           RowBox[{"x", ",", 
+            RowBox[{"FourierParameters", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "1"}], ",", "1"}], "}"}]}]}], "]"}], "]"}], ",", 
+         RowBox[{"Min", "[", 
+          RowBox[{"m", ",", 
+           RowBox[{"Ceiling", "[", 
+            RowBox[{
+             RowBox[{"Length", "[", "x", "]"}], "/", "2"}], "]"}]}], "]"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"2", " ", 
+       RowBox[{
+        RowBox[{"rat", "[", 
+         RowBox[{"Abs", "[", "fc", "]"}], "]"}], ".", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"Pi", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", " ", 
+             RowBox[{"Range", "[", 
+              RowBox[{"0", ",", 
+               RowBox[{
+                RowBox[{"Length", "[", "fc", "]"}], "-", "1"}]}], "]"}], " ", 
+             "t"}], "-", 
+            RowBox[{"rat", "[", 
+             RowBox[{
+              RowBox[{"Arg", "[", "fc", "]"}], "/", "Pi"}], "]"}]}], ")"}]}], 
+         "]"}]}]}]}]}], "]"}]}], "\n"}]], "Input",
+ CellChangeTimes->{{3.786715241299282*^9, 3.7867152413374825`*^9}, {
+  3.786715364958583*^9, 
+  3.7867154301192408`*^9}},ExpressionUUID->"4535ad39-a79a-4423-9170-\
+c328c5d7bd0d"],
+
+Cell["\<\
+This has the virtue of returning a function that genuinely closes up;more \
+precisely,if f[t_]=FourierCurve[pts,modes,t],then f[0]\[Equal]f[1].(The \
+indiscriminate use of Rationalize[] in the earlier version prevented a nice \
+closure of the resulting curve.)
+
+As Rahul alludes to in his comment,this is more or less the \
+\[OpenCurlyDoubleQuote]epicycle\[CloseCurlyDoubleQuote] approach of Ptolemy \
+for determining the paths of planetary orbits.Of course,Fourier fitting can \
+also be applied to space curves as well as plane \
+curves.Here\[CloseCurlyQuote]s an example:\
+\>", "Text",
+ CellChangeTimes->{{3.786715403480378*^9, 
+  3.78671540395354*^9}},ExpressionUUID->"a7588788-bda3-4f47-a705-\
+6275e6c253f8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ParametricPlot3D", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"f", "[", "t", "]"}], ",", 
+      RowBox[{"g", "[", "t", "]"}], ",", 
+      RowBox[{"h", "[", "t", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", "1"}], "}"}], ",", 
+    RowBox[{"Axes", "\[Rule]", "None"}], ",", 
+    RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+    RowBox[{"Method", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<TubePoints\>\"", "\[Rule]", "20"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", "Blue"}], ",", 
+    RowBox[{"ViewPoint", "\[Rule]", "Top"}]}], "]"}], "/.", 
+  RowBox[{
+   RowBox[{"Line", "[", 
+    RowBox[{"pts_", ",", "rest___"}], "]"}], "\[RuleDelayed]", 
+   RowBox[{"Tube", "[", 
+    RowBox[{"pts", ",", 
+     RowBox[{"1", "/", "8"}], ",", "rest"}], "]"}]}]}]], "Input",ExpressionUUI\
+D->"57b64429-fbdd-4dcb-a37f-446c8464afd5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "t_", "]"}], ",", 
+     RowBox[{"g", "[", "t_", "]"}], ",", 
+     RowBox[{"h", "[", "t_", "]"}]}], "}"}], "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"FourierCurve", "[", 
+      RowBox[{"#", ",", "20", ",", "t"}], "]"}], "&"}], "/@", 
+    RowBox[{
+     RowBox[{"KnotData", "[", 
+      RowBox[{"\"\<FigureEight\>\"", ",", "\"\<SpaceCurve\>\""}], "]"}], "[", 
+     "\"\<ValuesOnGrid\>\"", "]"}]}]}], ";"}]], "Input",ExpressionUUID->\
+"072d8534-d980-42e2-878f-e9ea215254a4"]
+}, Open  ]]
+},
+WindowSize->{759, 677},
+WindowMargins->{{Automatic, 380}, {24, Automatic}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 206, 4, 67, "Section",ExpressionUUID->"9c0ece56-7391-40aa-afca-ebfca4101d1e"],
+Cell[789, 28, 149, 3, 31, "Author",ExpressionUUID->"580b45af-7c06-455f-b72d-84145bbaa525"],
+Cell[941, 33, 232, 6, 83, "Abstract",ExpressionUUID->"9c7173f4-b62c-4beb-8408-9975ae423333"],
+Cell[1176, 41, 399, 8, 78, "Text",ExpressionUUID->"c730304e-dd86-46ca-a913-d1a7960e9f76"],
+Cell[1578, 51, 1826, 52, 105, "Input",ExpressionUUID->"4535ad39-a79a-4423-9170-c328c5d7bd0d"],
+Cell[3407, 105, 722, 14, 166, "Text",ExpressionUUID->"a7588788-bda3-4f47-a705-6275e6c253f8"],
+Cell[4132, 121, 914, 24, 67, "Input",ExpressionUUID->"57b64429-fbdd-4dcb-a37f-446c8464afd5"],
+Cell[5049, 147, 559, 16, 48, "Input",ExpressionUUID->"072d8534-d980-42e2-878f-e9ea215254a4"]
+}, Open  ]]
+}
+]
+*)
+

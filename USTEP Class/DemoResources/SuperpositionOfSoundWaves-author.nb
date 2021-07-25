@@ -1,0 +1,1150 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     45281,       1141]
+NotebookOptionsPosition[     40866,        999]
+NotebookOutlinePosition[     42643,       1057]
+CellTagsIndexPosition[     42315,       1045]
+WindowFrame->Normal
+ContainsDynamic->True *)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Superposition of Sound Waves", "DemoTitle",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.388040837522009*^9, 3.388040842862432*^9}, 
+   3.3881637214897985`*^9, {3.420471827421277*^9, 3.420471830970261*^9}}],
+
+Cell["", "InitializationSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Show", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"Sin", "[", 
+            RowBox[{"f1", "*", "2", "Pi", "*", "t"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "0.02"}], "}"}], ",", 
+           RowBox[{"PlotStyle", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"RGBColor", "[", 
+               RowBox[{".33", ",", ".6", ",", ".7"}], "]"}], ",", 
+              RowBox[{"Thickness", "[", "0.0075", "]"}]}], "}"}]}]}], "]"}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"Sin", "[", 
+            RowBox[{
+             RowBox[{"f2", "*", "2", "Pi", "*", "t"}], "+", "offset"}], "]"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "0.02"}], "}"}], ",", 
+           RowBox[{"PlotStyle", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"RGBColor", "[", 
+               RowBox[{".48", ",", ".11", ",", ".56"}], "]"}], ",", 
+              RowBox[{"Thickness", "[", "0.0075", "]"}]}], "}"}]}]}], "]"}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Sin", "[", 
+             RowBox[{"f1", "*", "2", "Pi", "*", "t"}], "]"}], "+", 
+            RowBox[{"Sin", "[", 
+             RowBox[{
+              RowBox[{"f2", "*", "2", "Pi", "*", "t"}], "+", "offset"}], 
+             "]"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "0.02"}], "}"}], ",", 
+           RowBox[{"PlotStyle", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"RGBColor", "[", 
+               RowBox[{".6", ",", ".73", ",", ".36"}], "]"}], ",", 
+              RowBox[{"Thickness", "[", "0.01", "]"}]}], "}"}]}]}], "]"}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0.02"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "}"}]}], ",", 
+         RowBox[{"Ticks", "\[Rule]", "None"}], ",", 
+         RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", "\"\<\>\"", ",", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"f1", "\[NotEqual]", "oldf1"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"EmitSound", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{"Sound", "[", 
+            RowBox[{
+             RowBox[{"Play", "[", 
+              RowBox[{
+               RowBox[{"Sin", "[", 
+                RowBox[{"f1", "*", "2", "Pi", "*", "t"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0.1"}], "}"}]}], "]"}], 
+           "\[IndentingNewLine]", "}"}], "]"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"f2", "\[NotEqual]", "oldf2"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"EmitSound", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{"Sound", "[", 
+            RowBox[{
+             RowBox[{"Play", "[", 
+              RowBox[{
+               RowBox[{"Sin", "[", 
+                RowBox[{
+                 RowBox[{"f2", "*", "2", "Pi", "*", "t"}], "+", "offset"}], 
+                "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0.1"}], "}"}]}], "]"}], 
+           "\[IndentingNewLine]", "}"}], "]"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<play result\>\"", ",", 
+         RowBox[{"EmitSound", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{"Sound", "[", 
+            RowBox[{
+             RowBox[{"Play", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Sin", "[", 
+                 RowBox[{"f1", "*", "2", "Pi", "*", "t"}], "]"}], "+", 
+                RowBox[{"Sin", "[", 
+                 RowBox[{
+                  RowBox[{"f2", "*", "2", "Pi", "*", "t"}], "+", "offset"}], 
+                 "]"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"t", ",", "0", ",", "1"}], "}"}], ",", 
+               RowBox[{"PlayRange", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "1"}], ",", "1"}], "}"}]}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "1"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+           "}"}], "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"oldf1", "=", "f1"}], ";", 
+        RowBox[{"oldf2", "=", "f2"}], ";"}]}], "\[IndentingNewLine]", "}"}], 
+     ",", 
+     RowBox[{"Alignment", "\[Rule]", "Center"}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f1", ",", "200", ",", "\"\<blue wave\>\""}], "}"}], ",", "200",
+      ",", "500", ",", "25"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f2", ",", "200", ",", "\"\<purple wave\>\""}], "}"}], ",", 
+     "200", ",", "500", ",", "25"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"offset", ",", "0", ",", "\"\<offset\>\""}], "}"}], ",", "0", 
+     ",", 
+     RowBox[{"2", "Pi"}], ",", 
+     RowBox[{"Pi", "/", "16"}]}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"oldf1", ",", "200"}], "}"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"oldf2", ",", "200"}], "}"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2", ",", "3"}], "}"}]}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.3880408599245253`*^9, {3.38809355971875*^9, 
+   3.388093591578125*^9}, {3.388093666640625*^9, 3.38809370184375*^9}, {
+   3.38815144875001*^9, 3.3881514508906345`*^9}, {3.3882337403698*^9, 
+   3.3882337440729012`*^9}, {3.3882691751744223`*^9, 3.388269234217186*^9}, {
+   3.3882692713665867`*^9, 3.388269297975689*^9}, {3.3882693926745033`*^9, 
+   3.388269394607625*^9}, {3.3882694454244137`*^9, 3.3882694568925343`*^9}, {
+   3.388269489631571*^9, 3.388269512432417*^9}, {3.388269661143173*^9, 
+   3.388269684364599*^9}, {3.388269879230542*^9, 3.38826991888437*^9}, 
+   3.3882700098763657`*^9, {3.388270052469618*^9, 3.388270085495042*^9}, {
+   3.388270234912266*^9, 3.388270287657125*^9}, {3.388270326529517*^9, 
+   3.388270335431246*^9}, 3.388270379558235*^9, {3.388270415430615*^9, 
+   3.38827046767307*^9}, {3.3882705170265703`*^9, 3.388270560297297*^9}, {
+   3.388270591693824*^9, 3.388270593776366*^9}, {3.388270648023672*^9, 
+   3.388270702571981*^9}, {3.3882707809084873`*^9, 3.38827092511474*^9}, {
+   3.3882709597300386`*^9, 3.388271014389387*^9}, {3.388271057404477*^9, 
+   3.3882712230046473`*^9}, {3.388312081159659*^9, 3.3883121435709476`*^9}, {
+   3.388312188278754*^9, 3.388312208686873*^9}, {3.3883122477847023`*^9, 
+   3.388312274220769*^9}, {3.38831233631575*^9, 3.3883123548475323`*^9}, 
+   3.4204718076988173`*^9, {3.4204732662237945`*^9, 3.420473325854757*^9}, {
+   3.4204733616323347`*^9, 3.4204733910132723`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`f1$$ = 200, $CellContext`f2$$ = 
+    200, $CellContext`offset$$ = 0, $CellContext`oldf1$$ = 
+    200, $CellContext`oldf2$$ = 200, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`f1$$], 200, "blue wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`f2$$], 200, "purple wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`offset$$], 0, "offset"}, 0, 2 Pi, Rational[1, 16] 
+      Pi}, {{
+       Hold[$CellContext`oldf1$$], 200}}, {{
+       Hold[$CellContext`oldf2$$], 200}}}, Typeset`size$$ = {
+    400., {165.5, 170.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`f1$780470$$ = 
+    0, $CellContext`f2$780471$$ = 0, $CellContext`offset$780472$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`f1$$ = 200, $CellContext`f2$$ = 
+        200, $CellContext`offset$$ = 0, $CellContext`oldf1$$ = 
+        200, $CellContext`oldf2$$ = 200}, "ControllerVariables" :> {
+        Hold[$CellContext`f1$$, $CellContext`f1$780470$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780471$$, 0], 
+        Hold[$CellContext`offset$$, $CellContext`offset$780472$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Show[
+          Plot[
+           
+           Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.33, 0.6, 0.7], 
+             Thickness[0.0075]}], 
+          Plot[
+           
+           Sin[(($CellContext`f2$$ 2) 
+              Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.48, 0.11, 0.56], 
+             Thickness[0.0075]}], 
+          Plot[
+          Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+           Sin[(($CellContext`f2$$ 2) 
+               Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 
+            0, 0.02}, PlotStyle -> {
+             RGBColor[0.6, 0.73, 0.36], 
+             Thickness[0.01]}], PlotRange -> {{0, 0.02}, {-2, 2}}, Ticks -> 
+          None, ImageSize -> 400], "", 
+         If[$CellContext`f1$$ != $CellContext`oldf1$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         If[$CellContext`f2$$ != $CellContext`oldf2$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f2$$ 2) 
+                 Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         Button["play result", 
+          EmitSound[{
+            Sound[
+             Play[
+             Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+              Sin[(($CellContext`f2$$ 2) 
+                  Pi) $CellContext`t + $CellContext`offset$$], \
+{$CellContext`t, 0, 1}, PlayRange -> {-1, 1}], {0, 
+             1}]}]], $CellContext`oldf1$$ = $CellContext`f1$$; \
+$CellContext`oldf2$$ = $CellContext`f2$$; Null}, Alignment -> Center], 
+      "Specifications" :> {{{$CellContext`f1$$, 200, "blue wave"}, 200, 500, 
+         25}, {{$CellContext`f2$$, 200, "purple wave"}, 200, 500, 
+         25}, {{$CellContext`offset$$, 0, "offset"}, 0, 2 Pi, Rational[1, 16] 
+         Pi}, {{$CellContext`oldf1$$, 200}, ControlType -> 
+         None}, {{$CellContext`oldf2$$, 200}, ControlType -> None}}, 
+      "Options" :> {AutorunSequencing -> {1, 2, 3}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{446., {237., 242.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->186798225]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell[TextData[{
+ "This Demonstration shows two sound waves and their sum. By adjusting the \
+waves' frequencies and their offset from each other, you can hear a variety \
+of resultant patterns representing the sum of the two waves. It is even \
+possible to allow the two waves to cancel each other out completely by \
+setting them to the same frequency and adjusting the offset to ",
+ Cell[BoxData[
+  FormBox["\[Pi]", TraditionalForm]], "InlineMath"],
+ ", yielding a result that is silent."
+}], "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.388041213056707*^9, 3.388041302992775*^9}, {
+   3.3880413381744537`*^9, 3.388041407764778*^9}, {3.388041439471364*^9, 
+   3.3880415124304447`*^9}, {3.388093752046875*^9, 3.38809375228125*^9}, {
+   3.38815147381251*^9, 3.3881515012656345`*^9}, {3.388271280082271*^9, 
+   3.388271407059826*^9}, {3.3882714477935247`*^9, 3.3882715568187437`*^9}, {
+   3.420472162332901*^9, 3.420472385492243*^9}, {3.4204735378549547`*^9, 
+   3.420473540626232*^9}, {3.420474942159391*^9, 3.4204749699186263`*^9}, 
+   3.420475002945239*^9, {3.4204750820979404`*^9, 3.4204751220963907`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`f1$$ = 300, $CellContext`f2$$ = 
+    325, $CellContext`offset$$ = Rational[15, 16] Pi, $CellContext`oldf1$$ = 
+    300, $CellContext`oldf2$$ = 325, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`f1$$], 300, "blue wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`f2$$], 325, "purple wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`offset$$], Rational[15, 16] Pi, "offset"}, 0, 2 Pi, 
+      Rational[1, 16] Pi}, {{
+       Hold[$CellContext`oldf1$$], 200}}, {{
+       Hold[$CellContext`oldf2$$], 200}}}, Typeset`size$$ = {
+    400., {165.5, 170.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`f1$780534$$ = 
+    0, $CellContext`f2$780535$$ = 0, $CellContext`offset$780536$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`f1$$ = 300, $CellContext`f2$$ = 
+        325, $CellContext`offset$$ = 
+        Rational[15, 16] Pi, $CellContext`oldf1$$ = 200, $CellContext`oldf2$$ = 
+        200}, "ControllerVariables" :> {
+        Hold[$CellContext`f1$$, $CellContext`f1$780534$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780535$$, 0], 
+        Hold[$CellContext`offset$$, $CellContext`offset$780536$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Show[
+          Plot[
+           
+           Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.33, 0.6, 0.7], 
+             Thickness[0.0075]}], 
+          Plot[
+           
+           Sin[(($CellContext`f2$$ 2) 
+              Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.48, 0.11, 0.56], 
+             Thickness[0.0075]}], 
+          Plot[
+          Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+           Sin[(($CellContext`f2$$ 2) 
+               Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 
+            0, 0.02}, PlotStyle -> {
+             RGBColor[0.6, 0.73, 0.36], 
+             Thickness[0.01]}], PlotRange -> {{0, 0.02}, {-2, 2}}, Ticks -> 
+          None, ImageSize -> 400], "", 
+         If[$CellContext`f1$$ != $CellContext`oldf1$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         If[$CellContext`f2$$ != $CellContext`oldf2$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f2$$ 2) 
+                 Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         Button["play result", 
+          EmitSound[{
+            Sound[
+             Play[
+             Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+              Sin[(($CellContext`f2$$ 2) 
+                  Pi) $CellContext`t + $CellContext`offset$$], \
+{$CellContext`t, 0, 1}, PlayRange -> {-1, 1}], {0, 
+             1}]}]], $CellContext`oldf1$$ = $CellContext`f1$$; \
+$CellContext`oldf2$$ = $CellContext`f2$$; Null}, Alignment -> Center], 
+      "Specifications" :> {{{$CellContext`f1$$, 300, "blue wave"}, 200, 500, 
+         25}, {{$CellContext`f2$$, 325, "purple wave"}, 200, 500, 
+         25}, {{$CellContext`offset$$, Rational[15, 16] Pi, "offset"}, 0, 2 
+         Pi, Rational[1, 16] Pi}, {{$CellContext`oldf1$$, 200}, ControlType -> 
+         None}, {{$CellContext`oldf2$$, 200}, ControlType -> None}}, 
+      "Options" :> {AutorunSequencing -> {1, 2, 3}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{446., {237., 242.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->735385505]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`f1$$ = 300, $CellContext`f2$$ = 
+    300, $CellContext`offset$$ = 0, $CellContext`oldf1$$ = 
+    300, $CellContext`oldf2$$ = 300, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`f1$$], 300, "blue wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`f2$$], 300, "purple wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`offset$$], 0, "offset"}, 0, 2 Pi, Rational[1, 16] 
+      Pi}, {{
+       Hold[$CellContext`oldf1$$], 200}}, {{
+       Hold[$CellContext`oldf2$$], 200}}}, Typeset`size$$ = {
+    400., {165.5, 170.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`f1$780598$$ = 
+    0, $CellContext`f2$780599$$ = 0, $CellContext`offset$780600$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`f1$$ = 300, $CellContext`f2$$ = 
+        300, $CellContext`offset$$ = 0, $CellContext`oldf1$$ = 
+        200, $CellContext`oldf2$$ = 200}, "ControllerVariables" :> {
+        Hold[$CellContext`f1$$, $CellContext`f1$780598$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780599$$, 0], 
+        Hold[$CellContext`offset$$, $CellContext`offset$780600$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Show[
+          Plot[
+           
+           Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.33, 0.6, 0.7], 
+             Thickness[0.0075]}], 
+          Plot[
+           
+           Sin[(($CellContext`f2$$ 2) 
+              Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.48, 0.11, 0.56], 
+             Thickness[0.0075]}], 
+          Plot[
+          Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+           Sin[(($CellContext`f2$$ 2) 
+               Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 
+            0, 0.02}, PlotStyle -> {
+             RGBColor[0.6, 0.73, 0.36], 
+             Thickness[0.01]}], PlotRange -> {{0, 0.02}, {-2, 2}}, Ticks -> 
+          None, ImageSize -> 400], "", 
+         If[$CellContext`f1$$ != $CellContext`oldf1$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         If[$CellContext`f2$$ != $CellContext`oldf2$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f2$$ 2) 
+                 Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         Button["play result", 
+          EmitSound[{
+            Sound[
+             Play[
+             Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+              Sin[(($CellContext`f2$$ 2) 
+                  Pi) $CellContext`t + $CellContext`offset$$], \
+{$CellContext`t, 0, 1}, PlayRange -> {-1, 1}], {0, 
+             1}]}]], $CellContext`oldf1$$ = $CellContext`f1$$; \
+$CellContext`oldf2$$ = $CellContext`f2$$; Null}, Alignment -> Center], 
+      "Specifications" :> {{{$CellContext`f1$$, 300, "blue wave"}, 200, 500, 
+         25}, {{$CellContext`f2$$, 300, "purple wave"}, 200, 500, 
+         25}, {{$CellContext`offset$$, 0, "offset"}, 0, 2 Pi, Rational[1, 16] 
+         Pi}, {{$CellContext`oldf1$$, 200}, ControlType -> 
+         None}, {{$CellContext`oldf2$$, 200}, ControlType -> None}}, 
+      "Options" :> {AutorunSequencing -> {1, 2, 3}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{446., {237., 242.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->223892231],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`f1$$ = 375, $CellContext`f2$$ = 
+    375, $CellContext`offset$$ = Pi, $CellContext`oldf1$$ = 
+    375, $CellContext`oldf2$$ = 375, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`f1$$], 375, "blue wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`f2$$], 375, "purple wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`offset$$], Pi, "offset"}, 0, 2 Pi, Rational[1, 16] 
+      Pi}, {{
+       Hold[$CellContext`oldf1$$], 200}}, {{
+       Hold[$CellContext`oldf2$$], 200}}}, Typeset`size$$ = {
+    400., {165.5, 170.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`f1$780662$$ = 
+    0, $CellContext`f2$780663$$ = 0, $CellContext`offset$780664$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`f1$$ = 375, $CellContext`f2$$ = 
+        375, $CellContext`offset$$ = Pi, $CellContext`oldf1$$ = 
+        200, $CellContext`oldf2$$ = 200}, "ControllerVariables" :> {
+        Hold[$CellContext`f1$$, $CellContext`f1$780662$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780663$$, 0], 
+        Hold[$CellContext`offset$$, $CellContext`offset$780664$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Show[
+          Plot[
+           
+           Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.33, 0.6, 0.7], 
+             Thickness[0.0075]}], 
+          Plot[
+           
+           Sin[(($CellContext`f2$$ 2) 
+              Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.48, 0.11, 0.56], 
+             Thickness[0.0075]}], 
+          Plot[
+          Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+           Sin[(($CellContext`f2$$ 2) 
+               Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 
+            0, 0.02}, PlotStyle -> {
+             RGBColor[0.6, 0.73, 0.36], 
+             Thickness[0.01]}], PlotRange -> {{0, 0.02}, {-2, 2}}, Ticks -> 
+          None, ImageSize -> 400], "", 
+         If[$CellContext`f1$$ != $CellContext`oldf1$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         If[$CellContext`f2$$ != $CellContext`oldf2$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f2$$ 2) 
+                 Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         Button["play result", 
+          EmitSound[{
+            Sound[
+             Play[
+             Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+              Sin[(($CellContext`f2$$ 2) 
+                  Pi) $CellContext`t + $CellContext`offset$$], \
+{$CellContext`t, 0, 1}, PlayRange -> {-1, 1}], {0, 
+             1}]}]], $CellContext`oldf1$$ = $CellContext`f1$$; \
+$CellContext`oldf2$$ = $CellContext`f2$$; Null}, Alignment -> Center], 
+      "Specifications" :> {{{$CellContext`f1$$, 375, "blue wave"}, 200, 500, 
+         25}, {{$CellContext`f2$$, 375, "purple wave"}, 200, 500, 
+         25}, {{$CellContext`offset$$, Pi, "offset"}, 0, 2 Pi, 
+         Rational[1, 16] Pi}, {{$CellContext`oldf1$$, 200}, ControlType -> 
+         None}, {{$CellContext`oldf2$$, 200}, ControlType -> None}}, 
+      "Options" :> {AutorunSequencing -> {1, 2, 3}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{446., {237., 242.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->100082982],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`f1$$ = 400, $CellContext`f2$$ = 
+    225, $CellContext`offset$$ = Rational[3, 8] Pi, $CellContext`oldf1$$ = 
+    400, $CellContext`oldf2$$ = 225, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`f1$$], 400, "blue wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`f2$$], 225, "purple wave"}, 200, 500, 25}, {{
+       Hold[$CellContext`offset$$], Rational[3, 8] Pi, "offset"}, 0, 2 Pi, 
+      Rational[1, 16] Pi}, {{
+       Hold[$CellContext`oldf1$$], 200}}, {{
+       Hold[$CellContext`oldf2$$], 200}}}, Typeset`size$$ = {
+    400., {165.5, 170.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`f1$780726$$ = 
+    0, $CellContext`f2$780727$$ = 0, $CellContext`offset$780728$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`f1$$ = 400, $CellContext`f2$$ = 
+        225, $CellContext`offset$$ = Rational[3, 8] Pi, $CellContext`oldf1$$ = 
+        200, $CellContext`oldf2$$ = 200}, "ControllerVariables" :> {
+        Hold[$CellContext`f1$$, $CellContext`f1$780726$$, 0], 
+        Hold[$CellContext`f2$$, $CellContext`f2$780727$$, 0], 
+        Hold[$CellContext`offset$$, $CellContext`offset$780728$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Show[
+          Plot[
+           
+           Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.33, 0.6, 0.7], 
+             Thickness[0.0075]}], 
+          Plot[
+           
+           Sin[(($CellContext`f2$$ 2) 
+              Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 0,
+             0.02}, PlotStyle -> {
+             RGBColor[0.48, 0.11, 0.56], 
+             Thickness[0.0075]}], 
+          Plot[
+          Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+           Sin[(($CellContext`f2$$ 2) 
+               Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t, 
+            0, 0.02}, PlotStyle -> {
+             RGBColor[0.6, 0.73, 0.36], 
+             Thickness[0.01]}], PlotRange -> {{0, 0.02}, {-2, 2}}, Ticks -> 
+          None, ImageSize -> 400], "", 
+         If[$CellContext`f1$$ != $CellContext`oldf1$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         If[$CellContext`f2$$ != $CellContext`oldf2$$, 
+          EmitSound[{
+            Sound[
+             Play[
+              
+              Sin[(($CellContext`f2$$ 2) 
+                 Pi) $CellContext`t + $CellContext`offset$$], {$CellContext`t,
+                0, 1}], {0, 0.1}]}]], 
+         Button["play result", 
+          EmitSound[{
+            Sound[
+             Play[
+             Sin[(($CellContext`f1$$ 2) Pi) $CellContext`t] + 
+              Sin[(($CellContext`f2$$ 2) 
+                  Pi) $CellContext`t + $CellContext`offset$$], \
+{$CellContext`t, 0, 1}, PlayRange -> {-1, 1}], {0, 
+             1}]}]], $CellContext`oldf1$$ = $CellContext`f1$$; \
+$CellContext`oldf2$$ = $CellContext`f2$$; Null}, Alignment -> Center], 
+      "Specifications" :> {{{$CellContext`f1$$, 400, "blue wave"}, 200, 500, 
+         25}, {{$CellContext`f2$$, 225, "purple wave"}, 200, 500, 
+         25}, {{$CellContext`offset$$, Rational[3, 8] Pi, "offset"}, 0, 2 Pi, 
+         Rational[1, 16] Pi}, {{$CellContext`oldf1$$, 200}, ControlType -> 
+         None}, {{$CellContext`oldf2$$, 200}, ControlType -> None}}, 
+      "Options" :> {AutorunSequencing -> {1, 2, 3}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{446., {237., 242.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->158605389]
+}, Open  ]],
+
+Cell["", "DetailsSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection",
+ CellID->897589118],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.4204734301391845`*^9},
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages",
+ CellID->1011440332],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D",
+ CellID->72552797],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators",
+ CellID->144255001],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators",
+ CellID->483245905],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom",
+ CellID->461080579],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls",
+ CellID->142094105],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation",
+ CellID->598696964],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation",
+ CellID->52851620]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["sound", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.388040977748952*^9, 3.388040985694477*^9}, {
+   3.420471923878791*^9, 3.420471924366169*^9}},
+ CellID->98780990],
+
+Cell["wave", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3880409878945007`*^9, 3.388040989434351*^9}, {
+   3.420471930806493*^9, 3.4204719313424797`*^9}},
+ CellID->207239799],
+
+Cell["superposition", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.388040999735126*^9, 3.388041031234213*^9}, {
+   3.420471934670753*^9, 3.420471936030546*^9}},
+ CellID->1665790943],
+
+Cell["cancellation", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.388041008967416*^9, 3.388041010586904*^9}, {
+   3.4204719413990107`*^9, 3.42047197484032*^9}},
+ CellID->204073062],
+
+Cell["addition", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.388041011351449*^9, 3.388041013747088*^9}, {
+   3.420472033034923*^9, 3.420472033850844*^9}},
+ CellID->324568775],
+
+Cell["interference", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.388041013959483*^9, 3.3880410364996567`*^9}, {
+   3.4204720387153797`*^9, 3.4204720399712553`*^9}},
+ CellID->418938045],
+
+Cell["noise", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3880410380321836`*^9, 3.3880410438086147`*^9}, {
+   3.4204720425956383`*^9, 3.4204720432272377`*^9}},
+ CellID->1640327449]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Harmonic Waves",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://scienceworld.wolfram.com/physics/HarmonicWaves.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36898441331443*^9, 3.36898443018932*^9}},
+ CellID->3995883],
+
+Cell[TextData[ButtonBox["Harmonic Addition Theorem",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/HarmonicAdditionTheorem.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36898444762671*^9, 3.36898445386105*^9}},
+ CellID->437152271]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Alan Joyce",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Alan+Joyce"], 
+    None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Alan+Joyce"]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.388040969112891*^9, 3.388040970430148*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{700, Automatic},
+WindowMargins->{{96, Automatic}, {Automatic, 25}},
+FrontEndVersion->"6.0 for Microsoft Windows (32-bit) (February 7, 2008)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[32577, 752, 396, 10, 22, "ControlSuggestions",
+   CellTags->"ResizeImages",
+   CellID->1011440332]},
+ "RotateAndZoomIn3D"->{
+  Cell[32976, 764, 696, 17, 22, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D",
+   CellID->72552797]},
+ "DragLocators"->{
+  Cell[33675, 783, 359, 12, 22, "ControlSuggestions",
+   CellTags->"DragLocators",
+   CellID->144255001]},
+ "CreateAndDeleteLocators"->{
+  Cell[34037, 797, 656, 16, 22, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators",
+   CellID->483245905]},
+ "SliderZoom"->{
+  Cell[34696, 815, 863, 22, 22, "ControlSuggestions",
+   CellTags->"SliderZoom",
+   CellID->461080579]},
+ "GamepadControls"->{
+  Cell[35562, 839, 388, 10, 22, "ControlSuggestions",
+   CellTags->"GamepadControls",
+   CellID->142094105]},
+ "AutomaticAnimation"->{
+  Cell[35953, 851, 1431, 32, 22, "ControlSuggestions",
+   CellTags->"AutomaticAnimation",
+   CellID->598696964]},
+ "BookmarkAnimation"->{
+  Cell[37387, 885, 900, 22, 22, "ControlSuggestions",
+   CellTags->"BookmarkAnimation",
+   CellID->52851620]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 41247, 1010},
+ {"RotateAndZoomIn3D", 41379, 1014},
+ {"DragLocators", 41509, 1018},
+ {"CreateAndDeleteLocators", 41646, 1022},
+ {"SliderZoom", 41781, 1026},
+ {"GamepadControls", 41908, 1030},
+ {"AutomaticAnimation", 42043, 1034},
+ {"BookmarkAnimation", 42181, 1038}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[590, 23, 213, 3, 74, "DemoTitle"],
+Cell[806, 28, 33, 0, 156, "InitializationSection"],
+Cell[CellGroupData[{
+Cell[864, 32, 29, 0, 188, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[918, 36, 7953, 184, 628, "Input"],
+Cell[8874, 222, 4414, 95, 491, "Output",
+ CellID->186798225]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13334, 323, 36, 0, 136, "ManipulateCaptionSection"],
+Cell[13373, 325, 1131, 18, 83, "ManipulateCaption"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14541, 348, 28, 0, 168, "ThumbnailSection"],
+Cell[14572, 350, 4495, 96, 491, "Output",
+ CellID->735385505]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19104, 451, 28, 0, 138, "SnapshotsSection"],
+Cell[19135, 453, 4414, 95, 491, "Output",
+ CellID->223892231],
+Cell[23552, 550, 4418, 95, 491, "Output",
+ CellID->100082982],
+Cell[27973, 647, 4478, 95, 491, "Output",
+ CellID->158605389]
+}, Open  ]],
+Cell[32466, 745, 26, 0, 232, "DetailsSection"],
+Cell[CellGroupData[{
+Cell[32517, 749, 57, 1, 108, "ControlSuggestionsSection",
+ CellID->897589118],
+Cell[32577, 752, 396, 10, 22, "ControlSuggestions",
+ CellTags->"ResizeImages",
+ CellID->1011440332],
+Cell[32976, 764, 696, 17, 22, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D",
+ CellID->72552797],
+Cell[33675, 783, 359, 12, 22, "ControlSuggestions",
+ CellTags->"DragLocators",
+ CellID->144255001],
+Cell[34037, 797, 656, 16, 22, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators",
+ CellID->483245905],
+Cell[34696, 815, 863, 22, 22, "ControlSuggestions",
+ CellTags->"SliderZoom",
+ CellID->461080579],
+Cell[35562, 839, 388, 10, 22, "ControlSuggestions",
+ CellTags->"GamepadControls",
+ CellID->142094105],
+Cell[35953, 851, 1431, 32, 22, "ControlSuggestions",
+ CellTags->"AutomaticAnimation",
+ CellID->598696964],
+Cell[37387, 885, 900, 22, 22, "ControlSuggestions",
+ CellTags->"BookmarkAnimation",
+ CellID->52851620]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38324, 912, 30, 0, 152, "SearchTermsSection"],
+Cell[38357, 914, 187, 4, 22, "SearchTerms",
+ CellID->98780990],
+Cell[38547, 920, 191, 4, 22, "SearchTerms",
+ CellID->207239799],
+Cell[38741, 926, 197, 4, 22, "SearchTerms",
+ CellID->1665790943],
+Cell[38941, 932, 196, 4, 22, "SearchTerms",
+ CellID->204073062],
+Cell[39140, 938, 191, 4, 22, "SearchTerms",
+ CellID->324568775],
+Cell[39334, 944, 201, 4, 22, "SearchTerms",
+ CellID->418938045],
+Cell[39538, 950, 197, 4, 22, "SearchTerms",
+ CellID->1640327449]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39772, 959, 31, 0, 138, "RelatedLinksSection"],
+Cell[39806, 961, 286, 7, 22, "RelatedLinks",
+ CellID->3995883],
+Cell[40095, 970, 298, 7, 22, "RelatedLinks",
+ CellID->437152271]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[40430, 982, 25, 0, 136, "AuthorSection"],
+Cell[40458, 984, 380, 11, 22, "Author"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

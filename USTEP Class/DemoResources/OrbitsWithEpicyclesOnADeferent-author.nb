@@ -1,0 +1,2455 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    107221,       2446]
+NotebookOptionsPosition[    102965,       2314]
+NotebookOutlinePosition[    104580,       2365]
+CellTagsIndexPosition[    104244,       2353]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Orbits with Epicycles on a Deferent\
+\>", "DemoTitle",
+ CellChangeTimes->{{3.607310273567247*^9, 3.607310280250194*^9}, {
+  3.607312429030684*^9, 3.607312432239687*^9}}],
+
+Cell["", "InitializationSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"z", ",", "A"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"z", "[", 
+        RowBox[{"t_", ",", "R_", ",", "F_", ",", "a_"}], "]"}], ":=", 
+       RowBox[{"R", " ", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"2", "Pi", " ", "I", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"F", "+", "1"}], ")"}], " ", "t"}], "+", "a"}], 
+           ")"}]}]]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"A", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"z", "[", 
+         RowBox[{"t", ",", "R", ",", "F", ",", "a"}], "]"}], "+", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"n", ">", "0"}], ",", 
+          RowBox[{
+           RowBox[{"z", "[", 
+            RowBox[{"t", ",", "R1", ",", "F1", ",", "a1"}], "]"}], "+", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"n", ">", "1"}], ",", 
+             RowBox[{
+              RowBox[{"z", "[", 
+               RowBox[{"t", ",", "R2", ",", "F2", ",", "a2"}], "]"}], "+", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"n", ">", "2"}], ",", 
+                RowBox[{"z", "[", 
+                 RowBox[{"t", ",", "R3", ",", "F3", ",", "a3"}], "]"}], ",", 
+                "0"}], "]"}]}], ",", "0"}], "]"}]}], ",", "0"}], "]"}]}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"Show", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"ParametricPlot", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Re", "[", 
+             RowBox[{"A", "[", "t", "]"}], "]"}], ",", 
+            RowBox[{"Im", "[", 
+             RowBox[{"A", "[", "t", "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0.001", ",", "x"}], "}"}], ",", 
+          RowBox[{"Axes", "\[Rule]", "False"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Graphics", "[", "\[IndentingNewLine]", 
+         RowBox[{"Join", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{"Blue", ",", 
+             RowBox[{"PointSize", "[", ".03", "]"}], ",", 
+             RowBox[{"Point", "[", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0"}], "}"}], "]"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"EdgeForm", "[", "Black", "]"}], ",", "Orange", ",", 
+             RowBox[{"Disk", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Re", "[", 
+                  RowBox[{"A", "[", "x", "]"}], "]"}], ",", 
+                 RowBox[{"Im", "[", 
+                  RowBox[{"A", "[", "x", "]"}], "]"}]}], "}"}], ",", ".035"}],
+               "]"}], ",", "\[IndentingNewLine]", "Gray", ",", 
+             RowBox[{"Circle", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}]}], 
+            "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"n", ">", "0"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"Black", ",", "Thin", ",", 
+               RowBox[{"Circle", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Re", "[", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "]"}],
+                    ",", 
+                   RowBox[{"Im", "[", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], 
+                    "]"}]}], "}"}], ",", "R1"}], "]"}], ",", 
+               "\[IndentingNewLine]", "Gray", ",", 
+               RowBox[{"PointSize", "[", ".01", "]"}], ",", 
+               RowBox[{"Point", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Re", "[", 
+                   RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "]"}],
+                   ",", 
+                  RowBox[{"Im", "[", 
+                   RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], 
+                   "]"}]}], "}"}], "]"}]}], "}"}], ",", 
+             RowBox[{"{", "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"n", ">", "1"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"Black", ",", "Thin", ",", 
+               RowBox[{"Circle", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Re", "[", 
+                    RowBox[{
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R1", ",", "F1", ",", "a1"}], "]"}]}], 
+                    "]"}], ",", 
+                   RowBox[{"Im", "[", 
+                    RowBox[{
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R1", ",", "F1", ",", "a1"}], "]"}]}], 
+                    "]"}]}], "}"}], ",", "R2"}], "]"}], ",", 
+               "\[IndentingNewLine]", "Gray", ",", 
+               RowBox[{"PointSize", "[", ".008", "]"}], ",", 
+               RowBox[{"Point", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Re", "[", 
+                   RowBox[{
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R1", ",", "F1", ",", "a1"}], "]"}]}], 
+                   "]"}], ",", 
+                  RowBox[{"Im", "[", 
+                   RowBox[{
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R1", ",", "F1", ",", "a1"}], "]"}]}], 
+                   "]"}]}], "}"}], "]"}]}], "}"}], ",", 
+             RowBox[{"{", "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"n", ">", "2"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"Black", ",", "Thin", ",", 
+               RowBox[{"Circle", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Re", "[", 
+                    RowBox[{
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R1", ",", "F1", ",", "a1"}], "]"}], 
+                    "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R2", ",", "F2", ",", "a2"}], "]"}]}], 
+                    "]"}], ",", 
+                   RowBox[{"Im", "[", 
+                    RowBox[{
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R1", ",", "F1", ",", "a1"}], "]"}], 
+                    "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R2", ",", "F2", ",", "a2"}], "]"}]}], 
+                    "]"}]}], "}"}], ",", "R3"}], "]"}], ",", 
+               "\[IndentingNewLine]", "Gray", ",", 
+               RowBox[{"PointSize", "[", ".006", "]"}], ",", 
+               RowBox[{"Point", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Re", "[", 
+                   RowBox[{
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R1", ",", "F1", ",", "a1"}], "]"}], 
+                    "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R2", ",", "F2", ",", "a2"}], "]"}]}], 
+                   "]"}], ",", 
+                  RowBox[{"Im", "[", 
+                   RowBox[{
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R", ",", "F", ",", "a"}], "]"}], "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R1", ",", "F1", ",", "a1"}], "]"}], 
+                    "+", 
+                    RowBox[{"z", "[", 
+                    RowBox[{"x", ",", "R2", ",", "F2", ",", "a2"}], "]"}]}], 
+                   "]"}]}], "}"}], "]"}]}], "}"}], ",", 
+             RowBox[{"{", "}"}]}], "]"}]}], "\[IndentingNewLine]", "]"}], 
+         "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"Max", "[", 
+          RowBox[{"2", ",", 
+           RowBox[{"1", "+", 
+            RowBox[{"Ceiling", "[", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"n", ">", "0"}], ",", 
+               RowBox[{"R1", "+", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"n", ">", "1"}], ",", 
+                  RowBox[{"R2", "+", 
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"n", ">", "2"}], ",", "R3", ",", "0"}], "]"}]}], 
+                  ",", "0"}], "]"}]}], ",", "0"}], "]"}], "]"}]}]}], "]"}]}], 
+        ",", 
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"430", ",", "430"}], "}"}]}], ",", 
+        RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "\[IndentingNewLine]", 
+       "]"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "1", ",", "\"\<number of epicycles\>\""}], "}"}], ",",
+      " ", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1", ",", "2", ",", "3"}], "}"}], ",", " ", 
+     RowBox[{"ControlPlacement", "\[Rule]", " ", "Top"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0.9", ",", "\"\<rotate\>\""}], "}"}], ",", " ", "0", 
+     ",", "2", ",", "0.01", ",", " ", 
+     RowBox[{"ControlPlacement", "\[Rule]", " ", "Top"}], ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\>\"", ",", "\"\<epicycle\>\"", ",", "SpanFromLeft", ",", 
+         "SpanFromLeft"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\>\"", " ", ",", " ", "\"\<1\>\"", ",", "\"\<2\>\"", ",", 
+         "\"\<3\>\""}], "  ", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<orbital\\nradius\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"R1", ",", "0.3", ",", "\"\<\>\""}], "}"}], ",", "0", 
+            ",", "2", ",", "0.01", ",", 
+            RowBox[{"ControlType", "\[Rule]", " ", "VerticalSlider"}], ",", 
+            " ", 
+            RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}], ",", 
+            RowBox[{"Enabled", "\[Rule]", " ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"n", "<", "1"}], ",", "False", ",", "True"}], 
+              "]"}]}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Control", "[", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"R2", ",", "0.25", ",", "\"\<\>\""}], "}"}], ",", "0", 
+            ",", "2", ",", "0.01", ",", 
+            RowBox[{"ControlType", "\[Rule]", " ", "VerticalSlider"}], ",", 
+            " ", 
+            RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}], ",", " ", 
+            RowBox[{"Enabled", "\[Rule]", " ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"n", "<", "2"}], ",", "False", ",", "True"}], 
+              "]"}]}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"R3", ",", "0.4", ",", "\"\<\>\""}], "}"}], ",", "0", 
+            ",", "2", ",", "0.01", ",", 
+            RowBox[{"ControlType", "\[Rule]", " ", "VerticalSlider"}], ",", 
+            " ", 
+            RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}], ",", 
+            RowBox[{"Enabled", "\[Rule]", " ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"n", "<", "3"}], ",", "False", ",", "True"}], 
+              "]"}]}]}], "}"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"PaddedForm", "[", 
+           RowBox[{"R1", ",", 
+            RowBox[{"{", 
+             RowBox[{"3", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"PaddedForm", "[", 
+           RowBox[{"R2", ",", 
+            RowBox[{"{", 
+             RowBox[{"3", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"PaddedForm", "[", 
+           RowBox[{"R3", ",", 
+            RowBox[{"{", 
+             RowBox[{"3", ",", "2"}], "}"}]}], "]"}], "]"}]}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<rate of\\nrevolution\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"F1", ",", "4", ",", "\"\<\>\""}], "}"}], ",", 
+            RowBox[{"-", "10"}], ",", "10", ",", "0.5", ",", 
+            RowBox[{"ControlType", "\[Rule]", " ", "VerticalSlider"}], ",", 
+            " ", 
+            RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}], ",", 
+            RowBox[{"Enabled", "\[Rule]", " ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"n", "<", "1"}], "||", 
+                RowBox[{"R1", "\[Equal]", "0"}]}], ",", "False", ",", 
+               "True"}], "]"}]}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+         
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"F2", ",", 
+              RowBox[{"-", "8"}], ",", "\"\<\>\""}], "}"}], ",", 
+            RowBox[{"-", "10"}], ",", "10", ",", "0.5", ",", 
+            RowBox[{"ControlType", "\[Rule]", " ", "VerticalSlider"}], ",", 
+            " ", 
+            RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}], ",", 
+            RowBox[{"Enabled", "\[Rule]", " ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"n", "<", "2"}], "||", 
+                RowBox[{"R2", "\[Equal]", "0"}]}], ",", "False", ",", 
+               "True"}], "]"}]}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+         
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"F3", ",", "4", ",", "\"\<\>\""}], "}"}], ",", 
+            RowBox[{"-", "10"}], ",", "10", ",", "0.5", ",", 
+            RowBox[{"ControlType", "\[Rule]", " ", "VerticalSlider"}], ",", 
+            " ", 
+            RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}], ",", 
+            RowBox[{"Enabled", "\[Rule]", " ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"n", "<", "3"}], "||", 
+                RowBox[{"R3", "\[Equal]", "0"}]}], ",", "False", ",", 
+               "True"}], "]"}]}]}], "}"}], "]"}]}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"PaddedForm", "[", 
+           RowBox[{"F1", ",", 
+            RowBox[{"{", 
+             RowBox[{"2", ",", "1"}], "}"}]}], "]"}], "]"}], ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"PaddedForm", "[", 
+           RowBox[{"F2", ",", 
+            RowBox[{"{", 
+             RowBox[{"2", ",", "1"}], "}"}]}], "]"}], "]"}], ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"PaddedForm", "[", 
+           RowBox[{"F3", ",", 
+            RowBox[{"{", 
+             RowBox[{"2", ",", "1"}], "}"}]}], "]"}], "]"}]}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<initial\\nposition\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"a1", ",", "0", ",", "\"\<\>\""}], "}"}], ",", "0", ",", 
+            "1", ",", "0.01", ",", 
+            RowBox[{"ControlType", "\[Rule]", " ", "VerticalSlider"}], ",", 
+            " ", 
+            RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}], ",", 
+            RowBox[{"Enabled", "\[Rule]", " ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"n", "<", "1"}], "||", 
+                RowBox[{"R1", "\[Equal]", "0"}]}], ",", "False", ",", 
+               "True"}], "]"}]}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+         
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"a2", ",", "0.5", ",", "\"\<\>\""}], "}"}], ",", "0", 
+            ",", "1", ",", "0.01", ",", 
+            RowBox[{"ControlType", "\[Rule]", " ", "VerticalSlider"}], ",", 
+            " ", 
+            RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}], ",", 
+            RowBox[{"Enabled", "\[Rule]", " ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"n", "<", "2"}], "||", 
+                RowBox[{"R2", "\[Equal]", "0"}]}], ",", "False", ",", 
+               "True"}], "]"}]}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+         
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"a3", ",", "0", ",", "\"\<\>\""}], "}"}], ",", "0", ",", 
+            "1", ",", "0.01", ",", 
+            RowBox[{"ControlType", "\[Rule]", " ", "VerticalSlider"}], ",", 
+            " ", 
+            RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}], ",", 
+            RowBox[{"Enabled", "\[Rule]", " ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"n", "<", "3"}], "||", 
+                RowBox[{"R3", "\[Equal]", "0"}]}], ",", "False", ",", 
+               "True"}], "]"}]}]}], "}"}], "]"}]}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\>\"", ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"PaddedForm", "[", 
+           RowBox[{"a1", ",", 
+            RowBox[{"{", 
+             RowBox[{"3", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"PaddedForm", "[", 
+           RowBox[{"a2", ",", 
+            RowBox[{"{", 
+             RowBox[{"3", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"PaddedForm", "[", 
+           RowBox[{"a3", ",", 
+            RowBox[{"{", 
+             RowBox[{"3", ",", "2"}], "}"}]}], "]"}], "]"}]}], "}"}]}], "}"}],
+      ",", "\[IndentingNewLine]", 
+     RowBox[{"Alignment", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"{", 
+        RowBox[{"Left", ",", "Center", ",", "Center", ",", "Center"}], "}"}], 
+       "}"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Spacer", "[", "150", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"R", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"F", ",", "0", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", 
+     RowBox[{"ControlType", "\[Rule]", "None"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"9", ",", "10", ",", "11"}], "}"}]}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.607310313535243*^9, 3.6073126143357773`*^9, {3.607312708974263*^9, 
+   3.607312767101053*^9}, {3.607315063177383*^9, 3.6073150640671167`*^9}, {
+   3.607315565140792*^9, 3.607315642999866*^9}, {3.6073158868787193`*^9, 
+   3.607316012284856*^9}, 3.607316370438196*^9, {3.608475295002803*^9, 
+   3.608475317544512*^9}, {3.608476051880334*^9, 3.6084760961815443`*^9}, {
+   3.608476180824435*^9, 3.6084761835499973`*^9}, {3.608476225143149*^9, 
+   3.6084762256292667`*^9}, {3.608476287441242*^9, 3.608476298064653*^9}, {
+   3.6084804653112097`*^9, 3.608480478541774*^9}, {3.6084823966010237`*^9, 
+   3.608482481577299*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 0, $CellContext`a1$$ = 
+    0, $CellContext`a2$$ = 0.5, $CellContext`a3$$ = 0, $CellContext`F$$ = 
+    0, $CellContext`F1$$ = 4, $CellContext`F2$$ = -8, $CellContext`F3$$ = 
+    4, $CellContext`n$$ = 1, $CellContext`R$$ = 1, $CellContext`R1$$ = 
+    0.3, $CellContext`R2$$ = 0.25, $CellContext`R3$$ = 0.4, $CellContext`x$$ =
+     0.9, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`n$$], 1, "number of epicycles"}, {0, 1, 2, 3}}, {{
+       Hold[$CellContext`x$$], 0.9, "rotate"}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R1$$], 0.3, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R2$$], 0.25, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R3$$], 0.4, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`F1$$], 4, ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F2$$], -8, ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F3$$], 4, ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`a1$$], 0, ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a2$$], 0.5, ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a3$$], 0, ""}, 0, 1, 0.01}, {
+      Hold[
+       Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+         "", "1", "2", "3"}, {"orbital\nradius", 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`R1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+         "rate of\nrevolution", 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`F1$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F2$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {
+         "initial\nposition", 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`a1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+        Alignment -> {{Left, Center, Center, Center}}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Spacer[150]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[$CellContext`R$$], 1}, {
+      Hold[$CellContext`F$$], 0}, {
+      Hold[$CellContext`a$$], 0}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`n$45440$$ = 0, $CellContext`x$45441$$ = 
+    0, $CellContext`R1$45442$$ = 0, $CellContext`R2$45443$$ = 
+    0, $CellContext`R3$45444$$ = 0, $CellContext`F1$45445$$ = 
+    0, $CellContext`F2$45446$$ = 0, $CellContext`F3$45447$$ = 
+    0, $CellContext`a1$45448$$ = 0, $CellContext`a2$45449$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 0, $CellContext`a1$$ = 
+        0, $CellContext`a2$$ = 0.5, $CellContext`a3$$ = 0, $CellContext`F$$ = 
+        0, $CellContext`F1$$ = 4, $CellContext`F2$$ = -8, $CellContext`F3$$ = 
+        4, $CellContext`n$$ = 1, $CellContext`R$$ = 1, $CellContext`R1$$ = 
+        0.3, $CellContext`R2$$ = 0.25, $CellContext`R3$$ = 
+        0.4, $CellContext`x$$ = 0.9}, "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$45440$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$45441$$, 0], 
+        Hold[$CellContext`R1$$, $CellContext`R1$45442$$, 0], 
+        Hold[$CellContext`R2$$, $CellContext`R2$45443$$, 0], 
+        Hold[$CellContext`R3$$, $CellContext`R3$45444$$, 0], 
+        Hold[$CellContext`F1$$, $CellContext`F1$45445$$, 0], 
+        Hold[$CellContext`F2$$, $CellContext`F2$45446$$, 0], 
+        Hold[$CellContext`F3$$, $CellContext`F3$45447$$, 0], 
+        Hold[$CellContext`a1$$, $CellContext`a1$45448$$, 0], 
+        Hold[$CellContext`a2$$, $CellContext`a2$45449$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`z$, $CellContext`A$}, $CellContext`z$[
+           Pattern[$CellContext`t, 
+            Blank[]], 
+           Pattern[$CellContext`R, 
+            Blank[]], 
+           Pattern[$CellContext`F, 
+            Blank[]], 
+           Pattern[$CellContext`a, 
+            Blank[]]] := $CellContext`R 
+          E^(2 Pi I (($CellContext`F + 
+               1) $CellContext`t + $CellContext`a)); $CellContext`A$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := $CellContext`z$[$CellContext`t$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + 
+          If[$CellContext`n$$ > 
+            0, $CellContext`z$[$CellContext`t$, $CellContext`R1$$, \
+$CellContext`F1$$, $CellContext`a1$$] + 
+            If[$CellContext`n$$ > 
+              1, $CellContext`z$[$CellContext`t$, $CellContext`R2$$, \
+$CellContext`F2$$, $CellContext`a2$$] + If[$CellContext`n$$ > 2, 
+                $CellContext`z$[$CellContext`t$, $CellContext`R3$$, \
+$CellContext`F3$$, $CellContext`a3$$], 0], 0], 0]; Show[
+          ParametricPlot[{
+            Re[
+             $CellContext`A$[$CellContext`t]], 
+            Im[
+             $CellContext`A$[$CellContext`t]]}, {$CellContext`t, 
+            0.001, $CellContext`x$$}, Axes -> False], 
+          Graphics[
+           Join[{Blue, 
+             PointSize[0.03], 
+             Point[{0, 0}], 
+             EdgeForm[Black], Orange, 
+             Disk[{
+               Re[
+                $CellContext`A$[$CellContext`x$$]], 
+               Im[
+                $CellContext`A$[$CellContext`x$$]]}, 0.035], Gray, 
+             Circle[{0, 0}, 1]}, 
+            If[$CellContext`n$$ > 0, {Black, Thin, 
+              Circle[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}, $CellContext`R1$$], Gray, 
+              PointSize[0.01], 
+              Point[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}]}, {}], 
+            If[$CellContext`n$$ > 1, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}, \
+$CellContext`R2$$], Gray, 
+              PointSize[0.008], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}]}, {}], 
+            If[$CellContext`n$$ > 2, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}, $CellContext`R3$$], Gray, 
+              PointSize[0.006], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}]}, {}]]], PlotRange -> Max[2, 1 + Ceiling[
+              
+              If[$CellContext`n$$ > 0, $CellContext`R1$$ + 
+               If[$CellContext`n$$ > 1, $CellContext`R2$$ + 
+                 If[$CellContext`n$$ > 2, $CellContext`R3$$, 0], 0], 0]]], 
+          ImageSize -> {430, 430}, AspectRatio -> 1]], 
+      "Specifications" :> {{{$CellContext`n$$, 1, "number of epicycles"}, {0, 
+         1, 2, 3}, ControlPlacement -> 
+         Top}, {{$CellContext`x$$, 0.9, "rotate"}, 0, 2, 0.01, 
+         ControlPlacement -> Top, Appearance -> 
+         "Labeled"}, {{$CellContext`R1$$, 0.3, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 1, False, True]], ControlPlacement -> 
+         1}, {{$CellContext`R2$$, 0.25, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 2, False, True]], ControlPlacement -> 
+         2}, {{$CellContext`R3$$, 0.4, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 3, False, True]], ControlPlacement -> 
+         3}, {{$CellContext`F1$$, 4, ""}, -10, 10, 0.5, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 4}, {{$CellContext`F2$$, -8, ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 5}, {{$CellContext`F3$$, 4, ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 6}, {{$CellContext`a1$$, 0, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 7}, {{$CellContext`a2$$, 0.5, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 8}, {{$CellContext`a3$$, 0, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 9}, 
+        Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+          "", "1", "2", "3"}, {"orbital\nradius", 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`R1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+          "rate of\nrevolution", 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`F1$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F2$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {"initial\nposition", 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`a1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+         Alignment -> {{Left, Center, Center, Center}}], 
+        Spacer[
+        150], {$CellContext`R$$, 1, ControlType -> None}, {$CellContext`F$$, 
+         0, ControlType -> None}, {$CellContext`a$$, 0, ControlType -> None}},
+       "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {9, 10, 11}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->850943877]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell["\<\
+This Demonstration shows the trajectory of a planet (orange disk) around an \
+observer (blue circle) according to the epicycle-deferent model. The large \
+gray circle is the deferent and the smaller gray circles are the epicycles. \
+The deferent rotates at a constant speed, and each epicycle revolves at a \
+uniform velocity around a point on the deferent or another epicycle. By \
+adjusting the orbital radius, rate of revolution, and initial position of \
+each epicycle, countless orbits can be obtained that are not observed in \
+reality.\
+\>", "ManipulateCaption",
+ CellChangeTimes->{{3.6073141798591967`*^9, 3.607314346454666*^9}, {
+   3.6073143887820997`*^9, 3.607314641841814*^9}, {3.607316385263216*^9, 
+   3.607316399136475*^9}, 3.6073447315015564`*^9, {3.6073449426762896`*^9, 
+   3.607344943171339*^9}, {3.6073464898019915`*^9, 3.6073464903110423`*^9}, {
+   3.607347163311161*^9, 3.607347176235897*^9}, {3.607348472170217*^9, 
+   3.60734848101786*^9}, {3.607354950363202*^9, 3.607354950467875*^9}},
+ CellID->599106387]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 0, $CellContext`a1$$ = 
+    0, $CellContext`a2$$ = 0.5, $CellContext`a3$$ = 0, $CellContext`F$$ = 
+    0, $CellContext`F1$$ = 4, $CellContext`F2$$ = -8, $CellContext`F3$$ = 
+    4, $CellContext`n$$ = 1, $CellContext`R$$ = 1, $CellContext`R1$$ = 
+    0.3, $CellContext`R2$$ = 0.25, $CellContext`R3$$ = 0.4, $CellContext`x$$ =
+     0.9, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`n$$], 1, "number of epicycles"}, {0, 1, 2, 3}}, {{
+       Hold[$CellContext`x$$], 0.9, "rotate"}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R1$$], 0.3, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R2$$], 0.25, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R3$$], 0.4, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`F1$$], 4, ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F2$$], -8, ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F3$$], 4, ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`a1$$], 0, ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a2$$], 0.5, ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a3$$], 0, ""}, 0, 1, 0.01}, {
+      Hold[
+       Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+         "", "1", "2", "3"}, {"orbital\nradius", 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`R1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+         "rate of\nrevolution", 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`F1$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F2$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {
+         "initial\nposition", 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`a1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+        Alignment -> {{Left, Center, Center, Center}}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Spacer[150]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[$CellContext`R$$], 1}, {
+      Hold[$CellContext`F$$], 0}, {
+      Hold[$CellContext`a$$], 0}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`n$45563$$ = 0, $CellContext`x$45564$$ = 
+    0, $CellContext`R1$45565$$ = 0, $CellContext`R2$45566$$ = 
+    0, $CellContext`R3$45567$$ = 0, $CellContext`F1$45568$$ = 
+    0, $CellContext`F2$45569$$ = 0, $CellContext`F3$45570$$ = 
+    0, $CellContext`a1$45571$$ = 0, $CellContext`a2$45572$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 0, $CellContext`a1$$ = 
+        0, $CellContext`a2$$ = 0.5, $CellContext`a3$$ = 0, $CellContext`F$$ = 
+        0, $CellContext`F1$$ = 4, $CellContext`F2$$ = -8, $CellContext`F3$$ = 
+        4, $CellContext`n$$ = 1, $CellContext`R$$ = 1, $CellContext`R1$$ = 
+        0.3, $CellContext`R2$$ = 0.25, $CellContext`R3$$ = 
+        0.4, $CellContext`x$$ = 0.9}, "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$45563$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$45564$$, 0], 
+        Hold[$CellContext`R1$$, $CellContext`R1$45565$$, 0], 
+        Hold[$CellContext`R2$$, $CellContext`R2$45566$$, 0], 
+        Hold[$CellContext`R3$$, $CellContext`R3$45567$$, 0], 
+        Hold[$CellContext`F1$$, $CellContext`F1$45568$$, 0], 
+        Hold[$CellContext`F2$$, $CellContext`F2$45569$$, 0], 
+        Hold[$CellContext`F3$$, $CellContext`F3$45570$$, 0], 
+        Hold[$CellContext`a1$$, $CellContext`a1$45571$$, 0], 
+        Hold[$CellContext`a2$$, $CellContext`a2$45572$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`z$, $CellContext`A$}, $CellContext`z$[
+           Pattern[$CellContext`t, 
+            Blank[]], 
+           Pattern[$CellContext`R, 
+            Blank[]], 
+           Pattern[$CellContext`F, 
+            Blank[]], 
+           Pattern[$CellContext`a, 
+            Blank[]]] := $CellContext`R 
+          E^(2 Pi I (($CellContext`F + 
+               1) $CellContext`t + $CellContext`a)); $CellContext`A$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := $CellContext`z$[$CellContext`t$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + 
+          If[$CellContext`n$$ > 
+            0, $CellContext`z$[$CellContext`t$, $CellContext`R1$$, \
+$CellContext`F1$$, $CellContext`a1$$] + 
+            If[$CellContext`n$$ > 
+              1, $CellContext`z$[$CellContext`t$, $CellContext`R2$$, \
+$CellContext`F2$$, $CellContext`a2$$] + If[$CellContext`n$$ > 2, 
+                $CellContext`z$[$CellContext`t$, $CellContext`R3$$, \
+$CellContext`F3$$, $CellContext`a3$$], 0], 0], 0]; Show[
+          ParametricPlot[{
+            Re[
+             $CellContext`A$[$CellContext`t]], 
+            Im[
+             $CellContext`A$[$CellContext`t]]}, {$CellContext`t, 
+            0.001, $CellContext`x$$}, Axes -> False], 
+          Graphics[
+           Join[{Blue, 
+             PointSize[0.03], 
+             Point[{0, 0}], 
+             EdgeForm[Black], Orange, 
+             Disk[{
+               Re[
+                $CellContext`A$[$CellContext`x$$]], 
+               Im[
+                $CellContext`A$[$CellContext`x$$]]}, 0.035], Gray, 
+             Circle[{0, 0}, 1]}, 
+            If[$CellContext`n$$ > 0, {Black, Thin, 
+              Circle[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}, $CellContext`R1$$], Gray, 
+              PointSize[0.01], 
+              Point[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}]}, {}], 
+            If[$CellContext`n$$ > 1, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}, \
+$CellContext`R2$$], Gray, 
+              PointSize[0.008], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}]}, {}], 
+            If[$CellContext`n$$ > 2, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}, $CellContext`R3$$], Gray, 
+              PointSize[0.006], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}]}, {}]]], PlotRange -> Max[2, 1 + Ceiling[
+              
+              If[$CellContext`n$$ > 0, $CellContext`R1$$ + 
+               If[$CellContext`n$$ > 1, $CellContext`R2$$ + 
+                 If[$CellContext`n$$ > 2, $CellContext`R3$$, 0], 0], 0]]], 
+          ImageSize -> {430, 430}, AspectRatio -> 1]], 
+      "Specifications" :> {{{$CellContext`n$$, 1, "number of epicycles"}, {0, 
+         1, 2, 3}, ControlPlacement -> 
+         Top}, {{$CellContext`x$$, 0.9, "rotate"}, 0, 2, 0.01, 
+         ControlPlacement -> Top, Appearance -> 
+         "Labeled"}, {{$CellContext`R1$$, 0.3, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 1, False, True]], ControlPlacement -> 
+         1}, {{$CellContext`R2$$, 0.25, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 2, False, True]], ControlPlacement -> 
+         2}, {{$CellContext`R3$$, 0.4, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 3, False, True]], ControlPlacement -> 
+         3}, {{$CellContext`F1$$, 4, ""}, -10, 10, 0.5, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 4}, {{$CellContext`F2$$, -8, ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 5}, {{$CellContext`F3$$, 4, ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 6}, {{$CellContext`a1$$, 0, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 7}, {{$CellContext`a2$$, 0.5, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 8}, {{$CellContext`a3$$, 0, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 9}, 
+        Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+          "", "1", "2", "3"}, {"orbital\nradius", 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`R1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+          "rate of\nrevolution", 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`F1$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F2$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {"initial\nposition", 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`a1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+         Alignment -> {{Left, Center, Center, Center}}], 
+        Spacer[
+        150], {$CellContext`R$$, 1, ControlType -> None}, {$CellContext`F$$, 
+         0, ControlType -> None}, {$CellContext`a$$, 0, ControlType -> None}},
+       "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {9, 10, 11}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1720135366]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 0, $CellContext`a1$$ = 
+    0, $CellContext`a2$$ = 0., $CellContext`a3$$ = 0, $CellContext`F$$ = 
+    0, $CellContext`F1$$ = 
+    3., $CellContext`F2$$ = -9., $CellContext`F3$$ = -3., $CellContext`n$$ = 
+    3, $CellContext`R$$ = 1, $CellContext`R1$$ = 0.3, $CellContext`R2$$ = 
+    0.1, $CellContext`R3$$ = 0.5, $CellContext`x$$ = 0.9, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`n$$], 3, "number of epicycles"}, {0, 1, 2, 3}}, {{
+       Hold[$CellContext`x$$], 0.9, "rotate"}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R1$$], 0.3, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R2$$], 0.1, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R3$$], 0.5, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`F1$$], 3., ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F2$$], -9., ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F3$$], -3., ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`a1$$], 0, ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a2$$], 0., ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a3$$], 0, ""}, 0, 1, 0.01}, {
+      Hold[
+       Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+         "", "1", "2", "3"}, {"orbital\nradius", 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`R1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+         "rate of\nrevolution", 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`F1$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F2$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {
+         "initial\nposition", 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`a1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+        Alignment -> {{Left, Center, Center, Center}}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Spacer[150]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[$CellContext`R$$], 1}, {
+      Hold[$CellContext`F$$], 0}, {
+      Hold[$CellContext`a$$], 0}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`n$45686$$ = 0, $CellContext`x$45687$$ = 
+    0, $CellContext`R1$45688$$ = 0, $CellContext`R2$45689$$ = 
+    0, $CellContext`R3$45690$$ = 0, $CellContext`F1$45691$$ = 
+    0, $CellContext`F2$45692$$ = 0, $CellContext`F3$45693$$ = 
+    0, $CellContext`a1$45694$$ = 0, $CellContext`a2$45695$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 0, $CellContext`a1$$ = 
+        0, $CellContext`a2$$ = 0., $CellContext`a3$$ = 0, $CellContext`F$$ = 
+        0, $CellContext`F1$$ = 
+        3., $CellContext`F2$$ = -9., $CellContext`F3$$ = -3., \
+$CellContext`n$$ = 3, $CellContext`R$$ = 1, $CellContext`R1$$ = 
+        0.3, $CellContext`R2$$ = 0.1, $CellContext`R3$$ = 
+        0.5, $CellContext`x$$ = 0.9}, "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$45686$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$45687$$, 0], 
+        Hold[$CellContext`R1$$, $CellContext`R1$45688$$, 0], 
+        Hold[$CellContext`R2$$, $CellContext`R2$45689$$, 0], 
+        Hold[$CellContext`R3$$, $CellContext`R3$45690$$, 0], 
+        Hold[$CellContext`F1$$, $CellContext`F1$45691$$, 0], 
+        Hold[$CellContext`F2$$, $CellContext`F2$45692$$, 0], 
+        Hold[$CellContext`F3$$, $CellContext`F3$45693$$, 0], 
+        Hold[$CellContext`a1$$, $CellContext`a1$45694$$, 0], 
+        Hold[$CellContext`a2$$, $CellContext`a2$45695$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`z$, $CellContext`A$}, $CellContext`z$[
+           Pattern[$CellContext`t, 
+            Blank[]], 
+           Pattern[$CellContext`R, 
+            Blank[]], 
+           Pattern[$CellContext`F, 
+            Blank[]], 
+           Pattern[$CellContext`a, 
+            Blank[]]] := $CellContext`R 
+          E^(2 Pi I (($CellContext`F + 
+               1) $CellContext`t + $CellContext`a)); $CellContext`A$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := $CellContext`z$[$CellContext`t$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + 
+          If[$CellContext`n$$ > 
+            0, $CellContext`z$[$CellContext`t$, $CellContext`R1$$, \
+$CellContext`F1$$, $CellContext`a1$$] + 
+            If[$CellContext`n$$ > 
+              1, $CellContext`z$[$CellContext`t$, $CellContext`R2$$, \
+$CellContext`F2$$, $CellContext`a2$$] + If[$CellContext`n$$ > 2, 
+                $CellContext`z$[$CellContext`t$, $CellContext`R3$$, \
+$CellContext`F3$$, $CellContext`a3$$], 0], 0], 0]; Show[
+          ParametricPlot[{
+            Re[
+             $CellContext`A$[$CellContext`t]], 
+            Im[
+             $CellContext`A$[$CellContext`t]]}, {$CellContext`t, 
+            0.001, $CellContext`x$$}, Axes -> False], 
+          Graphics[
+           Join[{Blue, 
+             PointSize[0.03], 
+             Point[{0, 0}], 
+             EdgeForm[Black], Orange, 
+             Disk[{
+               Re[
+                $CellContext`A$[$CellContext`x$$]], 
+               Im[
+                $CellContext`A$[$CellContext`x$$]]}, 0.035], Gray, 
+             Circle[{0, 0}, 1]}, 
+            If[$CellContext`n$$ > 0, {Black, Thin, 
+              Circle[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}, $CellContext`R1$$], Gray, 
+              PointSize[0.01], 
+              Point[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}]}, {}], 
+            If[$CellContext`n$$ > 1, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}, \
+$CellContext`R2$$], Gray, 
+              PointSize[0.008], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}]}, {}], 
+            If[$CellContext`n$$ > 2, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}, $CellContext`R3$$], Gray, 
+              PointSize[0.006], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}]}, {}]]], PlotRange -> Max[2, 1 + Ceiling[
+              
+              If[$CellContext`n$$ > 0, $CellContext`R1$$ + 
+               If[$CellContext`n$$ > 1, $CellContext`R2$$ + 
+                 If[$CellContext`n$$ > 2, $CellContext`R3$$, 0], 0], 0]]], 
+          ImageSize -> {430, 430}, AspectRatio -> 1]], 
+      "Specifications" :> {{{$CellContext`n$$, 3, "number of epicycles"}, {0, 
+         1, 2, 3}, ControlPlacement -> 
+         Top}, {{$CellContext`x$$, 0.9, "rotate"}, 0, 2, 0.01, 
+         ControlPlacement -> Top, Appearance -> 
+         "Labeled"}, {{$CellContext`R1$$, 0.3, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 1, False, True]], ControlPlacement -> 
+         1}, {{$CellContext`R2$$, 0.1, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 2, False, True]], ControlPlacement -> 
+         2}, {{$CellContext`R3$$, 0.5, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 3, False, True]], ControlPlacement -> 
+         3}, {{$CellContext`F1$$, 3., ""}, -10, 10, 0.5, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 4}, {{$CellContext`F2$$, -9., ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 5}, {{$CellContext`F3$$, -3., ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 6}, {{$CellContext`a1$$, 0, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 7}, {{$CellContext`a2$$, 0., ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 8}, {{$CellContext`a3$$, 0, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 9}, 
+        Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+          "", "1", "2", "3"}, {"orbital\nradius", 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`R1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+          "rate of\nrevolution", 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`F1$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F2$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {"initial\nposition", 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`a1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+         Alignment -> {{Left, Center, Center, Center}}], 
+        Spacer[
+        150], {$CellContext`R$$, 1, ControlType -> None}, {$CellContext`F$$, 
+         0, ControlType -> None}, {$CellContext`a$$, 0, ControlType -> None}},
+       "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {9, 10, 11}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->890240448],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 0, $CellContext`a1$$ = 
+    0, $CellContext`a2$$ = 0., $CellContext`a3$$ = 0.5, $CellContext`F$$ = 
+    0, $CellContext`F1$$ = -3., $CellContext`F2$$ = 
+    1., $CellContext`F3$$ = -6., $CellContext`n$$ = 3, $CellContext`R$$ = 
+    1, $CellContext`R1$$ = 0.5, $CellContext`R2$$ = 0.4, $CellContext`R3$$ = 
+    0.1, $CellContext`x$$ = 0.9, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`n$$], 3, "number of epicycles"}, {0, 1, 2, 3}}, {{
+       Hold[$CellContext`x$$], 0.9, "rotate"}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R1$$], 0.5, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R2$$], 0.4, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R3$$], 0.1, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`F1$$], -3., ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F2$$], 1., ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F3$$], -6., ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`a1$$], 0, ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a2$$], 0., ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a3$$], 0.5, ""}, 0, 1, 0.01}, {
+      Hold[
+       Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+         "", "1", "2", "3"}, {"orbital\nradius", 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`R1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+         "rate of\nrevolution", 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`F1$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F2$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {
+         "initial\nposition", 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`a1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+        Alignment -> {{Left, Center, Center, Center}}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Spacer[150]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[$CellContext`R$$], 1}, {
+      Hold[$CellContext`F$$], 0}, {
+      Hold[$CellContext`a$$], 0}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`n$45809$$ = 0, $CellContext`x$45810$$ = 
+    0, $CellContext`R1$45811$$ = 0, $CellContext`R2$45812$$ = 
+    0, $CellContext`R3$45813$$ = 0, $CellContext`F1$45814$$ = 
+    0, $CellContext`F2$45815$$ = 0, $CellContext`F3$45816$$ = 
+    0, $CellContext`a1$45817$$ = 0, $CellContext`a2$45818$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 0, $CellContext`a1$$ = 
+        0, $CellContext`a2$$ = 0., $CellContext`a3$$ = 0.5, $CellContext`F$$ = 
+        0, $CellContext`F1$$ = -3., $CellContext`F2$$ = 
+        1., $CellContext`F3$$ = -6., $CellContext`n$$ = 3, $CellContext`R$$ = 
+        1, $CellContext`R1$$ = 0.5, $CellContext`R2$$ = 
+        0.4, $CellContext`R3$$ = 0.1, $CellContext`x$$ = 0.9}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$45809$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$45810$$, 0], 
+        Hold[$CellContext`R1$$, $CellContext`R1$45811$$, 0], 
+        Hold[$CellContext`R2$$, $CellContext`R2$45812$$, 0], 
+        Hold[$CellContext`R3$$, $CellContext`R3$45813$$, 0], 
+        Hold[$CellContext`F1$$, $CellContext`F1$45814$$, 0], 
+        Hold[$CellContext`F2$$, $CellContext`F2$45815$$, 0], 
+        Hold[$CellContext`F3$$, $CellContext`F3$45816$$, 0], 
+        Hold[$CellContext`a1$$, $CellContext`a1$45817$$, 0], 
+        Hold[$CellContext`a2$$, $CellContext`a2$45818$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`z$, $CellContext`A$}, $CellContext`z$[
+           Pattern[$CellContext`t, 
+            Blank[]], 
+           Pattern[$CellContext`R, 
+            Blank[]], 
+           Pattern[$CellContext`F, 
+            Blank[]], 
+           Pattern[$CellContext`a, 
+            Blank[]]] := $CellContext`R 
+          E^(2 Pi I (($CellContext`F + 
+               1) $CellContext`t + $CellContext`a)); $CellContext`A$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := $CellContext`z$[$CellContext`t$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + 
+          If[$CellContext`n$$ > 
+            0, $CellContext`z$[$CellContext`t$, $CellContext`R1$$, \
+$CellContext`F1$$, $CellContext`a1$$] + 
+            If[$CellContext`n$$ > 
+              1, $CellContext`z$[$CellContext`t$, $CellContext`R2$$, \
+$CellContext`F2$$, $CellContext`a2$$] + If[$CellContext`n$$ > 2, 
+                $CellContext`z$[$CellContext`t$, $CellContext`R3$$, \
+$CellContext`F3$$, $CellContext`a3$$], 0], 0], 0]; Show[
+          ParametricPlot[{
+            Re[
+             $CellContext`A$[$CellContext`t]], 
+            Im[
+             $CellContext`A$[$CellContext`t]]}, {$CellContext`t, 
+            0.001, $CellContext`x$$}, Axes -> False], 
+          Graphics[
+           Join[{Blue, 
+             PointSize[0.03], 
+             Point[{0, 0}], 
+             EdgeForm[Black], Orange, 
+             Disk[{
+               Re[
+                $CellContext`A$[$CellContext`x$$]], 
+               Im[
+                $CellContext`A$[$CellContext`x$$]]}, 0.035], Gray, 
+             Circle[{0, 0}, 1]}, 
+            If[$CellContext`n$$ > 0, {Black, Thin, 
+              Circle[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}, $CellContext`R1$$], Gray, 
+              PointSize[0.01], 
+              Point[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}]}, {}], 
+            If[$CellContext`n$$ > 1, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}, \
+$CellContext`R2$$], Gray, 
+              PointSize[0.008], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}]}, {}], 
+            If[$CellContext`n$$ > 2, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}, $CellContext`R3$$], Gray, 
+              PointSize[0.006], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}]}, {}]]], PlotRange -> Max[2, 1 + Ceiling[
+              
+              If[$CellContext`n$$ > 0, $CellContext`R1$$ + 
+               If[$CellContext`n$$ > 1, $CellContext`R2$$ + 
+                 If[$CellContext`n$$ > 2, $CellContext`R3$$, 0], 0], 0]]], 
+          ImageSize -> {430, 430}, AspectRatio -> 1]], 
+      "Specifications" :> {{{$CellContext`n$$, 3, "number of epicycles"}, {0, 
+         1, 2, 3}, ControlPlacement -> 
+         Top}, {{$CellContext`x$$, 0.9, "rotate"}, 0, 2, 0.01, 
+         ControlPlacement -> Top, Appearance -> 
+         "Labeled"}, {{$CellContext`R1$$, 0.5, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 1, False, True]], ControlPlacement -> 
+         1}, {{$CellContext`R2$$, 0.4, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 2, False, True]], ControlPlacement -> 
+         2}, {{$CellContext`R3$$, 0.1, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 3, False, True]], ControlPlacement -> 
+         3}, {{$CellContext`F1$$, -3., ""}, -10, 10, 0.5, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 4}, {{$CellContext`F2$$, 1., ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 5}, {{$CellContext`F3$$, -6., ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 6}, {{$CellContext`a1$$, 0, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 7}, {{$CellContext`a2$$, 0., ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 8}, {{$CellContext`a3$$, 0.5, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 9}, 
+        Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+          "", "1", "2", "3"}, {"orbital\nradius", 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`R1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+          "rate of\nrevolution", 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`F1$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F2$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {"initial\nposition", 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`a1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+         Alignment -> {{Left, Center, Center, Center}}], 
+        Spacer[
+        150], {$CellContext`R$$, 1, ControlType -> None}, {$CellContext`F$$, 
+         0, ControlType -> None}, {$CellContext`a$$, 0, ControlType -> None}},
+       "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {9, 10, 11}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->752640887],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 0, $CellContext`a1$$ = 
+    0.25, $CellContext`a2$$ = 0.5, $CellContext`a3$$ = 0, $CellContext`F$$ = 
+    0, $CellContext`F1$$ = -4., $CellContext`F2$$ = -8, $CellContext`F3$$ = 
+    4, $CellContext`n$$ = 3, $CellContext`R$$ = 1, $CellContext`R1$$ = 
+    0.33, $CellContext`R2$$ = 0.25, $CellContext`R3$$ = 
+    0.4, $CellContext`x$$ = 0.9, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`n$$], 3, "number of epicycles"}, {0, 1, 2, 3}}, {{
+       Hold[$CellContext`x$$], 0.9, "rotate"}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R1$$], 0.33, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R2$$], 0.25, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`R3$$], 0.4, ""}, 0, 2, 0.01}, {{
+       Hold[$CellContext`F1$$], -4., ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F2$$], -8, ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`F3$$], 4, ""}, -10, 10, 0.5}, {{
+       Hold[$CellContext`a1$$], 0.25, ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a2$$], 0.5, ""}, 0, 1, 0.01}, {{
+       Hold[$CellContext`a3$$], 0, ""}, 0, 1, 0.01}, {
+      Hold[
+       Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+         "", "1", "2", "3"}, {"orbital\nradius", 
+          Manipulate`Place[1], 
+          Manipulate`Place[2], 
+          Manipulate`Place[3]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`R1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+         "rate of\nrevolution", 
+          Manipulate`Place[4], 
+          Manipulate`Place[5], 
+          Manipulate`Place[6]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`F1$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F2$$, {2, 1}]], 
+          Dynamic[
+           PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {
+         "initial\nposition", 
+          Manipulate`Place[7], 
+          Manipulate`Place[8], 
+          Manipulate`Place[9]}, {"", 
+          Dynamic[
+           PaddedForm[$CellContext`a1$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a2$$, {3, 2}]], 
+          Dynamic[
+           PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+        Alignment -> {{Left, Center, Center, Center}}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Spacer[150]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[$CellContext`R$$], 1}, {
+      Hold[$CellContext`F$$], 0}, {
+      Hold[$CellContext`a$$], 0}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`n$45932$$ = 0, $CellContext`x$45933$$ = 
+    0, $CellContext`R1$45934$$ = 0, $CellContext`R2$45935$$ = 
+    0, $CellContext`R3$45936$$ = 0, $CellContext`F1$45937$$ = 
+    0, $CellContext`F2$45938$$ = 0, $CellContext`F3$45939$$ = 
+    0, $CellContext`a1$45940$$ = 0, $CellContext`a2$45941$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 0, $CellContext`a1$$ = 
+        0.25, $CellContext`a2$$ = 0.5, $CellContext`a3$$ = 
+        0, $CellContext`F$$ = 
+        0, $CellContext`F1$$ = -4., $CellContext`F2$$ = -8, $CellContext`F3$$ = 
+        4, $CellContext`n$$ = 3, $CellContext`R$$ = 1, $CellContext`R1$$ = 
+        0.33, $CellContext`R2$$ = 0.25, $CellContext`R3$$ = 
+        0.4, $CellContext`x$$ = 0.9}, "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$45932$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$45933$$, 0], 
+        Hold[$CellContext`R1$$, $CellContext`R1$45934$$, 0], 
+        Hold[$CellContext`R2$$, $CellContext`R2$45935$$, 0], 
+        Hold[$CellContext`R3$$, $CellContext`R3$45936$$, 0], 
+        Hold[$CellContext`F1$$, $CellContext`F1$45937$$, 0], 
+        Hold[$CellContext`F2$$, $CellContext`F2$45938$$, 0], 
+        Hold[$CellContext`F3$$, $CellContext`F3$45939$$, 0], 
+        Hold[$CellContext`a1$$, $CellContext`a1$45940$$, 0], 
+        Hold[$CellContext`a2$$, $CellContext`a2$45941$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`z$, $CellContext`A$}, $CellContext`z$[
+           Pattern[$CellContext`t, 
+            Blank[]], 
+           Pattern[$CellContext`R, 
+            Blank[]], 
+           Pattern[$CellContext`F, 
+            Blank[]], 
+           Pattern[$CellContext`a, 
+            Blank[]]] := $CellContext`R 
+          E^(2 Pi I (($CellContext`F + 
+               1) $CellContext`t + $CellContext`a)); $CellContext`A$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := $CellContext`z$[$CellContext`t$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + 
+          If[$CellContext`n$$ > 
+            0, $CellContext`z$[$CellContext`t$, $CellContext`R1$$, \
+$CellContext`F1$$, $CellContext`a1$$] + 
+            If[$CellContext`n$$ > 
+              1, $CellContext`z$[$CellContext`t$, $CellContext`R2$$, \
+$CellContext`F2$$, $CellContext`a2$$] + If[$CellContext`n$$ > 2, 
+                $CellContext`z$[$CellContext`t$, $CellContext`R3$$, \
+$CellContext`F3$$, $CellContext`a3$$], 0], 0], 0]; Show[
+          ParametricPlot[{
+            Re[
+             $CellContext`A$[$CellContext`t]], 
+            Im[
+             $CellContext`A$[$CellContext`t]]}, {$CellContext`t, 
+            0.001, $CellContext`x$$}, Axes -> False], 
+          Graphics[
+           Join[{Blue, 
+             PointSize[0.03], 
+             Point[{0, 0}], 
+             EdgeForm[Black], Orange, 
+             Disk[{
+               Re[
+                $CellContext`A$[$CellContext`x$$]], 
+               Im[
+                $CellContext`A$[$CellContext`x$$]]}, 0.035], Gray, 
+             Circle[{0, 0}, 1]}, 
+            If[$CellContext`n$$ > 0, {Black, Thin, 
+              Circle[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}, $CellContext`R1$$], Gray, 
+              PointSize[0.01], 
+              Point[{
+                Re[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]], 
+                Im[
+                 $CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$]]}]}, {}], 
+            If[$CellContext`n$$ > 1, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}, \
+$CellContext`R2$$], Gray, 
+              PointSize[0.008], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$]]}]}, {}], 
+            If[$CellContext`n$$ > 2, {Black, Thin, 
+              Circle[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}, $CellContext`R3$$], Gray, 
+              PointSize[0.006], 
+              Point[{
+                
+                Re[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]], 
+                
+                Im[$CellContext`z$[$CellContext`x$$, $CellContext`R$$, \
+$CellContext`F$$, $CellContext`a$$] + $CellContext`z$[$CellContext`x$$, \
+$CellContext`R1$$, $CellContext`F1$$, $CellContext`a1$$] + \
+$CellContext`z$[$CellContext`x$$, $CellContext`R2$$, $CellContext`F2$$, \
+$CellContext`a2$$]]}]}, {}]]], PlotRange -> Max[2, 1 + Ceiling[
+              
+              If[$CellContext`n$$ > 0, $CellContext`R1$$ + 
+               If[$CellContext`n$$ > 1, $CellContext`R2$$ + 
+                 If[$CellContext`n$$ > 2, $CellContext`R3$$, 0], 0], 0]]], 
+          ImageSize -> {430, 430}, AspectRatio -> 1]], 
+      "Specifications" :> {{{$CellContext`n$$, 3, "number of epicycles"}, {0, 
+         1, 2, 3}, ControlPlacement -> 
+         Top}, {{$CellContext`x$$, 0.9, "rotate"}, 0, 2, 0.01, 
+         ControlPlacement -> Top, Appearance -> 
+         "Labeled"}, {{$CellContext`R1$$, 0.33, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 1, False, True]], ControlPlacement -> 
+         1}, {{$CellContext`R2$$, 0.25, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 2, False, True]], ControlPlacement -> 
+         2}, {{$CellContext`R3$$, 0.4, ""}, 0, 2, 0.01, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[$CellContext`n$$ < 3, False, True]], ControlPlacement -> 
+         3}, {{$CellContext`F1$$, -4., ""}, -10, 10, 0.5, ControlType -> 
+         VerticalSlider, ImageSize -> Tiny, Enabled -> Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 4}, {{$CellContext`F2$$, -8, ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 5}, {{$CellContext`F3$$, 4, ""}, -10, 10, 0.5, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 6}, {{$CellContext`a1$$, 0.25, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 1, $CellContext`R1$$ == 0], False, True]], 
+         ControlPlacement -> 7}, {{$CellContext`a2$$, 0.5, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 2, $CellContext`R2$$ == 0], False, True]], 
+         ControlPlacement -> 8}, {{$CellContext`a3$$, 0, ""}, 0, 1, 0.01, 
+         ControlType -> VerticalSlider, ImageSize -> Tiny, Enabled -> 
+         Dynamic[
+           If[
+            Or[$CellContext`n$$ < 3, $CellContext`R3$$ == 0], False, True]], 
+         ControlPlacement -> 9}, 
+        Grid[{{"", "epicycle", SpanFromLeft, SpanFromLeft}, {
+          "", "1", "2", "3"}, {"orbital\nradius", 
+           Manipulate`Place[1], 
+           Manipulate`Place[2], 
+           Manipulate`Place[3]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`R1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`R3$$, {3, 2}]]}, {}, {
+          "rate of\nrevolution", 
+           Manipulate`Place[4], 
+           Manipulate`Place[5], 
+           Manipulate`Place[6]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`F1$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F2$$, {2, 1}]], 
+           Dynamic[
+            PaddedForm[$CellContext`F3$$, {2, 1}]]}, {}, {"initial\nposition", 
+           Manipulate`Place[7], 
+           Manipulate`Place[8], 
+           Manipulate`Place[9]}, {"", 
+           Dynamic[
+            PaddedForm[$CellContext`a1$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a2$$, {3, 2}]], 
+           Dynamic[
+            PaddedForm[$CellContext`a3$$, {3, 2}]]}}, 
+         Alignment -> {{Left, Center, Center, Center}}], 
+        Spacer[
+        150], {$CellContext`R$$, 1, ControlType -> None}, {$CellContext`F$$, 
+         0, ControlType -> None}, {$CellContext`a$$, 0, ControlType -> None}},
+       "Options" :> {
+       ControlPlacement -> Left, AutorunSequencing -> {9, 10, 11}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->956706979]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "DetailsSection"],
+
+Cell["\<\
+Both Claudius Ptolemy and Nicolaus Copernicus were convinced that the orbits \
+of planets and stars could be described by the epicycle-deferent model used \
+since antiquity. Besides being able to accurately predict the movement of \
+planets and stars, this model also allows for a multitude of orbits that are \
+not observed in the universe, such as square and triangular trajectories.\
+\>", "DetailNotes",
+ CellChangeTimes->{{3.607313909928514*^9, 3.607313986855996*^9}, {
+   3.6073140602570963`*^9, 3.60731410907915*^9}, {3.607314707220723*^9, 
+   3.6073147241606483`*^9}, {3.607314767455735*^9, 3.607314925887184*^9}, 
+   3.6073447586725564`*^9, {3.607348416229599*^9, 3.6073484428033037`*^9}, {
+   3.6083901247520256`*^9, 3.6083901250690575`*^9}},
+ CellID->541620442]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.608476575781742*^9},
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.608476584180771*^9},
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9, 
+  3.608476583444014*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0, CellBaseline -> Baseline], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.6084765848702993`*^9},
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["epicycle", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36434516692238*^9, 3.36434517307863*^9}, {
+   3.607313680507406*^9, 3.6073136821426077`*^9}},
+ CellID->9620120],
+
+Cell["deferent", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.364345187125*^9, 3.36434519742188*^9}, {
+   3.607313685478269*^9, 3.607313687109653*^9}},
+ CellID->245912470],
+
+Cell["orbit", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36434517834425*^9, 3.36434518228175*^9}, {
+   3.607313689517284*^9, 3.607313708481284*^9}},
+ CellID->316166559],
+
+Cell["Copernicus", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36434515707863*^9, 3.364345162188*^9}, {
+   3.6073137143202267`*^9, 3.607313717975244*^9}},
+ CellID->137963802],
+
+Cell["Ptolemy", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36434516692238*^9, 3.36434517307863*^9}, {
+   3.607313722656213*^9, 3.607313728037236*^9}},
+ CellID->1446983563],
+
+Cell["planet", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.364345187125*^9, 3.36434519742188*^9}, {
+   3.607313765815493*^9, 3.607313767716992*^9}},
+ CellID->1347924713]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Cyclotron 4000",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/Cyclotron4000/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/Cyclotron4000/"]], "RelatedLinks",
+ CellChangeTimes->{{3.6073448118392076`*^9, 3.607344811843208*^9}},
+ CellID->238990195],
+
+Cell[TextData[ButtonBox["Epicycles Revisited; Convexity of Lunar Orbit about \
+the Sun",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/\
+EpicyclesRevisitedConvexityOfLunarOrbitAboutTheSun/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/\
+EpicyclesRevisitedConvexityOfLunarOrbitAboutTheSun/"]], "RelatedLinks",
+ CellChangeTimes->{{3.6073448324682703`*^9, 3.6073448324752707`*^9}},
+ CellID->321595988],
+
+Cell[TextData[ButtonBox["Rolling a Coin inside a Circle",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/RollingACoinInsideACircle/"], None},
+ 
+ ButtonNote->
+  "http://demonstrations.wolfram.com/RollingACoinInsideACircle/"]], \
+"RelatedLinks",
+ CellChangeTimes->{{3.607344872832306*^9, 3.6073448728363066`*^9}},
+ CellID->61421641]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Martim Cortez de Lob\[ATilde]o",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Martim+Cortez+\
+de+Lob%C3%A3o"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Martim+Cortez+de+Lob%\
+C3%A3o"]
+}], "Author",
+ CellChangeTimes->{{3.6073134970551*^9, 3.6073135000121803`*^9}, {
+  3.607314953171253*^9, 3.60731495833584*^9}},
+ CellID->1310605038]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{821, 746},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[94246, 2062, 353, 9, 29, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[94602, 2073, 678, 16, 29, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "DragLocators"->{
+  Cell[95283, 2091, 340, 11, 29, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "CreateAndDeleteLocators"->{
+  Cell[95626, 2104, 637, 15, 29, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "SliderZoom"->{
+  Cell[96266, 2121, 885, 22, 29, "ControlSuggestions",
+   CellTags->"SliderZoom"]},
+ "GamepadControls"->{
+  Cell[97154, 2145, 393, 10, 29, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "AutomaticAnimation"->{
+  Cell[97550, 2157, 1507, 32, 29, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[99060, 2191, 908, 21, 29, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 103344, 2326},
+ {"RotateAndZoomIn3D", 103453, 2329},
+ {"DragLocators", 103563, 2332},
+ {"CreateAndDeleteLocators", 103679, 2335},
+ {"SliderZoom", 103793, 2338},
+ {"GamepadControls", 103899, 2341},
+ {"AutomaticAnimation", 104013, 2344},
+ {"BookmarkAnimation", 104130, 2347}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 179, 4, 76, "DemoTitle"],
+Cell[761, 28, 33, 0, 275, "InitializationSection"],
+Cell[CellGroupData[{
+Cell[819, 32, 29, 0, 201, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[873, 36, 21529, 505, 1194, "Input"],
+Cell[22405, 543, 13913, 289, 35, "Output",
+ CellID->850943877]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36367, 838, 36, 0, 181, "ManipulateCaptionSection"],
+Cell[36406, 840, 1040, 16, 87, "ManipulateCaption",
+ CellID->599106387]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37483, 861, 28, 0, 179, "ThumbnailSection"],
+Cell[37514, 863, 13914, 289, 35, "Output",
+ CellID->1720135366]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[51465, 1157, 28, 0, 149, "SnapshotsSection"],
+Cell[51496, 1159, 13928, 291, 35, "Output",
+ CellID->890240448],
+Cell[65427, 1452, 13941, 291, 35, "Output",
+ CellID->752640887],
+Cell[79371, 1745, 13951, 291, 35, "Output",
+ CellID->956706979]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[93359, 2041, 26, 0, 357, "DetailsSection"],
+Cell[93388, 2043, 781, 12, 71, "DetailNotes",
+ CellID->541620442]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[94206, 2060, 37, 0, 131, "ControlSuggestionsSection"],
+Cell[94246, 2062, 353, 9, 29, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[94602, 2073, 678, 16, 29, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[95283, 2091, 340, 11, 29, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[95626, 2104, 637, 15, 29, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[96266, 2121, 885, 22, 29, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[97154, 2145, 393, 10, 29, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[97550, 2157, 1507, 32, 29, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[99060, 2191, 908, 21, 29, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[100005, 2217, 30, 0, 165, "SearchTermsSection"],
+Cell[100038, 2219, 189, 4, 23, "SearchTerms",
+ CellID->9620120],
+Cell[100230, 2225, 187, 4, 23, "SearchTerms",
+ CellID->245912470],
+Cell[100420, 2231, 186, 4, 23, "SearchTerms",
+ CellID->316166559],
+Cell[100609, 2237, 191, 4, 23, "SearchTerms",
+ CellID->137963802],
+Cell[100803, 2243, 189, 4, 23, "SearchTerms",
+ CellID->1446983563],
+Cell[100995, 2249, 186, 4, 23, "SearchTerms",
+ CellID->1347924713]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[101218, 2258, 31, 0, 149, "RelatedLinksSection"],
+Cell[101252, 2260, 322, 7, 23, "RelatedLinks",
+ CellID->238990195],
+Cell[101577, 2269, 449, 10, 23, "RelatedLinks",
+ CellID->321595988],
+Cell[102029, 2281, 365, 9, 23, "RelatedLinks",
+ CellID->61421641]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[102431, 2295, 25, 0, 149, "AuthorSection"],
+Cell[102459, 2297, 478, 13, 23, "Author",
+ CellID->1310605038]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

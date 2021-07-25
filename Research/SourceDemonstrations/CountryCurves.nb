@@ -1,0 +1,1246 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     51255,       1237]
+NotebookOptionsPosition[     47404,       1118]
+NotebookOutlinePosition[     49001,       1168]
+CellTagsIndexPosition[     48673,       1156]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Country Curves", "DemoTitle",
+ CellChangeTimes->{{3.568392971648625*^9, 3.56839297653925*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["", "InitializationSection"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"cnts", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<Austria\>\"", ",", "\"\<Belgium\>\"", ",", "\"\<Brazil\>\"", ",", 
+     "\"\<Canada\>\"", ",", "\"\<China\>\"", ",", "\"\<Cyprus\>\"", ",", 
+     "\"\<France\>\"", ",", "\"\<India\>\"", ",", "\"\<Japan\>\"", ",", 
+     "\"\<Iran\>\"", ",", "\"\<Mexico\>\"", ",", "\"\<Netherlands\>\"", ",", 
+     "\"\<Spain\>\"", ",", "\"\<Switzerland\>\"", ",", "\"\<Turkey\>\"", ",", 
+     "\"\<USA\>\"", ",", "\"\<UK\>\""}], "}"}]}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.568392875304875*^9, 3.568392881898625*^9}, 
+   3.5689781197160788`*^9},
+ CellID->65366484]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"lst", ",", "fr", ",", "xy"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"lst", "=", 
+       RowBox[{"Reverse", "/@", 
+        RowBox[{
+         RowBox[{"Flatten", "[", 
+          RowBox[{
+           RowBox[{"List", "@@", 
+            RowBox[{"CountryData", "[", 
+             RowBox[{"cnt", ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<Polygon\>\"", ",", "\"\<Mercator\>\""}], "}"}]}], 
+             "]"}]}], ",", "1"}], "]"}], "\[LeftDoubleBracket]", "1", 
+         "\[RightDoubleBracket]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"fr", "=", 
+       RowBox[{"Take", "[", 
+        RowBox[{
+         RowBox[{"Chop", "@", 
+          RowBox[{"Fourier", "[", "lst", "]"}]}], ",", "m"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"xy", "[", 
+        RowBox[{"t_", ",", "s_"}], "]"}], ":=", 
+       RowBox[{"Rationalize", "[", 
+        RowBox[{
+         RowBox[{"Total", "[", 
+          RowBox[{
+           RowBox[{"Abs", "[", "fr", "]"}], " ", 
+           RowBox[{"Cos", "[", 
+            RowBox[{
+             RowBox[{"Arg", "[", "fr", "]"}], "+", 
+             RowBox[{"2.", "\[Pi]", " ", 
+              RowBox[{"Range", "[", 
+               RowBox[{"0", ",", 
+                RowBox[{"m", "-", "1"}]}], "]"}], " ", "t"}]}], "]"}]}], 
+          "]"}], ",", "s"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Text", "@", 
+       RowBox[{"Grid", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<parametric plot of\\nFourier series approximation\>\"", ",", 
+            "\"\<polygon of approximate\\ncountry border coordinates\>\""}], 
+           "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Show", "[", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"ParametricPlot", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"RotationMatrix", "[", "0.785", "]"}], ".", 
+                 RowBox[{"xy", "[", 
+                  RowBox[{"t", ",", "s"}], "]"}]}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"t", ",", "0", ",", "1"}], "}"}], ",", 
+                RowBox[{"PlotStyle", "\[Rule]", "Gray"}], ",", 
+                RowBox[{"Axes", "\[Rule]", "None"}], ",", 
+                RowBox[{"ImageSize", "\[Rule]", "200"}]}], "]"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"ParametricPlot", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"RotationMatrix", "[", "0.785", "]"}], ".", 
+                 RowBox[{"xy", "[", 
+                  RowBox[{"t", ",", "s"}], "]"}]}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"t", ",", "0", ",", "tt"}], "}"}], ",", 
+                RowBox[{"PlotStyle", "\[Rule]", 
+                 RowBox[{"{", 
+                  RowBox[{"Thick", ",", "Red"}], "}"}]}], ",", 
+                RowBox[{"Axes", "\[Rule]", "None"}], ",", 
+                RowBox[{"ImageSize", "\[Rule]", "200"}]}], "]"}]}], "]"}], 
+            ",", "\[IndentingNewLine]", 
+            RowBox[{"Graphics", "[", 
+             RowBox[{
+              RowBox[{"Line", "@", 
+               RowBox[{
+                RowBox[{"CountryData", "[", 
+                 RowBox[{"cnt", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"\"\<Shape\>\"", ",", "\"\<Mercator\>\""}], 
+                   "}"}]}], "]"}], "\[LeftDoubleBracket]", 
+                RowBox[{"1", ",", "3", ",", "1", ",", "1"}], 
+                "\[RightDoubleBracket]"}]}], ",", 
+              RowBox[{"ImageSize", "\[Rule]", "200"}]}], "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Row", "[", 
+             RowBox[{"{", 
+              RowBox[{"\"\<parametric equation: \>\"", ",", "\"\<{\>\"", ",", 
+               RowBox[{"Style", "[", 
+                RowBox[{"\"\<x\>\"", ",", "Italic"}], "]"}], ",", "\"\<(\>\"",
+                ",", 
+               RowBox[{"Style", "[", 
+                RowBox[{"\"\<t\>\"", ",", "Italic"}], "]"}], ",", 
+               "\"\<),\>\"", ",", 
+               RowBox[{"Style", "[", 
+                RowBox[{"\"\<y\>\"", ",", "Italic"}], "]"}], ",", "\"\<(\>\"",
+                ",", 
+               RowBox[{"Style", "[", 
+                RowBox[{"\"\<t\>\"", ",", "Italic"}], "]"}], ",", "\"\<)\>\"",
+                ",", "\"\<} = \>\""}], "}"}], "]"}], ",", "\"\<\>\""}], "}"}],
+           ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"TraditionalForm", "@", 
+             RowBox[{"xy", "[", 
+              RowBox[{"t", ",", "s"}], "]"}]}], ",", "SpanFromLeft"}], 
+           "}"}]}], "}"}], "]"}]}]}]}], "]"}], ",", 
+   RowBox[{"Grid", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"cnt", ",", "\"\<Belgium\>\"", ",", "\"\<country\>\""}], 
+            "}"}], ",", "cnts"}], "}"}], "]"}], ",", 
+        RowBox[{"Spacer", "[", "20", "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+            "m", ",", "50", ",", "\"\<number of Fourier series terms\>\""}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+            "10", ",", "20", ",", "50", ",", "75", ",", "100", ",", "150", 
+             ",", "200"}], "}"}]}], "}"}], "]"}], ",", 
+        RowBox[{"Spacer", "[", "20", "]"}], ",", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+            "s", ",", ".01", ",", "\"\<rationalization tolerance\>\""}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{".1", ",", ".01", ",", ".001"}], "}"}]}], "}"}], "]"}]}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"tt", ",", ".25", ",", "\"\<trace country border\>\""}], 
+            "}"}], ",", ".001", ",", "1.001"}], "}"}], "]"}], ",", 
+        "SpanFromLeft"}], "}"}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"ContentSize", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"575", ",", "450"}], "}"}]}], ",", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.568392855554875*^9, 3.568392910617375*^9}, {
+   3.56839300228925*^9, 3.568393013304875*^9}, {3.568393078117375*^9, 
+   3.5683930880705*^9}, {3.568393354867375*^9, 3.568393396586125*^9}, {
+   3.56845389621875*^9, 3.568453920609375*^9}, 3.5684539595625*^9, {
+   3.5684605593125*^9, 3.5684605831875*^9}, {3.56846082109375*^9, 
+   3.56846095184375*^9}, 3.568460987265625*^9, {3.568461046515625*^9, 
+   3.56846121825*^9}, {3.568461254203125*^9, 3.5684612941875*^9}, {
+   3.568461475296875*^9, 3.56846151184375*^9}, {3.568461639484375*^9, 
+   3.56846164271875*^9}, 3.568461674234375*^9, {3.568461741015625*^9, 
+   3.56846175325*^9}, {3.568461843765625*^9, 3.568461897734375*^9}, {
+   3.56846205603125*^9, 3.56846211865625*^9}, {3.56846214921875*^9, 
+   3.56846215790625*^9}, {3.568462214296875*^9, 3.568462291234375*^9}, {
+   3.5684623283125*^9, 3.56846247946875*^9}, {3.568462547109375*^9, 
+   3.568462556515625*^9}, {3.568462616203125*^9, 3.568462726875*^9}, {
+   3.568462778015625*^9, 3.568462827859375*^9}, {3.5689541142335267`*^9, 
+   3.5689541883381586`*^9}, {3.568954534894103*^9, 3.568954550939951*^9}, {
+   3.568955315393731*^9, 3.568955329783619*^9}, {3.5689553813747272`*^9, 
+   3.5689553977020164`*^9}, {3.568955429403518*^9, 3.5689554419028783`*^9}, {
+   3.5689555626310716`*^9, 3.5689555631779184`*^9}, 3.5689562340661125`*^9, {
+   3.568956268330203*^9, 3.5689563945120497`*^9}, {3.5689568257427297`*^9, 
+   3.5689568295706835`*^9}, {3.568956929456833*^9, 3.5689569399876113`*^9}, {
+   3.568961469223064*^9, 3.568961561800004*^9}, {3.568961600768255*^9, 
+   3.5689617132980647`*^9}, {3.5689617651099014`*^9, 3.568961849686944*^9}, {
+   3.568961899155061*^9, 3.5689618994206824`*^9}, {3.5689619370608253`*^9, 
+   3.568962020387884*^9}, {3.5689620884807625`*^9, 3.5689620957462945`*^9}, {
+   3.568962137339512*^9, 3.5689621572455072`*^9}, {3.5689622244790215`*^9, 
+   3.568962295071868*^9}, {3.568962348196188*^9, 3.568962372727124*^9}, {
+   3.5689624130078583`*^9, 3.5689624516948633`*^9}, 3.568962546224903*^9, 
+   3.5689719843410788`*^9, {3.5689723890754538`*^9, 3.5689723972785788`*^9}, {
+   3.5689782089035788`*^9, 3.5689782113098288`*^9}, {3.568987231911931*^9, 
+   3.5689872976565046`*^9}, {3.568987528310568*^9, 3.5689875465223885`*^9}, {
+   3.5689880062683587`*^9, 3.568988046160348*^9}, {3.568988101414872*^9, 
+   3.568988156656396*^9}, {3.5694637685842543`*^9, 3.569463769055983*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cnt$$ = "Belgium", $CellContext`m$$ = 
+    50, $CellContext`s$$ = 0.01, $CellContext`tt$$ = 0.25, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`cnt$$], "Belgium", "country"}, {
+      "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", "France", 
+       "India", "Japan", "Iran", "Mexico", "Netherlands", "Spain", 
+       "Switzerland", "Turkey", "USA", "UK"}}, {{
+       Hold[$CellContext`m$$], 50, "number of Fourier series terms"}, {10, 20,
+       50, 75, 100, 150, 200}}, {{
+       Hold[$CellContext`s$$], 0.01, "rationalization tolerance"}, {0.1, 0.01,
+       0.001}}, {{
+       Hold[$CellContext`tt$$], 0.25, "trace country border"}, 0.001, 1.001}, {
+      Hold[
+       Grid[{{
+          Manipulate`Place[1], 
+          Spacer[20], 
+          Manipulate`Place[2], 
+          Spacer[20], 
+          Manipulate`Place[3]}, {
+          Manipulate`Place[4], SpanFromLeft}}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    491., {444., 451.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`cnt$5731$$ = 
+    0, $CellContext`m$5732$$ = 0, $CellContext`s$5733$$ = 
+    0, $CellContext`tt$5734$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`cnt$$ = "Belgium", $CellContext`m$$ = 
+        50, $CellContext`s$$ = 0.01, $CellContext`tt$$ = 0.25}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`cnt$$, $CellContext`cnt$5731$$, 0], 
+        Hold[$CellContext`m$$, $CellContext`m$5732$$, 0], 
+        Hold[$CellContext`s$$, $CellContext`s$5733$$, 0], 
+        Hold[$CellContext`tt$$, $CellContext`tt$5734$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`lst$, $CellContext`fr$, $CellContext`xy$}, \
+$CellContext`lst$ = Map[Reverse, 
+           Part[
+            Flatten[
+             Apply[List, 
+              CountryData[$CellContext`cnt$$, {"Polygon", "Mercator"}]], 1], 
+            1]]; $CellContext`fr$ = Take[
+           Chop[
+            Fourier[$CellContext`lst$]], $CellContext`m$$]; $CellContext`xy$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`s$, 
+            Blank[]]] := Rationalize[
+           Total[
+           Abs[$CellContext`fr$] 
+            Cos[Arg[$CellContext`fr$] + ((2. Pi) 
+                Range[0, $CellContext`m$$ - 
+                  1]) $CellContext`t$]], $CellContext`s$]; Text[
+          
+          Grid[{{"parametric plot of\nFourier series approximation", 
+             "polygon of approximate\ncountry border coordinates"}, {
+             Show[
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, 1}, PlotStyle -> Gray, Axes -> None, ImageSize -> 200], 
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, $CellContext`tt$$}, PlotStyle -> {Thick, Red}, Axes -> 
+               None, ImageSize -> 200]], 
+             Graphics[
+              Line[
+               Part[
+                CountryData[$CellContext`cnt$$, {"Shape", "Mercator"}], 1, 3, 
+                1, 1]], ImageSize -> 200]}, {
+             Row[{"parametric equation: ", "{", 
+               Style["x", Italic], "(", 
+               Style["t", Italic], "),", 
+               Style["y", Italic], "(", 
+               Style["t", Italic], ")", "} = "}], ""}, {
+             TraditionalForm[
+              $CellContext`xy$[$CellContext`t, $CellContext`s$$]], 
+             SpanFromLeft}}]]], 
+      "Specifications" :> {{{$CellContext`cnt$$, "Belgium", "country"}, {
+         "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", 
+          "France", "India", "Japan", "Iran", "Mexico", "Netherlands", 
+          "Spain", "Switzerland", "Turkey", "USA", "UK"}, ControlPlacement -> 
+         1}, {{$CellContext`m$$, 50, "number of Fourier series terms"}, {10, 
+         20, 50, 75, 100, 150, 200}, ControlPlacement -> 
+         2}, {{$CellContext`s$$, 0.01, "rationalization tolerance"}, {0.1, 
+         0.01, 0.001}, ControlPlacement -> 
+         3}, {{$CellContext`tt$$, 0.25, "trace country border"}, 0.001, 1.001,
+          ControlPlacement -> 4}, 
+        Grid[{{
+           Manipulate`Place[1], 
+           Spacer[20], 
+           Manipulate`Place[2], 
+           Spacer[20], 
+           Manipulate`Place[3]}, {
+           Manipulate`Place[4], SpanFromLeft}}]}, 
+      "Options" :> {ContentSize -> {575, 450}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{670., {273., 278.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1185623942]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell[TextData[{
+ "The border of a country can be represented by a parametric curve derived \
+from a Fourier series approximation. In this Demonstration, the Fourier \
+series is computed using the border coordinates stored in ",
+ StyleBox["CountryData", "MR"],
+ ". To form an elegant parametric equation representing the curve, the \
+coefficients are rationalized. "
+}], "ManipulateCaption",
+ CellChangeTimes->{{3.5689706937629538`*^9, 3.5689707184660788`*^9}, {
+   3.5689709335285788`*^9, 3.5689712828723288`*^9}, {3.5689713601379538`*^9, 
+   3.5689713948567038`*^9}, {3.5689714501535788`*^9, 
+   3.5689714723410788`*^9}, {3.5689715254348288`*^9, 
+   3.5689715518410788`*^9}, {3.5689715913879538`*^9, 3.5689716232160788`*^9}, 
+   3.568988730671792*^9, {3.569463684893558*^9, 3.569463721994628*^9}},
+ CellID->33033957],
+
+Cell["\<\
+Increasing the number of terms of the series or decreasing the tolerance of \
+the rationalization gives a more accurate curve.\
+\>", "ManipulateCaption",
+ CellChangeTimes->{{3.5689706937629538`*^9, 3.5689707184660788`*^9}, {
+  3.5689709335285788`*^9, 3.5689712828723288`*^9}, {3.5689713601379538`*^9, 
+  3.5689713948567038`*^9}, {3.5689714501535788`*^9, 3.5689714723410788`*^9}, {
+  3.5689715254348288`*^9, 3.5689715518410788`*^9}, {3.5689715913879538`*^9, 
+  3.5689716118254538`*^9}, {3.569463731782009*^9, 3.569463735764779*^9}},
+ CellID->572353963]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cnt$$ = "Belgium", $CellContext`m$$ = 
+    50, $CellContext`s$$ = 0.01, $CellContext`tt$$ = 0.25, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`cnt$$], "Belgium", "country"}, {
+      "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", "France", 
+       "India", "Japan", "Iran", "Mexico", "Netherlands", "Spain", 
+       "Switzerland", "Turkey", "USA", "UK"}}, {{
+       Hold[$CellContext`m$$], 50, "number of Fourier series terms"}, {10, 20,
+       50, 75, 100, 150, 200}}, {{
+       Hold[$CellContext`s$$], 0.01, "rationalization tolerance"}, {0.1, 0.01,
+       0.001}}, {{
+       Hold[$CellContext`tt$$], 0.25, "trace country border"}, 0.001, 1.001}, {
+      Hold[
+       Grid[{{
+          Manipulate`Place[1], 
+          Spacer[20], 
+          Manipulate`Place[2], 
+          Spacer[20], 
+          Manipulate`Place[3]}, {
+          Manipulate`Place[4], SpanFromLeft}}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    491., {444., 451.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`cnt$5801$$ = 
+    0, $CellContext`m$5802$$ = 0, $CellContext`s$5803$$ = 
+    0, $CellContext`tt$5804$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`cnt$$ = "Belgium", $CellContext`m$$ = 
+        50, $CellContext`s$$ = 0.01, $CellContext`tt$$ = 0.25}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`cnt$$, $CellContext`cnt$5801$$, 0], 
+        Hold[$CellContext`m$$, $CellContext`m$5802$$, 0], 
+        Hold[$CellContext`s$$, $CellContext`s$5803$$, 0], 
+        Hold[$CellContext`tt$$, $CellContext`tt$5804$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`lst$, $CellContext`fr$, $CellContext`xy$}, \
+$CellContext`lst$ = Map[Reverse, 
+           Part[
+            Flatten[
+             Apply[List, 
+              CountryData[$CellContext`cnt$$, {"Polygon", "Mercator"}]], 1], 
+            1]]; $CellContext`fr$ = Take[
+           Chop[
+            Fourier[$CellContext`lst$]], $CellContext`m$$]; $CellContext`xy$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`s$, 
+            Blank[]]] := Rationalize[
+           Total[
+           Abs[$CellContext`fr$] 
+            Cos[Arg[$CellContext`fr$] + ((2. Pi) 
+                Range[0, $CellContext`m$$ - 
+                  1]) $CellContext`t$]], $CellContext`s$]; Text[
+          
+          Grid[{{"parametric plot of\nFourier series approximation", 
+             "polygon of approximate\ncountry border coordinates"}, {
+             Show[
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, 1}, PlotStyle -> Gray, Axes -> None, ImageSize -> 200], 
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, $CellContext`tt$$}, PlotStyle -> {Thick, Red}, Axes -> 
+               None, ImageSize -> 200]], 
+             Graphics[
+              Line[
+               Part[
+                CountryData[$CellContext`cnt$$, {"Shape", "Mercator"}], 1, 3, 
+                1, 1]], ImageSize -> 200]}, {
+             Row[{"parametric equation: ", "{", 
+               Style["x", Italic], "(", 
+               Style["t", Italic], "),", 
+               Style["y", Italic], "(", 
+               Style["t", Italic], ")", "} = "}], ""}, {
+             TraditionalForm[
+              $CellContext`xy$[$CellContext`t, $CellContext`s$$]], 
+             SpanFromLeft}}]]], 
+      "Specifications" :> {{{$CellContext`cnt$$, "Belgium", "country"}, {
+         "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", 
+          "France", "India", "Japan", "Iran", "Mexico", "Netherlands", 
+          "Spain", "Switzerland", "Turkey", "USA", "UK"}, ControlPlacement -> 
+         1}, {{$CellContext`m$$, 50, "number of Fourier series terms"}, {10, 
+         20, 50, 75, 100, 150, 200}, ControlPlacement -> 
+         2}, {{$CellContext`s$$, 0.01, "rationalization tolerance"}, {0.1, 
+         0.01, 0.001}, ControlPlacement -> 
+         3}, {{$CellContext`tt$$, 0.25, "trace country border"}, 0.001, 1.001,
+          ControlPlacement -> 4}, 
+        Grid[{{
+           Manipulate`Place[1], 
+           Spacer[20], 
+           Manipulate`Place[2], 
+           Spacer[20], 
+           Manipulate`Place[3]}, {
+           Manipulate`Place[4], SpanFromLeft}}]}, 
+      "Options" :> {ContentSize -> {575, 450}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{670., {273., 278.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->280832681]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cnt$$ = "France", $CellContext`m$$ = 
+    100, $CellContext`s$$ = 0.01, $CellContext`tt$$ = 0.527, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`cnt$$], "France", "country"}, {
+      "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", "France", 
+       "India", "Japan", "Iran", "Mexico", "Netherlands", "Spain", 
+       "Switzerland", "Turkey", "USA", "UK"}}, {{
+       Hold[$CellContext`m$$], 100, "number of Fourier series terms"}, {10, 
+      20, 50, 75, 100, 150, 200}}, {{
+       Hold[$CellContext`s$$], 0.01, "rationalization tolerance"}, {0.1, 0.01,
+       0.001}}, {{
+       Hold[$CellContext`tt$$], 0.527, "trace country border"}, 0.001, 
+      1.001}, {
+      Hold[
+       Grid[{{
+          Manipulate`Place[1], 
+          Spacer[20], 
+          Manipulate`Place[2], 
+          Spacer[20], 
+          Manipulate`Place[3]}, {
+          Manipulate`Place[4], SpanFromLeft}}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    465., {824., 831.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`cnt$5871$$ = 
+    0, $CellContext`m$5872$$ = 0, $CellContext`s$5873$$ = 
+    0, $CellContext`tt$5874$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`cnt$$ = "France", $CellContext`m$$ = 
+        100, $CellContext`s$$ = 0.01, $CellContext`tt$$ = 0.527}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`cnt$$, $CellContext`cnt$5871$$, 0], 
+        Hold[$CellContext`m$$, $CellContext`m$5872$$, 0], 
+        Hold[$CellContext`s$$, $CellContext`s$5873$$, 0], 
+        Hold[$CellContext`tt$$, $CellContext`tt$5874$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`lst$, $CellContext`fr$, $CellContext`xy$}, \
+$CellContext`lst$ = Map[Reverse, 
+           Part[
+            Flatten[
+             Apply[List, 
+              CountryData[$CellContext`cnt$$, {"Polygon", "Mercator"}]], 1], 
+            1]]; $CellContext`fr$ = Take[
+           Chop[
+            Fourier[$CellContext`lst$]], $CellContext`m$$]; $CellContext`xy$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`s$, 
+            Blank[]]] := Rationalize[
+           Total[
+           Abs[$CellContext`fr$] 
+            Cos[Arg[$CellContext`fr$] + ((2. Pi) 
+                Range[0, $CellContext`m$$ - 
+                  1]) $CellContext`t$]], $CellContext`s$]; Text[
+          
+          Grid[{{"parametric plot of\nFourier series approximation", 
+             "polygon of approximate\ncountry border coordinates"}, {
+             Show[
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, 1}, PlotStyle -> Gray, Axes -> None, ImageSize -> 200], 
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, $CellContext`tt$$}, PlotStyle -> {Thick, Red}, Axes -> 
+               None, ImageSize -> 200]], 
+             Graphics[
+              Line[
+               Part[
+                CountryData[$CellContext`cnt$$, {"Shape", "Mercator"}], 1, 3, 
+                1, 1]], ImageSize -> 200]}, {
+             Row[{"parametric equation: ", "{", 
+               Style["x", Italic], "(", 
+               Style["t", Italic], "),", 
+               Style["y", Italic], "(", 
+               Style["t", Italic], ")", "} = "}], ""}, {
+             TraditionalForm[
+              $CellContext`xy$[$CellContext`t, $CellContext`s$$]], 
+             SpanFromLeft}}]]], 
+      "Specifications" :> {{{$CellContext`cnt$$, "France", "country"}, {
+         "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", 
+          "France", "India", "Japan", "Iran", "Mexico", "Netherlands", 
+          "Spain", "Switzerland", "Turkey", "USA", "UK"}, ControlPlacement -> 
+         1}, {{$CellContext`m$$, 100, "number of Fourier series terms"}, {10, 
+         20, 50, 75, 100, 150, 200}, ControlPlacement -> 
+         2}, {{$CellContext`s$$, 0.01, "rationalization tolerance"}, {0.1, 
+         0.01, 0.001}, ControlPlacement -> 
+         3}, {{$CellContext`tt$$, 0.527, "trace country border"}, 0.001, 
+         1.001, ControlPlacement -> 4}, 
+        Grid[{{
+           Manipulate`Place[1], 
+           Spacer[20], 
+           Manipulate`Place[2], 
+           Spacer[20], 
+           Manipulate`Place[3]}, {
+           Manipulate`Place[4], SpanFromLeft}}]}, 
+      "Options" :> {ContentSize -> {575, 450}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{670., {273., 278.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1933297108],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cnt$$ = "USA", $CellContext`m$$ = 
+    50, $CellContext`s$$ = 0.01, $CellContext`tt$$ = 0.8280000000000001, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`cnt$$], "USA", "country"}, {
+      "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", "France", 
+       "India", "Japan", "Iran", "Mexico", "Netherlands", "Spain", 
+       "Switzerland", "Turkey", "USA", "UK"}}, {{
+       Hold[$CellContext`m$$], 50, "number of Fourier series terms"}, {10, 20,
+       50, 75, 100, 150, 200}}, {{
+       Hold[$CellContext`s$$], 0.01, "rationalization tolerance"}, {0.1, 0.01,
+       0.001}}, {{
+       Hold[$CellContext`tt$$], 0.8280000000000001, "trace country border"}, 
+      0.001, 1.001}, {
+      Hold[
+       Grid[{{
+          Manipulate`Place[1], 
+          Spacer[20], 
+          Manipulate`Place[2], 
+          Spacer[20], 
+          Manipulate`Place[3]}, {
+          Manipulate`Place[4], SpanFromLeft}}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    464., {446., 452.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`cnt$5941$$ = 
+    0, $CellContext`m$5942$$ = 0, $CellContext`s$5943$$ = 
+    0, $CellContext`tt$5944$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`cnt$$ = "USA", $CellContext`m$$ = 
+        50, $CellContext`s$$ = 0.01, $CellContext`tt$$ = 0.8280000000000001}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`cnt$$, $CellContext`cnt$5941$$, 0], 
+        Hold[$CellContext`m$$, $CellContext`m$5942$$, 0], 
+        Hold[$CellContext`s$$, $CellContext`s$5943$$, 0], 
+        Hold[$CellContext`tt$$, $CellContext`tt$5944$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`lst$, $CellContext`fr$, $CellContext`xy$}, \
+$CellContext`lst$ = Map[Reverse, 
+           Part[
+            Flatten[
+             Apply[List, 
+              CountryData[$CellContext`cnt$$, {"Polygon", "Mercator"}]], 1], 
+            1]]; $CellContext`fr$ = Take[
+           Chop[
+            Fourier[$CellContext`lst$]], $CellContext`m$$]; $CellContext`xy$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`s$, 
+            Blank[]]] := Rationalize[
+           Total[
+           Abs[$CellContext`fr$] 
+            Cos[Arg[$CellContext`fr$] + ((2. Pi) 
+                Range[0, $CellContext`m$$ - 
+                  1]) $CellContext`t$]], $CellContext`s$]; Text[
+          
+          Grid[{{"parametric plot of\nFourier series approximation", 
+             "polygon of approximate\ncountry border coordinates"}, {
+             Show[
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, 1}, PlotStyle -> Gray, Axes -> None, ImageSize -> 200], 
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, $CellContext`tt$$}, PlotStyle -> {Thick, Red}, Axes -> 
+               None, ImageSize -> 200]], 
+             Graphics[
+              Line[
+               Part[
+                CountryData[$CellContext`cnt$$, {"Shape", "Mercator"}], 1, 3, 
+                1, 1]], ImageSize -> 200]}, {
+             Row[{"parametric equation: ", "{", 
+               Style["x", Italic], "(", 
+               Style["t", Italic], "),", 
+               Style["y", Italic], "(", 
+               Style["t", Italic], ")", "} = "}], ""}, {
+             TraditionalForm[
+              $CellContext`xy$[$CellContext`t, $CellContext`s$$]], 
+             SpanFromLeft}}]]], 
+      "Specifications" :> {{{$CellContext`cnt$$, "USA", "country"}, {
+         "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", 
+          "France", "India", "Japan", "Iran", "Mexico", "Netherlands", 
+          "Spain", "Switzerland", "Turkey", "USA", "UK"}, ControlPlacement -> 
+         1}, {{$CellContext`m$$, 50, "number of Fourier series terms"}, {10, 
+         20, 50, 75, 100, 150, 200}, ControlPlacement -> 
+         2}, {{$CellContext`s$$, 0.01, "rationalization tolerance"}, {0.1, 
+         0.01, 0.001}, ControlPlacement -> 
+         3}, {{$CellContext`tt$$, 0.8280000000000001, "trace country border"},
+          0.001, 1.001, ControlPlacement -> 4}, 
+        Grid[{{
+           Manipulate`Place[1], 
+           Spacer[20], 
+           Manipulate`Place[2], 
+           Spacer[20], 
+           Manipulate`Place[3]}, {
+           Manipulate`Place[4], SpanFromLeft}}]}, 
+      "Options" :> {ContentSize -> {575, 450}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{670., {273., 278.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1496915046],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cnt$$ = "Switzerland", $CellContext`m$$ = 
+    200, $CellContext`s$$ = 0.1, $CellContext`tt$$ = 0.25, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`cnt$$], "Switzerland", "country"}, {
+      "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", "France", 
+       "India", "Japan", "Iran", "Mexico", "Netherlands", "Spain", 
+       "Switzerland", "Turkey", "USA", "UK"}}, {{
+       Hold[$CellContext`m$$], 200, "number of Fourier series terms"}, {10, 
+      20, 50, 75, 100, 150, 200}}, {{
+       Hold[$CellContext`s$$], 0.1, "rationalization tolerance"}, {0.1, 0.01, 
+      0.001}}, {{
+       Hold[$CellContext`tt$$], 0.25, "trace country border"}, 0.001, 1.001}, {
+      Hold[
+       Grid[{{
+          Manipulate`Place[1], 
+          Spacer[20], 
+          Manipulate`Place[2], 
+          Spacer[20], 
+          Manipulate`Place[3]}, {
+          Manipulate`Place[4], SpanFromLeft}}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    493., {259., 266.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`cnt$6011$$ = 
+    0, $CellContext`m$6012$$ = 0, $CellContext`s$6013$$ = 
+    0, $CellContext`tt$6014$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`cnt$$ = "Switzerland", $CellContext`m$$ = 
+        200, $CellContext`s$$ = 0.1, $CellContext`tt$$ = 0.25}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`cnt$$, $CellContext`cnt$6011$$, 0], 
+        Hold[$CellContext`m$$, $CellContext`m$6012$$, 0], 
+        Hold[$CellContext`s$$, $CellContext`s$6013$$, 0], 
+        Hold[$CellContext`tt$$, $CellContext`tt$6014$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`lst$, $CellContext`fr$, $CellContext`xy$}, \
+$CellContext`lst$ = Map[Reverse, 
+           Part[
+            Flatten[
+             Apply[List, 
+              CountryData[$CellContext`cnt$$, {"Polygon", "Mercator"}]], 1], 
+            1]]; $CellContext`fr$ = Take[
+           Chop[
+            Fourier[$CellContext`lst$]], $CellContext`m$$]; $CellContext`xy$[
+           Pattern[$CellContext`t$, 
+            Blank[]], 
+           Pattern[$CellContext`s$, 
+            Blank[]]] := Rationalize[
+           Total[
+           Abs[$CellContext`fr$] 
+            Cos[Arg[$CellContext`fr$] + ((2. Pi) 
+                Range[0, $CellContext`m$$ - 
+                  1]) $CellContext`t$]], $CellContext`s$]; Text[
+          
+          Grid[{{"parametric plot of\nFourier series approximation", 
+             "polygon of approximate\ncountry border coordinates"}, {
+             Show[
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, 1}, PlotStyle -> Gray, Axes -> None, ImageSize -> 200], 
+              ParametricPlot[
+               Dot[
+                RotationMatrix[0.785], 
+                $CellContext`xy$[$CellContext`t, $CellContext`s$$]], \
+{$CellContext`t, 0, $CellContext`tt$$}, PlotStyle -> {Thick, Red}, Axes -> 
+               None, ImageSize -> 200]], 
+             Graphics[
+              Line[
+               Part[
+                CountryData[$CellContext`cnt$$, {"Shape", "Mercator"}], 1, 3, 
+                1, 1]], ImageSize -> 200]}, {
+             Row[{"parametric equation: ", "{", 
+               Style["x", Italic], "(", 
+               Style["t", Italic], "),", 
+               Style["y", Italic], "(", 
+               Style["t", Italic], ")", "} = "}], ""}, {
+             TraditionalForm[
+              $CellContext`xy$[$CellContext`t, $CellContext`s$$]], 
+             SpanFromLeft}}]]], 
+      "Specifications" :> {{{$CellContext`cnt$$, "Switzerland", "country"}, {
+         "Austria", "Belgium", "Brazil", "Canada", "China", "Cyprus", 
+          "France", "India", "Japan", "Iran", "Mexico", "Netherlands", 
+          "Spain", "Switzerland", "Turkey", "USA", "UK"}, ControlPlacement -> 
+         1}, {{$CellContext`m$$, 200, "number of Fourier series terms"}, {10, 
+         20, 50, 75, 100, 150, 200}, ControlPlacement -> 
+         2}, {{$CellContext`s$$, 0.1, "rationalization tolerance"}, {0.1, 
+         0.01, 0.001}, ControlPlacement -> 
+         3}, {{$CellContext`tt$$, 0.25, "trace country border"}, 0.001, 1.001,
+          ControlPlacement -> 4}, 
+        Grid[{{
+           Manipulate`Place[1], 
+           Spacer[20], 
+           Manipulate`Place[2], 
+           Spacer[20], 
+           Manipulate`Place[3]}, {
+           Manipulate`Place[4], SpanFromLeft}}]}, 
+      "Options" :> {ContentSize -> {575, 450}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{670., {273., 278.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->880253517]
+}, Open  ]],
+
+Cell["", "DetailsSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.5694638251989517`*^9},
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.5689716508723288`*^9},
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9, 
+  3.569463826875423*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0, CellBaseline -> Baseline], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.5689562088016195`*^9},
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell["", "SearchTermsSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Dalai Lama curve",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://www.wolframalpha.com/input/?i=Dalai+Lama+curve&lk=1&a=\
+ClashPrefs_*PlaneCurve.DalaiLamaCurve-"], None},
+ ButtonNote->
+  "http://www.wolframalpha.com/input/?i=Dalai+Lama+curve&lk=1&a=ClashPrefs_*\
+PlaneCurve.DalaiLamaCurve-"]], "RelatedLinks",
+ CellChangeTimes->{{3.5689559696102333`*^9, 3.5689559696258574`*^9}},
+ CellID->308818828],
+
+Cell[TextData[ButtonBox["Jack Lew Signature Function",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/JackLewSignatureFunction/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/JackLewSignatureFunction/"]], \
+"RelatedLinks",
+ CellChangeTimes->{{3.568987088169156*^9, 3.5689870881701555`*^9}},
+ CellID->596358084],
+
+Cell[TextData[ButtonBox["Person Curve",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://www.wolframalpha.com/input/?i=person%20curve&lk=1&a=ClashPrefs_\
+%2aPlaneCurveClass.Person-"], None},
+ ButtonNote->
+  "http://www.wolframalpha.com/input/?i=person%20curve&lk=1&a=ClashPrefs_%\
+2aPlaneCurveClass.Person-"]], "RelatedLinks",
+ CellChangeTimes->{{3.568956182818409*^9, 3.5689561973802567`*^9}, {
+  3.568988713015026*^9, 3.568988716407366*^9}},
+ CellID->912553525]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Erik Mahieu",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Erik+Mahieu"], 
+    None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Erik+Mahieu"]
+}], "Author",
+ CellChangeTimes->{{3.568392988273625*^9, 3.568392991508*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{893, 933},
+WindowMargins->{{27, Automatic}, {-6, Automatic}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[39859, 907, 355, 9, 22, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[40217, 918, 678, 16, 22, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "DragLocators"->{
+  Cell[40898, 936, 340, 11, 22, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "CreateAndDeleteLocators"->{
+  Cell[41241, 949, 637, 15, 22, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "SliderZoom"->{
+  Cell[41881, 966, 887, 22, 22, "ControlSuggestions",
+   CellTags->"SliderZoom"]},
+ "GamepadControls"->{
+  Cell[42771, 990, 393, 10, 22, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "AutomaticAnimation"->{
+  Cell[43167, 1002, 1507, 32, 22, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[44677, 1036, 908, 21, 22, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 47779, 1129},
+ {"RotateAndZoomIn3D", 47887, 1132},
+ {"DragLocators", 47996, 1135},
+ {"CreateAndDeleteLocators", 48111, 1138},
+ {"SliderZoom", 48224, 1141},
+ {"GamepadControls", 48329, 1144},
+ {"AutomaticAnimation", 48442, 1147},
+ {"BookmarkAnimation", 48559, 1150}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 100, 1, 74, "DemoTitle"],
+Cell[CellGroupData[{
+Cell[704, 27, 33, 0, 287, "InitializationSection"],
+Cell[740, 29, 664, 14, 48, "Input",
+ InitializationCell->True,
+ CellID->65366484]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1441, 48, 29, 0, 236, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[1495, 52, 8942, 196, 368, "Input"],
+Cell[10440, 250, 5526, 119, 563, "Output",
+ CellID->1185623942]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16015, 375, 36, 0, 169, "ManipulateCaptionSection"],
+Cell[16054, 377, 817, 14, 53, "ManipulateCaption",
+ CellID->33033957],
+Cell[16874, 393, 561, 9, 37, "ManipulateCaption",
+ CellID->572353963]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17472, 407, 28, 0, 173, "ThumbnailSection"],
+Cell[17503, 409, 5525, 119, 563, "Output",
+ CellID->280832681]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23065, 533, 28, 0, 143, "SnapshotsSection"],
+Cell[23096, 535, 5537, 120, 563, "Output",
+ CellID->1933297108],
+Cell[28636, 657, 5573, 120, 563, "Output",
+ CellID->1496915046],
+Cell[34212, 779, 5541, 119, 563, "Output",
+ CellID->880253517]
+}, Open  ]],
+Cell[39768, 901, 26, 0, 336, "DetailsSection"],
+Cell[CellGroupData[{
+Cell[39819, 905, 37, 0, 114, "ControlSuggestionsSection"],
+Cell[39859, 907, 355, 9, 22, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[40217, 918, 678, 16, 22, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[40898, 936, 340, 11, 22, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[41241, 949, 637, 15, 22, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[41881, 966, 887, 22, 22, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[42771, 990, 393, 10, 22, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[43167, 1002, 1507, 32, 22, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[44677, 1036, 908, 21, 22, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[45600, 1060, 30, 0, 155, "SearchTermsSection"],
+Cell[CellGroupData[{
+Cell[45655, 1064, 31, 0, 129, "RelatedLinksSection"],
+Cell[45689, 1066, 432, 9, 22, "RelatedLinks",
+ CellID->308818828],
+Cell[46124, 1077, 359, 8, 22, "RelatedLinks",
+ CellID->596358084],
+Cell[46486, 1087, 469, 10, 22, "RelatedLinks",
+ CellID->912553525]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46992, 1102, 25, 0, 141, "AuthorSection"],
+Cell[47020, 1104, 356, 10, 22, "Author"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
